@@ -692,11 +692,21 @@
       </ul>
     </li>
     <li>
-      <span class="when">Sabtu&ndash;Senin, 31 Oktober&ndash;2 November</span>
-      <span class="what">Hanya bug yang memblokir demo.</span>
+      <span class="when">Sabtu, 31 Oktober &mdash; hari ini</span>
+      <span class="what">Layar sekunder pengendara &amp; pembersihan timeline; tunggu balasan Ifa.</span>
       <ul>
-        <li><b>Jizdan:</b> rekam video demo cadangan dari HP, supaya presentasi tidak bergantung pada tunnel.</li>
-        <li><b>Raskha:</b> rapikan bug backend/admin + siapkan jawaban teknis untuk dosen.</li>
+        <li><b>Jizdan &mdash; 6 layar sekunder U13&ndash;U18 (<code>f15af36</code>, 30 Okt 23:32):</b> <code>edit_profile_screen.dart</code> (PUT <code>/profile</code> via <code>AuthState.updateProfile</code>), <code>payment_methods_screen.dart</code> (QRIS Utama + Tunai + Transfer), <code>help_center_screen.dart</code> (pencarian, kartu CS salin telepon/WA, 6 FAQ), <code>terms_conditions_screen.dart</code> (5 bagian), <code>chat_detail_screen.dart</code> (demo bubble, endpoint chat belum ada), <code>history_detail_screen.dart</code> (rincian nota: kode+badge, kendaraan, bengkel, rincian biaya, pembayaran, alasan batal, rating). Navigasi: 4 titik di <code>account_screen</code>, <code>chat_list</code> &rarr; <code>/chat/detail</code>, <code>history</code> &rarr; <code>/history/detail</code>. 6 route GoRoute baru di <code>router.dart</code>. <code>flutter analyze</code> bersih, <b>70 tes hijau</b>. <span class="note">Status: branch <code>feature/secondary-screens-u13-u18</code> dipush ke <code>kai</code> (f15af36), <b>belum di-merge ke <code>main</code></b> &mdash; repo demo dibekukan, merge menunggu keputusan tim. <code>merge-base --is-ancestor f15af36 kai/main</code> = NOT ancestor (belum merged).</span></li>
+        <li><b>Jizdan &mdash; timeline dirapikan:</b> Bagian 04 yang berisi 5 prompt kerja lama Tim 2 (semua sudah selesai &amp; merged) diganti jadi ringkasan status per modul. Teks prompt lama diarsipkan di <code>~/.claude/plans/</code>.</li>
+        <li><b>Menunggu &mdash; balasan verifikasi Ifa:</b> laporan tertulis dari Ifa belum diterima. Rekam jejak merge-nya di <code>main</code> sudah terbukti lewat uji Jizdan, tapi belum ada konfirmasi langsung dari Ifa.</li>
+      </ul>
+    </li>
+    <li>
+      <span class="when">Minggu&ndash;Senin, 1&ndash;2 November</span>
+      <span class="what">Hanya bug yang memblokir demo + rekam video cadangan.</span>
+      <ul>
+        <li><b>Jizdan:</b> rekam video demo cadangan dari HP Redmi Note 9 Pro, supaya presentasi tidak bergantung pada tunnel Cloudflare. Putuskan merge U13&ndash;U18 ke <code>main</code> kalau sudah stabil.</li>
+        <li><b>Raskha:</b> rapikan bug backend/admin sisa + siapkan jawaban teknis untuk dosen.</li>
+        <li><b>Ifa:</b> kirim laporan verifikasi tertulis (main = <code>455c5c6</code>, <code>flutter analyze</code> bersih, tes hijau) supaya klaim "terverifikasi" punya dua sumber.</li>
       </ul>
     </li>
     <li>
@@ -708,135 +718,38 @@
     </li>
   </ol>
 
-  <h2><span class="num">04</span>Prompt Mulai &mdash; Rangga &amp; Ifa (Tim 2)</h2>
-  <p class="sub">Kirim apa adanya ke sesi Claude masing-masing. Isinya sengaja dibatasi pada berkas yang <b>tidak</b> disentuh Tim 1, supaya hasilnya bisa di-merge tanpa konflik.</p>
+  <h2><span class="num">04</span>Penutup &mdash; Tim 2 (Rangga &amp; Ifa)</h2>
+  <p class="sub">Seluruh prompt kerja Tim 2 sudah selesai dan masuk <code>main</code>. Bagian ini disimpan sebagai catatan ringkas apa yang dikerjakan, bukan instruksi yang masih berlaku.</p>
 
-  <div class="callout">
-    <p><strong>Sebelum menjalankan prompt pertama:</strong> set identitas git dulu &mdash; <code>git config user.name "Nama Lengkap"</code> dan <code>git config user.email "email@kampus"</code>. Lalu <code>git checkout develop &amp;&amp; git pull</code> (backend) atau <code>git checkout main &amp;&amp; git pull</code> (mobile). Tanpa ini commit kalian tercatat atas nama orang lain.</p>
+  <div class="callout ok">
+    <p><strong>Semua tugas Tim 2 tuntas. Tidak ada prompt yang perlu dikirim ulang.</strong> Lima prompt kerja lama (Rangga M4 FCM, M7 admin-sisa, M1 reset-password; Ifa M1 lupa-sandi, M4+M6 widget/tampilan) sudah dihapus dari sini karena ketiganya sudah di-merge. Teks prompt lama diarsipkan di <code>~/.claude/plans/</code>. Yang perlu dilakukan sekarang: demo dan jawaban teknis dosen, bukan menulis kode baru.</p>
   </div>
 
-  <h3 class="group backend"><span class="box">Backend</span>Rangga &mdash; <code>mogokin_backend</code></h3>
+  <h3 class="group backend"><span class="box">Backend</span>Rangga &mdash; <code>mogokin_backend</code> &mdash; tuntas</h3>
 
-  <div class="prompt">
-    <div class="prompt-head">
-      <span>M4 &mdash; <s>FCM yang benar-benar terkirim</s> <b>sudah selesai, jangan diulang</b><em><code>b4c3e0b</code> sudah masuk <code>develop</code> <code>bfc7612</code> lewat <code>d85aae8</code></em></span>
-      <button class="copy" data-copy="p-fcm" type="button">Salin</button>
-    </div>
-<pre id="p-fcm"><code>Repo: mogokin_backend (Laravel). TIDAK ADA YANG DIKERJAKAN DI SINI -- halaman ini tinggal catatan.
-
-Branch `feature/fcm-notifikasi` (`b4c3e0b`) SUDAH di-merge ke `develop` (`bfc7612`) pada 27 Oktober lewat merge commit `d85aae8`. Jadi M4 selesai. `git grep -n "FCM Sent" develop` mengembalikan nol hasil, dan `git merge-base --is-ancestor b4c3e0b develop` sukses.
-
-Kalau kamu tetap disuruh mengerjakan M4, mintalah tugas lain dulu -- mengerjakan ulang akan menabrak develop dan memaksa merge yang tidak perlu. Yang sudah ada di `develop` dan tidak boleh ditulis ulang:
-1. `app/Services/FcmService.php` (86 baris) dengan `sendToUser(User $user, string $title, string $body, array $data = []): bool`. Kredensial kosong -> `Log::warning` lalu `return false`, tidak crash.
-2. `app/Services/FcmFake.php` + `FcmService::fake()`, dipakai test supaya suite lulus tanpa kredensial Firebase asli.
-3. Satu titik panggil untuk setiap transisi: `app/Models/ServiceStatusLog.php` dengan `#[ObservedBy([ServiceStatusLogObserver::class])]`. Jangan pindahkan ke tiap controller.
-4. Dua pemanggilan `sendToUser()` di `app/Http/Controllers/Admin/VerificationController.php` (verifikasi disetujui dan ditolak).
-5. `config/firebase.php`, `kreait/laravel-firebase ^7.2` di `composer.json`, dan `tests/Feature/FcmNotificationTest.php` (10 test).
-
-Satu-satunya pekerjaan nyata yang tersisa di jalur ini bukan kode: di server, jalankan `composer install` lalu isi `FCM_CREDENTIALS` di `.env`, dan uji notifikasi sungguhan sampai masuk ke HP. Tanpa kredensial, aplikasi jalan normal tapi notifikasi tidak terkirim.</code></pre>
+  <div class="callout ok">
+    <p><strong>Tiga modul Rangga sudah masuk <code>main</code> lewat tag <code>v1.0-uts</code> (<code>dd9bb5c</code>), 30 Okt.</strong></p>
+    <ul style="margin:6px 0 0">
+      <li><b>M4 &mdash; FCM:</b> <code>FcmService</code> + <code>FcmFake</code> + <code>ServiceStatusLogObserver</code>, satu titik panggil per transisi status, 10 test. Sisa bukan kode: isi <code>FCM_CREDENTIALS</code> di server.</li>
+      <li><b>M7 &mdash; sisa admin &amp; seeder:</b> kartu "Montir Terdaftar"/"Montir Menunggu Acc" di <code>overview.blade.php</code>, <code>DemoScenarioSeeder</code> (291 baris), berkas baru <code>bengkel/index.blade.php</code>, pratinjau berkas inline tetap utuh.</li>
+      <li><b>M1 &mdash; reset password OTP (<code>9af10d6</code>):</b> <code>POST /api/auth/forgot-password</code> + <code>POST /api/auth/reset-password</code>, OTP 6 digit <b>kadaluarsa 10 menit</b> (bukan 15), rate limit 3/15 menit, single-use, <code>Hash::make</code>, token Sanctum dicabut, user enumeration dicegah (selalu 200). <code>PasswordResetTest</code> 305 baris.</li>
+    </ul>
   </div>
 
-  <div class="prompt">
-    <div class="prompt-head">
-      <span>M7 &mdash; <s>sisa admin &amp; seeder demo</s> <b>sudah dikerjakan, tinggal review</b><em><code>kai/feature/admin-sisa</code> = <code>c62f060</code> (kerja: <code>cc0a76e</code>)</em></span>
-      <button class="copy" data-copy="p-admin" type="button">Salin</button>
-    </div>
-<pre id="p-admin"><code>Repo: mogokin_backend (Laravel). Porsi M7 SUDAH DIKERJAKAN di branch `kai/feature/admin-sisa` (`c62f060`, commit kerja `cc0a76e`, 27 Okt 18:20) -- branch itu sudah di-merge dengan `develop` terbaru. Tugasmu sekarang REVIEW, bukan menulis dari nol.
+  <h3 class="group mobile"><span class="box">Mobile</span>Ifa &mdash; <code>mogokin_app</code> &mdash; tuntas (terverifikasi 30 Okt)</h3>
 
-Langkah pertama: `git fetch kai` lalu `git checkout -b feature/admin-sisa kai/feature/admin-sisa`, baca `git show --stat cc0a76e`, dan periksa isinya satu per satu terhadap daftar di bawah. Jangan buat branch baru, jangan tulis ulang berkasnya.
-
-Yang seharusnya sudah ada di branch itu (kalau ada yang hilang, baru lengkapi):
-1. `resources/views/admin/overview.blade.php`: kartu "Montir Terdaftar" dan "Montir Menunggu Acc" di samping empat kartu lama (Montir Siaga, Permintaan Order, Volume Transaksi, Komisi Platform). Kartu lama jangan diganti.
-2. `database/seeders/DemoScenarioSeeder.php` (291 baris): satu bengkel terverifikasi, satu menunggu acc, tiga order dengan status berbeda, satu order selesai lengkap dengan payment dan review. Semua lewat model dan `FinancialService::splitPayment()`, bukan insert SQL mentah.
-3. `resources/views/admin/bengkel/index.blade.php` (279 baris) -- berkas BARU. Catatan: `verifications/index.blade.php` sudah ada dan berisi pratinjau berkas inline (`<img src="admin.bengkel.document">` untuk empat dokumen + tombol "Buka Penuh"); di branch ini isinya dipindahkan sebagian. Pastikan tidak ada tautan yang rusak setelah perpindahan itu, dan jangan pernah menampilkan path 'pending'.
-4. Test: `AdminOverviewTest` (+36 baris) memastikan kedua kartu tampil dengan angka benar; `AdminVerificationTest` (+56 baris).
-
-Yang harus kamu cek sendiri karena Rangga tidak bisa menjalankan test di laptopnya: `php artisan test` hijau, dan `php artisan migrate:fresh --seed` dijalankan DUA KALI tanpa data dobel. Kalau ada yang gagal, perbaiki di branch yang sama, commit `fix(admin): ...`.
-
-Tidak boleh disentuh: `app/Http/Controllers/Api/*`, `routes/*`, migrasi lama, `resources/views/admin/verifications/show.blade.php`.
-Selesai: `php artisan test` hijau, push branch ke `kai`. Jangan --force, tanpa trailer di pesan commit.</code></pre>
+  <div class="callout ok">
+    <p><strong>Tiga branch Ifa sudah di-merge Jizdan ke <code>main</code> (<code>455c5c6</code>) pada 30 Okt, lalu dipush ke <code>kai</code>/<code>gitea</code>/<code>origin</code>.</strong></p>
+    <ul style="margin:6px 0 0">
+      <li><b>M1 &mdash; layar lupa sandi (<code>feature/lupa-sandi</code>):</b> <code>LupaSandiScreen</code> dua langkah (email → OTP+sandi), sambungan tombol "Lupa sandi?" di login pengendara &amp; mitra, snackbar "Segera hadir" dihapus, validasi klien + widget test loading/sukses/error 422.</li>
+      <li><b>M4 &mdash; widget umum (<code>feature/mobile-ui-states</code>):</b> <code>EmptyState</code>/<code>ErrorState</code> dipakai di &ge;3 layar, formatter plat Indonesia (<code>input_formatter_plat.dart</code>) + 10 test unit, bantuan CS dilengkapi nomor telepon salin &amp; jam layanan, sisa teks Inggris disapu ke Bahasa Indonesia.</li>
+      <li><b>M6 &mdash; tampilan pembayaran (<code>feature/pembayaran-ui</code>):</b> istilah disamakan "Tunai"/"QRIS", tombol e-wallet tanpa gateway jadi disabled "Belum tersedia", ringkasan biaya (panggilan + jasa + total) format Rupiah.</li>
+    </ul>
+    <p style="margin:8px 0 0" class="note">Catatan integritas: branch <code>feature/mobile-ui-states</code> dibuat dari basis lama dan saat merge diam-diam mengembalikan tiga berkas ke data mock &mdash; ketiganya <b>ditolak</b>, versi <code>main</code> yang memanggil API dipertahankan. Pelajaran: merge bersih belum berarti aman; baca <code>git diff &lt;merge-base&gt; &lt;branch&gt;</code>, bukan <code>git diff main &lt;branch&gt;</code>.</p>
   </div>
 
-  <div class="prompt">
-    <div class="prompt-head">
-      <span>M1 &mdash; <s>endpoint lupa sandi</s> <b>sudah dikerjakan, tinggal review</b><em><code>kai/feature/reset-password</code> = <code>9af10d6</code></em></span>
-      <button class="copy" data-copy="p-reset" type="button">Salin</button>
-    </div>
-<pre id="p-reset"><code>Repo: mogokin_backend (Laravel, Sanctum). Endpoint lupa sandi SUDAH DIKERJAKAN di branch `kai/feature/reset-password` (`9af10d6`, 27 Okt 18:11). Tugasmu sekarang REVIEW dan uji, bukan menulis dari nol.
-
-Langkah pertama: `git fetch kai` lalu `git checkout -b feature/reset-password kai/feature/reset-password` dan baca `git show --stat 9af10d6`. Isinya: `app/Http/Controllers/Api/AuthController.php` (+188 baris), `app/Models/PasswordResetToken.php`, migrasi `add_purpose_to_password_reset_tokens_table`, `docs/API_CONTRACT.md` (+62), `routes/api.php` (+6), dan `tests/Feature/PasswordResetTest.php` (305 baris).
-
-Kontrak yang sudah dipakai (jangan diubah tanpa bilang ke Ifa, layar Flutter-nya mengikuti ini):
-POST /api/auth/forgot-password   body { email } -> selalu 200
-POST /api/auth/reset-password    body { email, otp, password, password_confirmation } -> 200 atau 422
-
-Yang harus kamu periksa dan buktikan:
-1. OTP lupa sandi terpisah dari OTP registrasi (kolom `purpose`). Pastikan OTP registrasi tidak bisa dipakai untuk reset sandi, dan sebaliknya.
-2. OTP berlaku 10 menit, sekali pakai, dan hangus setelah sandi berhasil diubah.
-3. Rate limit maksimal 3 permintaan OTP per email per 15 menit.
-4. Email tidak terdaftar tetap membalas 200 dengan pesan yang sama, supaya tidak bisa dipakai menebak akun.
-5. `PasswordResetTest` benar-benar menguji kelima hal itu. Kalau ada yang belum, tambahkan testnya.
-
-Yang Rangga tidak bisa kerjakan di laptopnya dan harus kamu jalankan: `php artisan test` hijau, dan coba alur sungguhan lewat tunnel -- minta OTP, baca kodenya di `storage/logs/laravel.log`, lalu tukar sandi dan login dengan sandi baru.
-
-Tidak boleh disentuh: endpoint profil, register, login, endpoint order.
-Selesai: `php artisan test` hijau, push branch ke `kai`. Jangan --force, tanpa trailer di pesan commit.</code></pre>
-  </div>
-
-  <h3 class="group mobile"><span class="box">Mobile</span>Ifa &mdash; <code>mogokin_app</code></h3>
-
-  <div class="prompt">
-    <div class="prompt-head">
-      <span>M1 &mdash; layar lupa sandi<em>Branch <code>feature/lupa-sandi</code> dari <code>main</code> <code>0aa23c5</code></em></span>
-      <button class="copy" data-copy="p-lupa" type="button">Salin</button>
-    </div>
-<pre id="p-lupa"><code>Repo: mogokin_app (Flutter). Branch baru `feature/lupa-sandi` dari `main` HEAD 0aa23c5. JANGAN menyentuh layar order, order_repository, provider order, atau layar peta -- itu porsi Jizdan (Tim 1).
-
-Kontrak backend dikerjakan Rangga di branch feature/reset-password:
-POST /api/auth/forgot-password  body { email }
-POST /api/auth/reset-password   body { email, otp, password, password_confirmation }
-Error validasi ikut bentuk Laravel: { "message": ..., "errors": { "<field>": ["..."] } }
-
-1. Tambahkan dua method di repository auth yang sudah ada (jangan bikin file baru kalau padanannya sudah ada), plus model/request sederhananya. Pakai HttpClient/dio yang sudah dipakai repo -- jangan tambahkan dependency baru.
-2. Layar LupaSandiScreen dengan dua langkah: (a) input email, (b) input OTP + sandi baru + konfirmasi. Ada indikator loading, pesan error per field dari backend, dan tombol kirim ulang OTP.
-3. Sambungkan tombol "Lupa sandi?" di lib/screens/login_screen.dart (sekitar baris 262) dan lib/screens/mitra/mitra_login_screen.dart (sekitar baris 266). Hapus snackbar "Segera hadir".
-4. Validasi di klien: format email, sandi minimal 8, konfirmasi cocok. Tampilkan errors.<field> dari backend apa adanya, jangan diterjemahkan ulang.
-5. Widget test untuk tiga keadaan: loading, sukses, error 422.
-
-Selesai: `flutter analyze` bersih, `flutter test` hijau, commit `feat(auth): layar lupa sandi lewat OTP email`, push branch ke `kai`. Jangan --force, tanpa trailer.</code></pre>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head">
-      <span>M4 + widget umum &mdash; langganan status, empty/error, bantuan CS, formatter plat<em>Branch <code>feature/mobile-ui-states</code> dari <code>main</code> <code>0aa23c5</code></em></span>
-      <button class="copy" data-copy="p-ui" type="button">Salin</button>
-    </div>
-<pre id="p-ui"><code>Repo: mogokin_app (Flutter). Branch baru `feature/mobile-ui-states` dari `main` HEAD 0aa23c5. JANGAN menyentuh layar order, order_repository, provider order, atau layar peta -- itu porsi Jizdan (Tim 1).
-
-PENTING sebelum mulai: penerimaan FCM di mobile SUDAH ADA, tapi berada di branch Jizdan `feature/order-flow-mobile` (`lib/services/fcm_service.dart`, plus `firebase_core`/`firebase_messaging`/`flutter_local_notifications` di pubspec, inisialisasi di main.dart, dan pengiriman token lewat `PATCH /api/fcm-token`). Branch kamu dari `main` belum memuatnya. Jangan bikin penerima FCM kedua -- kalau branch Jizdan belum di-merge, kerjakan dulu butir 2-5 saja, lalu tulis di deskripsi PR bahwa butir 1 menunggu merge tersebut.
-
-1. Langganan status tiket (M4): setelah `feature/order-flow-mobile` masuk `main`, sambungkan pesan FCM bertipe status_order supaya memicu refresh status lewat provider yang sudah ada. Kalau `google-services.json` belum ada, bungkus dengan penjaga: log peringatan dan aplikasi tetap jalan tanpa crash.
-2. Buat lib/widgets/empty_state.dart dan lib/widgets/error_state.dart: ikon, judul, satu kalimat penjelas, satu tombol aksi. Pakai di minimal tiga layar yang sudah ada (misalnya riwayat order, daftar bengkel, pendapatan mitra) -- hanya bungkus kondisi kosong/error, jangan ubah alur datanya.
-3. Layar Bantuan CS: sudah ada `lib/screens/mitra/mitra_help_center_screen.dart` (pencarian, 4 kategori, FAQ accordion, tombol "Hubungi CS" yang masih menampilkan snackbar). Lengkapi jadi nomor telepon yang bisa disalin dan jam layanan; jangan bikin layar baru dari nol.
-4. lib/utils/input_formatter_plat.dart: TextInputFormatter plat nomor Indonesia (contoh B 1234 XYZ) + test unit 10 kasus (huruf kecil, spasi ganda, plat panjang, plat pendek).
-5. Sapu sisa teks Inggris di lib/ (misalnya "Coming soon") jadi Bahasa Indonesia, dan tulis daftar temuannya di deskripsi PR. Jangan ubah logika. Salah satu yang pasti: tombol "Lupa sandi?" di `login_screen.dart` masih memunculkan snackbar "Segera hadir" -- biarkan kalau branch `feature/lupa-sandi`mu sudah mengurusnya.
-
-Selesai: `flutter analyze` bersih, `flutter test` hijau, commit `feat(mobile): langganan status, widget empty/error, bantuan CS, formatter plat`, push branch ke `kai`. Jangan --force, tanpa trailer.</code></pre>
-  </div>
-
-  <div class="prompt">
-    <div class="prompt-head">
-      <span>Tampilan pembayaran &mdash; pendukung M6<em>Branch <code>feature/pembayaran-ui</code> dari <code>main</code> <code>0aa23c5</code></em></span>
-      <button class="copy" data-copy="p-bayar" type="button">Salin</button>
-    </div>
-<pre id="p-bayar"><code>Repo: mogokin_app (Flutter). Branch baru `feature/pembayaran-ui` dari `main` HEAD 0aa23c5. Hanya tampilan dan teks -- JANGAN mengubah pemanggilan API, provider, atau alur order (itu porsi Jizdan). Kalau Jizdan sedang mengerjakan file yang sama, koordinasikan dulu supaya tidak ada konflik merge.
-
-1. lib/screens/payment_screen.dart: samakan istilah jadi "Tunai" dan "QRIS". Tombol e-wallet yang belum ada gateway-nya dibuat disabled dengan label "Belum tersedia" (bukan "Segera hadir", yang ambigu), dan beri keterangan satu kalimat bahwa pembayaran hanya dicatat, belum lewat gateway.
-2. Ringkasan biaya: baris biaya panggilan, biaya jasa, dan total. Format Rupiah dengan pemisah ribuan. Nilainya diambil dari provider apa adanya, jangan dihitung ulang di UI.
-3. Keadaan kosong dan error di layar ini memakai lib/widgets/empty_state.dart dan lib/widgets/error_state.dart kalau sudah ada (branch feature/mobile-ui-states). Kalau belum ada, cukup buat tampilan lokal lalu beri catatan di PR.
-4. Jangan menambahkan teks kebijakan garansi -- keputusannya belum diambil tim.
-
-Selesai: `flutter analyze` bersih, `flutter test` hijau, commit `feat(mobile): samakan istilah dan ringkasan biaya di layar pembayaran`, push branch ke `kai`. Jangan --force, tanpa trailer.</code></pre>
+  <div class="callout warn">
+    <p><strong>Verifikasi silang Ifa &mdash; menunggu balasan.</strong> Branch Ifa sudah masuk <code>main</code> dan hasilnya terbukti lewat uji alur penuh Jizdan (11 LANGKAH hijau, <code>flutter analyze</code> bersih, 70 tes hijau), tapi laporan verifikasi langsung dari Ifa <b>belum diterima</b>. Kalau dosen menanyakan kepastian kerja Ifa, sumbernya saat ini hanya rekam jejak merge di <code>main</code> (<code>ad60022</code>, <code>f435a5a</code>, <code>25b5bb4</code>) &mdash; bukan konfirmasi tertulis dari Ifa. Tunggu balasan sebelum mengklaim "terverifikasi oleh Ifa".</p>
   </div>
 
   <h2><span class="num">05</span>Lampiran</h2>
