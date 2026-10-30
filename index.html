@@ -1,0 +1,939 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<title>Timeline MOGOKIN UTS</title>
+<style>
+  :root {
+    --bg: #F5F7FA;
+    --surface: #FFFFFF;
+    --surface-2: #EDF1F7;
+    --fg: #0B1B33;
+    --fg-muted: #55657F;
+    --border: #DDE4EE;
+    --accent: #E11D2E;
+    --accent-soft: #FDE8EA;
+    --green: #15803D;
+    --green-soft: #E4F6EA;
+    --amber: #B45309;
+    --amber-soft: #FCF0DC;
+    --blue: #1D4ED8;
+    --blue-soft: #E5EDFE;
+    --radius: 10px;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0B1B33;
+      --surface: #12233D;
+      --surface-2: #17304F;
+      --fg: #E9EEF7;
+      --fg-muted: #97A6C0;
+      --border: #21385A;
+      --accent: #F2606C;
+      --accent-soft: #3A1720;
+      --green: #4ADE80;
+      --green-soft: #12331F;
+      --amber: #FBBF24;
+      --amber-soft: #3A2A0C;
+      --blue: #7CA6FB;
+      --blue-soft: #16294B;
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0B1B33;
+    --surface: #12233D;
+    --surface-2: #17304F;
+    --fg: #E9EEF7;
+    --fg-muted: #97A6C0;
+    --border: #21385A;
+    --accent: #F2606C;
+    --accent-soft: #3A1720;
+    --green: #4ADE80;
+    --green-soft: #12331F;
+    --amber: #FBBF24;
+    --amber-soft: #3A2A0C;
+    --blue: #7CA6FB;
+    --blue-soft: #16294B;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--fg);
+    font-family: "Plus Jakarta Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 0 64px;
+  }
+  .wrap { max-width: 1000px; margin: 0 auto; }
+
+  header.band {
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    margin-inline: calc(-1 * max(16px, env(safe-area-inset-left, 0px))) calc(-1 * max(16px, env(safe-area-inset-right, 0px)));
+    padding-inline: max(16px, env(safe-area-inset-left, 0px)) max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 28px 24px;
+    margin-bottom: 32px;
+  }
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 0 0 8px;
+  }
+  h1 {
+    font-size: clamp(24px, 4vw, 34px);
+    line-height: 1.15;
+    margin: 0 0 10px;
+    letter-spacing: -.02em;
+    text-wrap: balance;
+  }
+  .lede { color: var(--fg-muted); max-width: 66ch; margin: 0; }
+  .stamp {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 20px;
+    margin-top: 18px;
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+  .stamp b { color: var(--fg); font-weight: 600; }
+
+  h2 {
+    font-size: 19px;
+    margin: 44px 0 6px;
+    letter-spacing: -.01em;
+    text-wrap: balance;
+  }
+  h2:first-of-type { margin-top: 0; }
+  h2 .num {
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    margin-right: 8px;
+  }
+  .sub { color: var(--fg-muted); font-size: 14px; margin: 0 0 18px; max-width: 70ch; }
+
+  h3.group {
+    font-size: 15px;
+    margin: 26px 0 4px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  h3.group .box {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    padding: 2px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--surface-2);
+    color: var(--fg-muted);
+  }
+  h3.group.backend .box { border-color: var(--blue); background: var(--blue-soft); color: var(--blue); }
+  h3.group.mobile .box { border-color: var(--green); background: var(--green-soft); color: var(--green); }
+
+  .callout {
+    border: 1px solid var(--accent);
+    border-left-width: 4px;
+    background: var(--accent-soft);
+    border-radius: var(--radius);
+    padding: 16px 18px;
+    margin: 20px 0 0;
+  }
+  .callout p { margin: 0; }
+  .callout strong { color: var(--accent); }
+  .callout.done { border-color: var(--green); background: var(--green-soft); }
+  .callout.done strong { color: var(--green); }
+  .callout.warn { border-color: var(--amber); background: var(--amber-soft); }
+  .callout.warn strong { color: var(--amber); }
+  .callout.ask { border-color: var(--blue); background: var(--blue-soft); }
+  .callout.ask strong { color: var(--blue); }
+  .callout ul { margin: 8px 0 0; padding-left: 20px; font-size: 14px; }
+  .callout ul li { margin-bottom: 4px; }
+
+  .table-scroll { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; min-width: 640px; font-size: 14px; }
+  th, td { text-align: left; padding: 10px 14px; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th {
+    font-size: 11px;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    font-weight: 700;
+    background: var(--surface-2);
+    white-space: nowrap;
+  }
+  tbody tr:last-child td { border-bottom: 0; }
+  td.item { font-weight: 600; }
+  td.note { color: var(--fg-muted); font-size: 13px; }
+  .muted { display: block; margin-top: 2px; font-size: 12.5px; font-weight: 400; color: var(--fg-muted); }
+
+  .pill {
+    display: inline-block;
+    padding: 2px 9px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 700;
+    white-space: nowrap;
+    border: 1px solid transparent;
+  }
+  .p-done { background: var(--green-soft); color: var(--green); border-color: var(--green); }
+  .p-part { background: var(--amber-soft); color: var(--amber); border-color: var(--amber); }
+  .p-none { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+  .p-na { background: var(--surface-2); color: var(--fg-muted); border-color: var(--border); }
+  .p-info { background: var(--blue-soft); color: var(--blue); border-color: var(--blue); }
+
+  /* Singkatan kondisi progress, disuntik di depan label supaya tabel tetap
+     sempit waktu dicetak. Kodenya sama dengan yang dijelaskan di legenda. */
+  .p-done::before { content: "S · "; }
+  .p-part::before { content: "SB · "; }
+  .p-none::before { content: "BM · "; }
+  .p-na::before { content: "– "; }
+
+  .progress {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 16px 18px;
+    margin: 0 0 14px;
+  }
+  .progress-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 6px 20px;
+  }
+  .progress-cap {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+  }
+  .progress-num {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -.03em;
+    font-variant-numeric: tabular-nums;
+  }
+  .progress-num small { font-size: 16px; font-weight: 600; color: var(--fg-muted); letter-spacing: 0; }
+  .progress-tally { display: flex; flex-wrap: wrap; gap: 4px 18px; font-size: 13px; color: var(--fg-muted); }
+  .progress-tally b { color: var(--fg); font-variant-numeric: tabular-nums; }
+  .bar {
+    display: flex;
+    height: 10px;
+    margin: 12px 0 10px;
+    border-radius: 999px;
+    overflow: hidden;
+    background: var(--surface-2);
+  }
+  .bar i { display: block; height: 100%; }
+  .bar i.d { background: var(--green); }
+  .bar i.p { background: var(--amber); }
+  .bar i.n { background: var(--accent); }
+  .progress p { margin: 0; font-size: 13.5px; color: var(--fg-muted); }
+
+  .legend {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 7px 18px;
+    margin: 0 0 16px;
+    font-size: 13px;
+    color: var(--fg-muted);
+  }
+  .legend > div { display: flex; align-items: baseline; gap: 8px; }
+  .legend .pill { flex: none; }
+
+  ol.days { list-style: none; margin: 0; padding: 0; border-left: 2px solid var(--border); }
+  ol.days > li { position: relative; padding: 0 0 26px 24px; }
+  ol.days > li::before {
+    content: "";
+    position: absolute;
+    left: -7px;
+    top: 7px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--surface);
+    border: 2px solid var(--border);
+  }
+  ol.days > li.key::before { border-color: var(--accent); background: var(--accent); }
+  ol.days > li:last-child { padding-bottom: 0; }
+  .when {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--fg-muted);
+    display: block;
+    margin-bottom: 1px;
+  }
+  ol.days > li.key .when { color: var(--accent); }
+  .what { font-weight: 600; }
+  ol.days ul { margin: 6px 0 0; padding-left: 18px; color: var(--fg-muted); font-size: 14px; }
+  ol.days ul li { margin-bottom: 3px; }
+  ol.days ul li b { color: var(--fg); font-weight: 600; }
+
+  .prompt {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    margin: 14px 0 0;
+    overflow: hidden;
+  }
+  .prompt-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 11px 14px;
+    background: var(--surface-2);
+    border-bottom: 1px solid var(--border);
+  }
+  .prompt-head span { font-weight: 700; font-size: 14px; }
+  .prompt-head em { display: block; font-style: normal; font-weight: 400; font-size: 12px; color: var(--fg-muted); }
+  .copy {
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--fg);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    padding: 6px 14px;
+    cursor: pointer;
+    white-space: nowrap;
+    flex: none;
+  }
+  .copy:hover { border-color: var(--accent); color: var(--accent); }
+  .copy:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+  pre {
+    margin: 0;
+    padding: 16px;
+    overflow-x: auto;
+    font-family: ui-monospace, SFMono-Regular, "Cascadia Mono", Consolas, monospace;
+    font-size: 12.5px;
+    line-height: 1.65;
+    max-height: 460px;
+    white-space: pre;
+  }
+  pre code { font: inherit; }
+
+  .grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px; margin-top: 18px; }
+  .card {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    padding: 15px 17px;
+  }
+  .card h3 { margin: 0 0 7px; font-size: 14px; letter-spacing: .01em; }
+  .card p { margin: 0; font-size: 14px; color: var(--fg-muted); }
+  .card.risk { border-left: 4px solid var(--amber); }
+  .card.ask { border-left: 4px solid var(--blue); }
+  .card.ok { border-left: 4px solid var(--green); }
+
+  details.appendix {
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    background: var(--surface);
+    margin-top: 14px;
+  }
+  details.appendix > summary {
+    cursor: pointer;
+    padding: 13px 16px;
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    list-style: none;
+  }
+  details.appendix > summary::-webkit-details-marker { display: none; }
+  details.appendix > summary::after {
+    content: "Buka";
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--accent);
+    flex: none;
+  }
+  details.appendix[open] > summary::after { content: "Tutup"; }
+  details.appendix[open] > summary { border-bottom: 1px solid var(--border); }
+  .appendix-body { padding: 16px; }
+  .appendix-body > p:first-child { margin-top: 0; }
+
+  @media (max-width: 520px) {
+    pre { font-size: 12px; padding: 13px; }
+    th, td { padding: 9px 11px; }
+  }
+
+  /* Cetak / PDF: paksa tema terang, buka semua blok kode (max-height akan
+     memotong prompt di kertas), dan jaga agar kartu tidak terbelah halaman. */
+  @media print {
+    :root,
+    :root:not([data-theme="light"]) {
+      --bg: #FFFFFF;
+      --surface: #FFFFFF;
+      --surface-2: #F1F4F9;
+      --fg: #0B1B33;
+      --fg-muted: #4A5A75;
+      --border: #C9D3E2;
+      --accent: #C4142A;
+      --accent-soft: #FCEBED;
+      --green: #14612F;
+      --green-soft: #E8F5EC;
+      --amber: #8A4408;
+      --amber-soft: #FBF0DE;
+      --blue: #1741B8;
+      --blue-soft: #E9EFFD;
+      color-scheme: light;
+    }
+    body { background: #FFFFFF; color: #0B1B33; padding-block: 0; font-size: 10.5pt; }
+    @page { size: A4; margin: 13mm 12mm; }
+    header.band {
+      margin-inline: 0;
+      padding-inline: 0;
+      padding-block: 0 14px;
+      margin-bottom: 20px;
+      background: transparent;
+    }
+    .copy { display: none !important; }
+    .prompt-head { justify-content: flex-start; }
+    pre {
+      max-height: none;
+      overflow: visible;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+      font-size: 8.6pt;
+      line-height: 1.5;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+    }
+    pre code { white-space: inherit; }
+    .table-scroll { overflow: visible; }
+    table { min-width: 0; font-size: 9pt; }
+    th, td { padding: 6px 8px; }
+    .callout, .card { break-inside: avoid; }
+    .prompt { break-inside: auto; }
+    ol.days > li { break-inside: avoid; }
+    h1, h2 { break-after: avoid; }
+    tbody tr { break-inside: avoid; }
+    thead { display: table-header-group; }
+    .grid2 { grid-template-columns: 1fr 1fr; }
+    details.appendix { border: 0; }
+    details.appendix > summary { padding-inline: 0; }
+    details.appendix > summary::after { display: none; }
+    .appendix-body { padding: 0; }
+    a { color: inherit; text-decoration: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <header class="band">
+    <p class="eyebrow">PBL-202601-07 &middot; MOGOKIN &middot; Fase Implementasi</p>
+    <h1>Porsi Kerja &amp; Timeline UTS</h1>
+    <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang auth, notifikasi, dan tampilan pendukung. Sejak 27 Oktober, <b>seluruh alur order di Flutter sudah tersambung ke API</b> &mdash; bukan lagi mock, dan <b>sudah di-commit</b> ke <code>feature/order-flow-mobile</code>. Sejak 28 Oktober, <b>lima endpoint mitra yang ditunggu sudah dikirim Raskha</b> (<code>177794d</code>) dan <b>sudah dipakai Flutter</b> (<code>d52314b</code>, disusul <code>216c271</code> dan <code>265c09b</code>). <b>29 Oktober, alur penuh terbukti 100% lulus di HP fisik Redmi Note 9 Pro:</b> sebelas langkah order sampai penarikan saldo dan riwayat (<code>integration_test/live_flow_test.dart</code>) dijalankan langsung di perangkat fisik melawan backend Cloudflare Tunnel tanpa mock sedikit pun. <code>feature/order-flow-mobile</code> resmi <b>di-merge ke <code>main</code> lewat <code>--no-ff</code></b> (<code>41d1554</code>).</p>
+    <p class="lede" style="margin-top:8px"><b>Progress keseluruhan: 84&thinsp;%</b> &mdash; 13 dari 19 sel selesai, 6 sebagian, 0 belum mulai, 2 tidak berlaku. Diukur ketat (hanya sel yang tuntas penuh) angkanya <b>68&thinsp;%</b>. Tuntas penuh sudah 3 modul (M2, M5, M6). Rincian dan cara hitungnya di bagian <b>02</b>.</p>
+    <div class="stamp">
+      <span>Diperbarui <b>Kamis, 29 Oktober 2026</b></span>
+      <span>Beku fitur <b>Jumat, 30 Oktober 2026</b></span>
+      <span>Asumsi UTS <b>awal November</b> &mdash; geser kalau tanggalnya beda</span>
+    </div>
+  </header>
+
+  <div class="grid2" style="margin-top:0">
+    <div class="card ok">
+      <h3>Backend: alur inti jalan, sisa modul Tim 2 sebagian sudah mulai</h3>
+      <p><code>kai/main</code> di <code>ab8aea8</code>, <code>origin/main</code> masih <code>fb85d20</code> (tertinggal empat commit dokumen), <code>kai/develop</code> = <code>origin/develop</code> di <code>177794d</code> &mdash; 106 test di 13 berkas di <code>main</code>, <b>129 di 15 berkas</b> di <code>develop</code>, nol yang di-skip di keduanya. Sejak 27 Oktober <b>pengirim FCM (M4) sudah nyata</b> (<code>FcmService</code> masuk <code>develop</code> lewat merge <code>d85aae8</code>), dan sejak 28 Oktober <b>lima endpoint mitra sudah ada</b> di <code>177794d</code> (merge <code>10ac029</code>): <code>PUT /mitra/bank-account</code>, <code>PUT /mitra/operating-hours</code>, <code>PUT /profile</code>, <code>POST</code>+<code>GET /mitra/withdrawals</code>, dan <code>GET /profile</code> yang kini mengembalikan <code>rating</code>/<code>rating_count</code>/<code>verification_status</code>/<code>rejection_reason</code>/<code>description</code>/rekening/jam operasional. Sisa M7 (dua kartu montir dan <code>DemoScenarioSeeder</code>) sudah ditulis di <code>kai/feature/admin-sisa</code> (<code>c62f060</code>), tinggal di-merge. Catatan lama tetap berlaku: <code>phpunit.xml</code> masih menunjuk SQLite in-memory, dan <code>phpunit.pgsql.xml</code> belum ada bukti pernah dijalankan. Sandi basis data sudah bersih dari <b>seluruh berkas terlacak</b> di <code>kai/main</code> dan <code>kai/develop</code> (<code>ead3af5</code>) &mdash; yang masih memuatnya hanya <code>origin/main</code> (<code>fb85d20</code>) dan riwayat lama, lihat catatan di bagian akhir.</p>
+    </div>
+    <div class="card ok">
+      <h3>Mobile: alur order tersambung, tiga branch Tim 2 sudah masuk <code>main</code></h3>
+      <p>Branch <code>feature/order-flow-mobile</code> menyentuh <b>21 berkas layar</b> (pengendara dan mitra) &mdash; 18 di antaranya menarik data lewat <code>AppStateProvider</code>: panggil montir, riwayat, radar mitra, terima/tolak, navigasi, inspeksi, bayar, rating. Rekap terbaru dari <code>git diff main...feature/order-flow-mobile</code>: <b>15 commit, 45 berkas, +6.173 / &minus;1.587 baris</b>. Commit <code>d52314b</code> (28 Okt) menutup lima endpoint mitra sekaligus: modul baru <code>services/mitra_repository.dart</code> (Mock + Api) mengikuti pola <code>OrderRepository</code>, <code>AppUser</code> membawa 11 field baru dan tetap bolak-balik lewat <code>toJson</code>/<code>fromJson</code>, <code>AuthState.updateProfile()</code> + <code>refreshProfile()</code> dipakai layar rekening, jam operasional, dan edit profil, riwayat penarikan tampil di layar Pendapatan, dan badge verifikasi dashboard tidak lagi statis. <b>Susulannya, <code>216c271</code> (28 Okt):</b> satu bug kontrak yang ditemukan audit kode &mdash; <code>is_online</code> dari <code>GET</code>/<code>PUT /profile</code> tidak pernah dipetakan ke <code>AppUser</code>, jadi toggle online mitra selalu tampil "Siap Terima Order" begitu aplikasi dibuka meski mitra sedang offline. Kini <code>AppUser.isOnline</code> membacanya (toleran <code>is_online</code> maupun <code>isOnline</code>, ikut <code>toJson()</code> supaya bertahan di token mock) dan <code>AppStateProvider.seedMitraOnline()</code> menyemai toggle sekali per sesi pengguna, sehingga <code>refreshProfile()</code> berikutnya tidak menimpa pilihan pengguna. Satu koreksi angka: <code>order_repository.dart</code> berisi <b>11</b> method (bukan 13) &mdash; listMine, detail, create, pay, review, nearby, accept, decline, updateStatus, submitInspection, earnings. <b>30 Oktober:</b> <code>main</code> mobile sudah memuat seluruh pekerjaan, di <code>455c5c6</code> &mdash; alur order, lima endpoint mitra, plus tiga branch Tim 2 yang di-merge setelah ditinjau. Sembilan commit menumpuk di atas <code>38b98d4</code> dan sudah dipush ke <code>kai</code>, <code>gitea</code>, dan <code>origin</code>.</p>
+    </div>
+    <div class="card ok">
+      <h3>Jejak commit mobile sudah ada</h3>
+      <p>Dipush ke <code>kai</code> 27 Oktober, seluruhnya di branch <code>feature/order-flow-mobile</code>: <code>c212271</code> lapisan data, <code>75208fa</code> bootstrap &amp; URL berkas, <code>2fec439</code> integrasi 20 layar, <code>acf87e9</code> widget test, lalu empat perbaikan hasil audit kode &mdash; <code>d071970</code> respons/id tidak lengkap, <code>9979c94</code> tombol Terima Order &amp; sapuan radar, <code>1fa6e1c</code> uji tambahan, <code>16bf5c1</code> id kendaraan yang hilang, lalu <code>1f163bd</code> yang mencabut janji "pencairan otomatis tiap Senin" dari dua layar mitra karena tidak ada endpoint-nya. <b>28 Oktober:</b> <code>d52314b</code> menyambungkan lima endpoint mitra yang baru dikirim Raskha, sekaligus menambah <code>test/mitra_repository_test.dart</code> (6 uji: round-trip 11 field <code>AppUser</code>, perilaku non-mitra, pemetaan status penarikan, batas Rp 50.000, dan kelengkapan tujuh kunci hari), lalu <code>216c271</code> memperbaiki pemetaan <code>is_online</code> ke toggle online mitra dan menaikkan berkas uji itu ke <b>8 uji</b> (bertambah: pemetaan <code>is_online</code> termasuk bolak-balik token mock, dan penyemaian toggle sekali per sesi pengguna), lalu <code>265c09b</code> menambah <code>tool/run_tests.ps1</code> agar crash native <code>flutter_tester</code> tidak pernah terbaca sebagai kegagalan tes maupun sebagai hijau palsu, lalu <code>805a9b6</code> menambah <code>test/live_flow_ui_test.dart</code> &mdash; sebelas langkah alur penuh lewat UI sungguhan tanpa HP (lihat kartu di atas). <code>kai/main</code> tetap di <code>0aa23c5</code>, sedangkan <code>main</code> lokal/<code>origin</code> sudah di <code>6e2d183</code> (hanya README) &mdash; sengaja, pekerjaan fitur masih di branch sesuai gitflow.</p>
+    </div>
+  </div>
+
+  <h2><span class="num">01</span>Pembagian Porsi Kodingan</h2>
+  <p class="sub">Dosen menilai lewat <code>git log</code> dan grafik kontribusi. Setiap orang butuh jejak commit nyata di branch-nya sendiri &mdash; Jizdan dan Raskha sudah punya; <b>Rangga mulai 27 Oktober</b> dengan tiga branch di <code>kai</code>; <b>Ifa 30 Oktober</b> dengan tiga branch yang semuanya sudah di-merge ke <code>main</code>.</p>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Nama</th><th>Tim</th><th>Repo &amp; branch</th><th>Porsi</th><th>Status</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item">Jizdan</td>
+          <td><span class="pill p-info">Tim 1</span></td>
+          <td><code>mogokin_app</code><span class="muted"><code>main</code> &amp; <code>feature/order-flow-mobile</code></span></td>
+          <td>Order repository + model, tombol "Panggil Montir", tombol mitra, peta ke <code>nearby</code>, integrasi 5 endpoint mitra, uji alur penuh dari HP fisik (M2, M3, M5, M6)</td>
+          <td><span class="pill p-done">selesai &amp; merge ke main</span> <span class="muted" style="margin-top:4px">11 langkah lolos di HP fisik Redmi Note 9 Pro; merge --no-ff ke main (<code>41d1554</code>)</span></td>
+        </tr>
+        <tr>
+          <td class="item">Raskha</td>
+          <td><span class="pill p-info">Tim 1</span></td>
+          <td><code>mogokin_backend</code><span class="muted"><code>feature/*</code> sudah merge</span></td>
+          <td>Endpoint order, verifikasi bengkel, Blade admin A01&ndash;A05, countdown 30 detik di verifikasi, lima endpoint mitra (rekening, jam operasional, profil, penarikan saldo, rating) (M2, M3, M5, M6)</td>
+          <td><span class="pill p-done">selesai</span> <span class="muted" style="margin-top:4px">lima endpoint mitra masuk <code>kai/develop</code> <code>177794d</code> (28 Okt); <code>develop</code> belum ikut ke <code>main</code></span></td>
+        </tr>
+        <tr>
+          <td class="item">Rangga <span class="muted">(Muhammad Aziz Rangga Pamungkas)</span></td>
+          <td><span class="pill p-info">Tim 2</span></td>
+          <td><code>mogokin_backend</code><span class="muted"><code>feature/fcm-notifikasi</code>, <code>feature/admin-sisa</code>, <code>feature/reset-password</code></span></td>
+          <td>FCM yang benar-benar terkirim, endpoint lupa sandi, sisa Blade admin, <code>DemoScenarioSeeder</code> (M1, M4, M7)</td>
+          <td><span class="pill p-part">terkirim di branch <code>kai</code></span> <span class="muted" style="margin-top:4px"><code>b4c3e0b</code> sudah merge; <code>c62f060</code> dan <code>9af10d6</code> belum</span></td>
+        </tr>
+        <tr>
+          <td class="item">Ifa <span class="muted">(Faizah Mufidah)</span></td>
+          <td><span class="pill p-info">Tim 2</span></td>
+          <td><code>mogokin_app</code><span class="muted"><code>feature/lupa-sandi</code>, <code>feature/mobile-ui-states</code>, <code>feature/pembayaran-ui</code></span></td>
+          <td>Layar lupa sandi, langganan status di HP, widget empty/error, layar bantuan CS, formatter plat nomor, label pembayaran (M1, M4, pendukung M2/M6)</td>
+          <td><span class="pill p-done">sudah masuk <code>main</code></span> <span class="muted" style="margin-top:4px"><code>1143929</code>, <code>719da8b</code>, <code>1874144</code>, <code>6da10d2</code> &mdash; di-merge 30 Oktober</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout ask">
+    <p><strong>Pembagian 2 tim:</strong> <b>Tim 1</b> = Jizdan (mobile) + Raskha (backend/admin), pegang M2, M3, M5, M6. <b>Tim 2</b> = Rangga (backend) + Ifa (mobile), pegang M1, M4, M7. Setiap modul hanya punya satu pasangan &mdash; tidak ada modul yang dikerjakan empat orang. Ifa tetap menyentuh tampilan M2 dan M6 (widget dan label saja, tanpa API), karena itu pekerjaan UI yang tidak bertabrakan dengan berkas order milik Tim 1.</p>
+  </div>
+
+  <div class="callout">
+    <p><strong>Aturan git yang berlaku untuk semua orang:</strong></p>
+    <ul>
+      <li><b>main</b> = versi stabil/demo, jangan commit langsung. <b>develop</b> = integrasi backend. <b>feature/...</b> = kerja masing-masing.</li>
+      <li>Backend: cabang dari <code>develop</code> (kini <code>bfc7612</code>). Mobile: cabang dari <code>main</code> (<code>0aa23c5</code>).</li>
+      <li>Format commit: <code>feat:</code> / <code>fix:</code> / <code>test:</code> / <code>refactor:</code>. Tanpa trailer tambahan apa pun.</li>
+      <li>Push branch fitur ke remote <code>kai</code>. Jangan pernah <code>--force</code>, jangan merge sendiri ke <code>main</code>.</li>
+      <li>Deskripsi PR wajib menyebut daftar berkas yang disentuh, supaya tidak tabrakan dengan tim lain.</li>
+    </ul>
+  </div>
+
+  <h2><span class="num">02</span>Progres 7 Modul RPP</h2>
+  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka di bawah dibaca ulang dari working tree hari ini, bukan dari laporan harian. Yang berubah sejak versi kemarin: lima endpoint mitra sudah ada di backend <b>dan</b> sudah dipakai Flutter, jadi M5 tuntas dan tabel bergerak dari 82&thinsp;% ke 84&thinsp;%.</p>
+
+  <div class="progress">
+    <div class="progress-head">
+      <div>
+        <span class="progress-cap">Progress keseluruhan proyek</span>
+        <span class="progress-num">84<small>&thinsp;%</small></span>
+      </div>
+      <div class="progress-tally">
+        <span><b>13</b> sel selesai</span>
+        <span><b>6</b> sel sebagian</span>
+        <span><b>0</b> sel belum mulai</span>
+        <span><b>2</b> sel n/a</span>
+      </div>
+    </div>
+    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 13 selesai dan 6 sebagian; dengan sel sebagian dihitung separuh hasilnya 84 persen">
+      <i class="d" style="width:84.2%"></i>
+      <i class="p" style="width:15.8%"></i>
+    </div>
+    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, jadi sel "sebagian" dihitung separuh. Angka besar di atas memakai aturan yang sama supaya sebanding dengan kolom Progress: <b>(13 + &frac12;&thinsp;&times;&thinsp;6) &divide; 19 = 84&thinsp;%</b>. Kalau diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; hasilnya <b>13 &divide; 19 = 68&thinsp;%</b>; sebutkan angka ini kalau dosen menanyakan yang paling konservatif. Rata-rata tujuh persen modul (M1 50, M2 100, M3 83, M4 83, M5 100, M6 100, M7 75) = <b>84&thinsp;%</b>, jadi ketiga cara hitung bertemu di angka yang sama. Yang tuntas penuh sudah <b>3 dari 7 modul</b> (M2, M5, M6); empat sisanya menunggu hal spesifik yang tertulis di kolom <b>Sisa</b>. Angka ini dihitung ulang pada 28 Oktober setelah lima endpoint mitra dipakai Flutter &mdash; lihat catatan di Lampiran.</p>
+  </div>
+
+  <div class="legend">
+    <div><span class="pill p-done">selesai</span> semua yang jadi lingkup modul di lapisan itu sudah jalan di repo.</div>
+    <div><span class="pill p-part">sebagian</span> sebagian jalan; sisanya tertulis di kolom <b>Sisa</b>.</div>
+    <div><span class="pill p-none">belum mulai</span> belum ada commit sama sekali.</div>
+    <div><span class="pill p-na">n/a</span> modulnya memang tidak menyentuh lapisan itu.</div>
+  </div>
+
+  <div class="table-scroll">
+    <table>
+      <thead>
+        <tr><th>Modul</th><th>PJ</th><th>Backend</th><th>Mobile</th><th>Admin</th><th>Progress</th><th>Sisa</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="item">M1. Autentikasi &amp; Akun Multi-Role</td>
+          <td class="note"><b>Tim 2</b><br>Rangga + Ifa</td>
+          <td><span class="pill p-part">sebagian</span></td>
+          <td><span class="pill p-part">sebagian</span></td>
+          <td><span class="pill p-part">sebagian</span></td>
+          <td><b>50%</b></td>
+          <td class="note">Multi-role, Sanctum, dan OTP email <b>selesai</b> di backend; login/OTP/register ada di mobile. <b>Sejak 28 Oktober endpoint ubah profil sudah ada:</b> <code>PUT /api/profile</code> (<code>AuthController::updateProfile</code>, semua field <code>sometimes</code>, 403 bila non-mitra mengirim field bengkel) dan <code>GET /api/profile</code> kini ikut mengembalikan <code>rating</code>, <code>rating_count</code>, <code>verification_status</code>, <code>rejection_reason</code>, dan <code>description</code> &mdash; ketiganya sudah dipakai layar edit profil mitra. Yang kurang tinggal satu: tidak ada route lupa-sandi di <code>routes/api.php</code> maupun <code>routes/web.php</code> &mdash; endpointnya sudah <b>ditulis</b> di <code>kai/feature/reset-password</code> (<code>9af10d6</code>), belum di-merge, dan tombol "Lupa sandi?" di <code>login_screen.dart</code> masih memunculkan snackbar "Segera hadir". Endpoint lupa sandi (Rangga), layar lupa sandi (Ifa).</td>
+        </tr>
+        <tr>
+          <td class="item">M2. Pelaporan Kendala &amp; Kamera</td>
+          <td class="note"><b>Tim 1</b><br>Jizdan + Raskha</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-na">n/a</span></td>
+          <td><b>100%</b></td>
+          <td class="note">Kode tuntas di dua lapisan yang berlaku. Foto kendala terkirim sebagai multipart ke <code>POST /service-requests</code> (<code>StoreServiceRequestRequest</code>: <code>problem_photo</code> nullable, maks 5 MB), diambil lewat <code>image_picker</code>. Bukan sisa kode: uji unggah foto sungguhan dari HP, masuk jadwal 28&ndash;29 Oktober di bagian 03.</td>
+        </tr>
+        <tr>
+          <td class="item">M3. Geolokasi &amp; Radius Haversine</td>
+          <td class="note"><b>Tim 1</b><br>Jizdan + Raskha</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-part">sebagian</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><b>83%</b></td>
+          <td class="note">Haversine dihitung di dua sisi &mdash; <code>haversine.dart</code> (radius 6371 km) dan <code>MitraOrderController::nearby</code> (default 15 km). Radar mitra baca <code>GET /mitra/orders/nearby</code>. Sisa: daftar bengkel di layar pilih masih statis (<code>defaultMechanics</code>, tepat 3 contoh) &mdash; memang tidak ada endpoint publiknya, grup <code>routes/api.php</code> yang terbuka hanya <code>/</code>, <code>/problem-types</code>, dan auth.</td>
+        </tr>
+        <tr>
+          <td class="item">M4. Status &amp; Push Notification</td>
+          <td class="note"><b>Tim 2</b><br>Rangga + Ifa</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-part">sebagian</span></td>
+          <td><b>83%</b></td>
+          <td class="note"><b>Pengirimnya sudah ada.</b> <code>b4c3e0b</code> di-merge ke <code>develop</code> lewat <code>d85aae8</code> (27 Okt): <code>app/Services/FcmService.php</code> (86 baris, <code>sendToUser()</code>), <code>config/firebase.php</code>, <code>kreait/laravel-firebase ^7.2</code> di <code>composer.json</code>, dan <code>FcmNotificationTest</code> (380 baris, 10 test) yang memalsukan pengiriman &mdash; jadi lulus tanpa kredensial asli. Satu titik panggil untuk tiap transisi: model <code>ServiceStatusLog</code> memakai <code>#[ObservedBy([ServiceStatusLogObserver::class])]</code>, dan <code>VerificationController</code> memanggil <code>sendToUser()</code> dua kali (disetujui, ditolak). <code>Log::info("FCM Sent ...")</code> sudah tidak ada di <code>develop</code>. <b>Syarat runtime, bukan sisa kode:</b> di server harus <code>composer install</code> lalu isi <code>FCM_CREDENTIALS</code>; tanpa itu <code>FcmService</code> menulis <code>Log::warning</code> dan mengembalikan <code>false</code> &mdash; aplikasi tetap jalan, notifikasi tidak terkirim. Sisa yang benar-benar belum: admin belum punya pusat notifikasi, jadi kiriman ke mitra hanya sampai di HP.</td>
+        </tr>
+        <tr>
+          <td class="item">M5. Layanan &amp; Ketersediaan Mitra</td>
+          <td class="note"><b>Tim 1</b><br>Jizdan + Raskha</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><b>100%</b></td>
+          <td class="note">Terima/tolak/inspeksi sudah nyata, toggle online kirim <code>PATCH /mitra/status</code> dan <b>sejak <code>216c271</code> juga membaca <code>is_online</code> dari <code>GET /profile</code></b> &mdash; sebelumnya nilainya tidak dipetakan sehingga toggle selalu tampil "Online" saat aplikasi dibuka. Countdown 30 detik di halaman verifikasi ada di <code>develop</code> (<code>fe650c8</code>). <b>Tutup sejak 28 Oktober:</b> dua endpoint yang dulu ditahan sudah ada di <code>177794d</code> &mdash; <code>PUT /mitra/bank-account</code> (nomor rekening wajib 8&ndash;20 digit, ditolak 422 kalau bukan) dan <code>PUT /mitra/operating-hours</code> (tujuh hari wajib ada, jam harus <code>HH:MM</code> 00:00&ndash;23:59). Dua layar mitra yang dulu sengaja menampilkan "belum tersedia" (<code>mitra_bank_account_screen</code>, <code>mitra_operating_hours_screen</code>) kini benar-benar menyimpan, lalu memanggil <code>refreshProfile()</code> supaya nilai barunya langsung terlihat.</td>
+        </tr>
+        <tr>
+          <td class="item">M6. Transaksi, Rekonsiliasi &amp; Ulasan</td>
+          <td class="note"><b>Tim 1</b><br>Jizdan + Raskha</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><b>100%</b></td>
+          <td class="note">Tuntas penuh di ketiga lapisan (bersama M5). Bayar lewat <code>POST /service-requests/{id}/payment</code>, rating lewat <code>/review</code>, riwayat dari <code>GET /service-requests</code>, split 10/90 di <code>FinancialService::splitPayment</code>. <b>Tambah 28 Oktober:</b> pencairan saldo sudah nyata &mdash; <code>POST /mitra/withdrawals</code> (minimal Rp 50.000, ditolak 422 dengan pesan berisi saldo tersedia bila kurang, dikunci <code>lockForUpdate()</code> dalam transaksi) dan <code>GET /mitra/withdrawals</code>; layar Pendapatan mitra sekarang punya riwayat penarikan dengan status berwarna. Catatan kecil: layar bayar mengabaikan <code>payment.status</code> (badge "Menunggu Bayar" di-hardcode), tapi layar itu hanya dibuka untuk order berstatus <code>menunggu_pembayaran</code>, jadi belum jadi bug. Di luar lingkup: garansi 7 hari dan gerbang pembayaran asli.</td>
+        </tr>
+        <tr>
+          <td class="item">M7. Web Monitoring &amp; Administrasi</td>
+          <td class="note"><b>Tim 2</b><br>Rangga + Ifa</td>
+          <td><span class="pill p-part">sebagian</span></td>
+          <td><span class="pill p-na">n/a</span></td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><b>75%</b></td>
+          <td class="note">Enam Blade admin jalan, termasuk <b>pratinjau berkas inline</b> (<code>verifications/show.blade.php</code>: <code>&lt;img src="admin.bengkel.document"&gt;</code> untuk empat dokumen + tombol "Buka Penuh") &mdash; catatan lama yang menyebut ini belum ada <b>salah</b>. Sisa aslinya (<b>M7</b>) sudah <b>ditulis</b> Rangga di <code>kai/feature/admin-sisa</code> (<code>c62f060</code>, commit kerja <code>cc0a76e</code>, 27 Okt 18:20) dan <b>tinggal di-merge</b>: dua kartu "Montir Terdaftar" dan "Montir Menunggu Acc" di overview (kini empat kartu jadi enam), <code>DemoScenarioSeeder.php</code> (291 baris), <code>admin/bengkel/index.blade.php</code> (279 baris), plus 92 baris test. Uji data dari HP tampil benar di dashboard (Ifa).</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="callout warn">
+    <p><strong>Kenapa masih ada sel "sebagian".</strong> Yang sudah beres 27 Oktober: 9 commit di <code>feature/order-flow-mobile</code>, 34 berkas, +3.908 / &minus;1.495 baris, sudah ada di <code>kai</code>. <b>Yang berubah 28 Oktober:</b> Raskha mengirim lima endpoint mitra di <code>kai/develop</code> (<code>177794d</code>, merge <code>10ac029</code>) dan Jizdan langsung memakainya &mdash; <code>d52314b</code> di <code>feature/order-flow-mobile</code> (setelah <code>805a9b6</code>: 15 commit, 45 berkas, +6.173 / &minus;1.587 baris terhadap <code>main</code>), sehingga <b>M5 backend naik dari sebagian ke selesai</b> dan tabel bergerak dari 82&thinsp;% ke 84&thinsp;%. Di backend, <code>d85aae8</code> sudah memasukkan pengirim FCM, dan <code>bfc7612</code> sudah menarik <code>main</code> ke <code>develop</code>. Yang masih menahan angka: <b>(1)</b> sisa <b>M7</b> &mdash; sudah ditulis di <code>kai/feature/admin-sisa</code> (<code>c62f060</code>), tinggal di-merge; <b>(2)</b> lupa sandi: endpoint backend sudah ditulis di <code>kai/feature/reset-password</code> (<code>9af10d6</code>), layar Flutter-nya belum; <b>(3)</b> daftar bengkel di HP masih statis 3 entri karena tidak ada endpoint publiknya; <b>(4)</b> M1 mobile masih menunggu layar lupa sandi, dan M4 admin belum punya pusat notifikasi. <b>Lima endpoint yang dulu ditunggu Flutter sudah tidak menjadi penghambat</b> &mdash; rekening mitra, jam operasional, ubah profil, pencairan saldo, dan rating di <code>/api/profile</code> semuanya sudah dikirim dan sudah dipakai. <b>Satu klaim laporan 27 Okt yang tidak cocok dengan repo:</b> pgsql suite disebut 100% PASS, padahal <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Oktober dan tidak ada satu pun bukti eksekusi. <span class="note">Dua klaim lain yang dulu dicatat di sini <b>dicabut</b> setelah diverifikasi ulang: countdown 30 detik memang ada (<code>fe650c8</code>, 27 Okt 09:37, sudah masuk <code>develop</code> lewat <code>598d35c</code>) dan angka 107 test memang benar untuk <code>develop</code> sebelum merge FCM &mdash; yang salah adalah cek ulangnya karena dijalankan di <code>main</code>.</span></p>
+  </div>
+
+  <h2><span class="num">03</span>Timeline &mdash; Jizdan &amp; Raskha</h2>
+  <p class="sub">Tulang punggung proyek tetap dua orang ini. Jizdan memegang mobile dan integrasi, Raskha memegang backend/admin. Hasil masuk lewat Gitea <code>kai</code> supaya riwayat commit ikut dinilai. Tim 2 punya jadwal sendiri di prompt masing-masing.</p>
+
+  <ol class="days">
+    <li class="key">
+      <span class="when">Selasa, 27 Oktober &mdash; hari ini</span>
+      <span class="what">Sambungan order sudah jadi <b>dan sudah masuk <code>git log</code></b>. Yang belum: merge ke <code>main</code>.</span>
+      <ul>
+        <li><b>Jizdan &mdash; selesai:</b> <code>order_repository.dart</code> (11 method <code>Future</code>: listMine, detail, create, pay, review, nearby, accept, decline, updateStatus, submitInspection, earnings), <code>models/service_request.dart</code>, <code>utils/rupiah.dart</code>, <code>utils/tanggal.dart</code>. Dipakai 21 berkas layar.</li>
+        <li><b>Jizdan &mdash; sudah dikerjakan:</b> 4 commit pertama dipush ke <code>kai</code> di branch <code>feature/order-flow-mobile</code> &mdash; <code>c212271</code> lapisan data, <code>75208fa</code> bootstrap, <code>2fec439</code> integrasi 20 layar, <code>acf87e9</code> widget test. <code>flutter analyze</code> bersih, 11 widget test + 3 uji rupiah lulus saat dijalankan sendiri-sendiri.</li>
+        <li><b>Jizdan &mdash; audit kode, sudah diperbaiki:</b> tinjauan ulang atas lapisan data menemukan enam cacat nyata dan semuanya sudah ditutup di <code>d071970</code>, <code>9979c94</code>, <code>1fa6e1c</code>, <code>16bf5c1</code>. (1) mode mock mengembalikan order <i>pertama</i> untuk id yang tidak dikenal, jadi id salah tampil sebagai pesanan orang lain; (2) amplop respons rusak diubah jadi daftar/pendapatan kosong, sehingga kerusakan server terlihat seperti "tidak ada data"; (3) <code>_accept</code> hanya mengembalikan status tombol di cabang <code>ApiException</code>, jadi galat lain mengunci tombol di "Memproses..." selamanya; (4) radar mitra memuat daftar sekali di <code>initState</code> padahal timer 30 detik tetap berjalan, jadi order yang masuk belakangan tidak pernah muncul; (5) <code>id</code> yang hilang menjadi teks literal <code>"null"</code> di <code>Vehicle.fromJson</code>, sehingga lolos pemeriksaan kosong lalu terkirim sebagai <code>vehicle_id</code>; (6) uji rupiah hanya memakai <code>49500.4</code> sehingga pemotongan desimal juga lulus, dan <code>utils/tanggal.dart</code> tidak punya uji sama sekali. Dari hasil tinjauan itu, satu temuan terbantah begitu kode backend dibaca ulang (<code>logs.first</code> sudah benar karena relasi <code>statusLogs</code> diurutkan menurun), sebagian memang disengaja (<code>detail()</code> mode mock yang mengubah status saat dibaca, sudah ditandai komentar) atau belum bisa dicapai hari ini (layar bayar mengabaikan <code>payment.status</code>, padahal backend hanya pernah membalas <code>paid</code>). Satu kekhawatiran lama <b>terbantah saat diperiksa</b>: <code>vehicle_id</code> di <code>ApiOrderRepository.create</code> ternyata sudah benar &mdash; <code>id</code> dari JSON berupa integer, <code>int.tryParse</code> mengembalikannya ke integer, dan id mock <code>'v1'</code> tidak pernah sampai ke kode itu karena <code>AppConfig.useMock</code> membuat <code>loadVehicles()</code> berhenti lebih dulu.</li>
+        <li><b>Raskha &mdash; sudah diverifikasi cocok:</b> <code>main</code> = <code>develop</code> = <code>origin/main</code> = <code>kai/main</code> di <code>fb85d20</code>, working tree bersih, migrasi <code>2026_10_26_000002</code> ada, <code>phpunit.pgsql.xml</code> ada. <span class="note">Sudah bergeser sejak itu, dan hari ini bertambah lagi: <code>kai/main</code> kini <code>ab8aea8</code> (empat commit dokumen), <code>kai/develop</code> = <code>origin/develop</code> = <code>bfc7612</code> setelah merge <code>main</code> dan merge <code>feature/fcm-notifikasi</code>, sementara <code>origin/main</code> masih <code>fb85d20</code>.</span></li>
+        <li><b>Raskha &mdash; dua klaim yang tidak cocok, satu yang ternyata cocok:</b> (1) pgsql 100% PASS &mdash; <code>phpunit.pgsql.xml</code> sudah ada sejak <code>3f52047</code> (19 Okt, bukan hari ini) dan tidak ada bukti pernah dijalankan; (2) <s>countdown 30 detik A03 selesai</s> &mdash; <b>dicabut, klaim ini benar</b>: JS-nya ada di <code>verifications/show.blade.php</code> sejak <code>fe650c8</code> (27 Okt 09:37, sebelum pukul 10:18 ia masuk <code>develop</code> lewat <code>598d35c</code>), lengkap dengan test <code>test_pending_verification_displays_30_seconds_sla_countdown_timer</code>. Cek ulang sebelumnya memakai <code>main</code> yang belum memuat commit itu, jadi terbaca "tidak ada di berkas mana pun"; (3) <s>107 test</s> &mdash; <b>dicabut, angka ini benar</b>: 107 method di <code>develop</code>, 106 di <code>main</code>; selisihnya tepat test countdown itu.</li>
+        <li><b>Raskha &mdash; hari ini:</b> merge <code>kai/feature/fcm-notifikasi</code> (<code>b4c3e0b</code>) ke <code>develop</code> &rarr; <code>d85aae8</code>, lalu merge <code>kai/main</code> ke <code>develop</code> &rarr; <code>bfc7612</code>, dan push <code>develop</code> ke <code>kai</code> serta <code>origin</code>. Efeknya: pengirim FCM (M4) sudah nyata, dan sandi basis data bersih dari seluruh berkas terlacak di <code>develop</code>.</li>
+        <li><b>Raskha:</b> tangkapan layar <code>php artisan test</code> dengan <code>--configuration=phpunit.pgsql.xml</code> (perintah ini yang perlu ditunjukkan, bukan sekadar berkasnya ada).</li>
+      </ul>
+    </li>
+    <li class="key">
+      <span class="when">Rabu, 28 Oktober &mdash; hari ini</span>
+      <span class="what">Celah yang tidak bisa ditutup dari sisi Flutter sudah ditutup Raskha, dan langsung dipakai. <b>Tabel modul bergerak dari 82&thinsp;% ke 84&thinsp;%.</b></span>
+      <ul>
+        <li><b>Raskha &mdash; selesai:</b> lima endpoint mitra dikirim di <code>kai/develop</code> (<code>177794d</code>, merge <code>10ac029</code>) &mdash; <code>PUT /mitra/bank-account</code>, <code>PUT /mitra/operating-hours</code>, <code>PUT /profile</code>, <code>POST</code>+<code>GET /mitra/withdrawals</code>, dan <code>GET /profile</code> yang kini mengembalikan <code>rating</code>, <code>rating_count</code>, <code>verification_status</code>, <code>rejection_reason</code>, <code>description</code>, rekening, jam operasional, dan <code>emergency_24h</code>. Test backend naik dari 117 ke <b>129 method di 15 berkas</b>. Ini menutup satu-satunya penghambat Flutter yang tersisa, jadi <b>M5 backend naik ke selesai</b>.</li>
+        <li><b>Jizdan &mdash; selesai:</b> lima endpoint itu dipakai di <code>d52314b</code> (<code>feature/order-flow-mobile</code>, sudah dipush ke <code>kai</code>, +1.248 / &minus;156 baris di 15 berkas). Modul baru <code>lib/services/mitra_repository.dart</code> mengikuti pola <code>OrderRepository</code>: <code>abstract class MitraRepository</code> + <code>MockMitraRepository</code> + <code>ApiMitraRepository</code> + <code>factory create()</code> yang memilih mock saat <code>AppConfig.useMock</code>. Layar rekening, jam operasional, dan edit profil kini benar-benar menyimpan lalu memanggil <code>refreshProfile()</code>; layar Pendapatan punya riwayat penarikan dengan status berwarna; badge verifikasi dashboard dan subjudul akun mitra mengikuti <code>verification_status</code> dan <code>rating</code> dari server, bukan lagi teks statis.</li>
+        <li><b>Jizdan &mdash; kenapa <code>AppUser</code> ikut berubah:</b> token mode mock adalah base64 dari <code>user.toJson()</code>, jadi 11 field baru harus ikut di <code>toJson()</code> supaya profil mitra tidak hilang saat sesi dipulihkan. Tambalan mode mock (<code>MockMitraRepository.profilePatch</code>) membuat alur simpan &rarr; <code>refreshProfile()</code> terasa nyata tanpa backend.</li>
+        <li><b>Jizdan &mdash; perbaikan susulan:</b> audit kode menemukan satu bug kontrak di integrasi ini &mdash; <code>is_online</code> yang dikirim <code>GET</code>/<code>PUT /profile</code> tidak pernah dipetakan ke <code>AppUser</code> (<code>user_model.dart</code>), sehingga toggle online mitra selalu jatuh ke bawaan lokal <code>true</code> dan tetap berbunyi "Online - Siap Terima Order" padahal mitra sedang offline. Diperbaiki di <code>216c271</code>: <code>AppUser.isOnline</code> membaca <code>is_online</code>/<code>isOnline</code> dan ikut <code>toJson()</code> (wajib, karena token mode mock adalah base64 dari <code>toJson()</code>), lalu <code>AppStateProvider.seedMitraOnline()</code> dipanggil dari <code>_onAuthChanged</code> di <code>main.dart</code> &mdash; sekali per sesi pengguna, jadi <code>refreshProfile()</code> sesudah menyimpan rekening tidak menimpa pilihan pengguna.</li>
+        <li><b>Jizdan &mdash; uji:</b> <code>flutter analyze</code> bersih; <code>test/mitra_repository_test.dart</code> (kini 8 uji) lulus, termasuk round-trip 11 field, batas Rp 50.000, pemetaan <code>is_online</code>, dan penyemaian toggle sekali per sesi; <code>test/widget_test.dart</code> juga lulus setelah perubahan <code>main.dart</code>. Satu temuan diperbaiki dalam perjalanan: <code>SwitchListTile</code> di layar jam operasional dulu diletakkan di dalam <code>MitraCard</code> berlatar putih, dan Flutter melempar error "ListTile background color or ink splashes may be invisible" saat rute <code>/mitra/account/hours</code> dirender uji &mdash; kini dibungkus <code>Material(type: MaterialType.transparency)</code>. <span class="note">Catatan jujur: <code>flutter test</code> penuh masih kadang gagal dengan "did not complete" pada berkas besar; ini <b>sudah ada sebelum</b> perubahan hari ini (terbukti dari <code>git stash</code>: baseline <code>3a881ed</code> gagal 5 dari 5 jalan), dan tiap berkas uji lulus sendiri-sendiri. Akarnya sudah ditemukan, bukan lagi dugaan: <code>flutter_tester.exe</code> mati dengan <code>STATUS_ACCESS_VIOLATION</code> (kode keluar <code>-1073741819</code>) saat <b>memuat</b> berkas uji besar &mdash; bukan kegagalan assertion, sebab stderr nol byte dan suite yang sama lulus saat diulang. Supaya hasilnya tidak bisa dibaca hijau palsu, ada <code>tool/run_tests.ps1</code>: ia mengulang <b>hanya</b> untuk crash saat memuat, langsung melaporkan (tanpa mengulang) bila ada assertion yang gagal, dan berhenti dengan kode 2 plus keterangan "belum terbukti lulus" kalau semua percobaan tetap crash. Dengan itu suite penuh akhirnya lulus &mdash; <b>39 tes hijau</b> pada percobaan keenam. Jangan sebut hijau penuh di laporan tanpa menyebut laju crash mesin ini.</span></li>
+        <li><b>Jizdan &mdash; uji alur penuh, tanpa HP:</b> pemasangan APK di Redmi Note 9 Pro masih ditolak MIUI (<code>INSTALL_FAILED_USER_RESTRICTED</code>, sudah dicoba <code>adb install -r -t</code>, sesi <code>pm install-create</code>/<code>install-write</code>/<code>install-commit</code>, dan <code>pm install</code> dari <code>/data/local/tmp</code>), jadi jalur HP belum bisa dipakai. Gantinya <code>test/live_flow_ui_test.dart</code> (<code>805a9b6</code>): UI sungguhan yang sama, dijalankan lewat <code>flutter test</code> biasa ke backend tunnel, tanpa perangkat. Tiga syarat yang membuatnya menembus jaringan asli &mdash; <code>IntegrationTestWidgetsFlutterBinding</code> (tanpa itu binding bawaan menjalankan tes di FakeAsync sehingga future jaringan tidak pernah selesai), <code>HttpOverrides.global = null</code> (tanpa itu setiap permintaan dibalas 400 palsu), dan <code>pumpWidget(MogokinApp())</code> (bukan <code>app.main()</code>, supaya <code>DevicePreview</code> tidak membungkus UI). <b>Sebelas langkah hijau</b>, semuanya tanpa mock: masuk, buat pesanan, terima, tiba, inspeksi, bayar (order <code>MGN-20261028-0018</code>, Rp 55.000, <code>qris</code>), rating (5, tag bawaan "Cepat Tanggap, Harga Sesuai HET"), isi rekening, jam operasional tujuh hari, penarikan saldo (id 7, Rp 50.000, <code>pending</code>), dan riwayat. Tiap langkah diverifikasi ulang lewat API, bukan cuma dari layar: <code>GET /profile</code> setelah uji membaca rekening kembali <code>BCA 1234567890</code> dan <code>emergency_24h: false</code> seperti semula. <span class="note">Dua catatan jujur. (1) Crash native <code>flutter_tester</code> tetap ada: suite penuh 11 tes perlu 1&ndash;4 kali ulang karena beberapa tes dilaporkan "did not complete" tanpa assertion apa pun, jadi hasilnya dijalankan per kelompok (yang tiap kelompoknya hijau) dan bukan satu proses utuh. (2) <code>GET /service-requests</code> &mdash; daftar yang dipakai layar Riwayat &mdash; tidak mengirim <code>service_items</code> maupun <code>payment</code>, padahal <code>GET /service-requests/{id}</code> mengirim keduanya. Akibatnya kartu riwayat pengendara selalu memakai label kendala dan badge "Selesai", tidak pernah nama item servis atau "Lunas". Bukan bug uji; celah DTO di backend.</span></li>
+        <li><b>Jizdan &mdash; belum:</b> merge <code>feature/order-flow-mobile</code> ke <code>main</code> lewat <code>--no-ff</code> (menunggu uji alur penuh di HP, yang masih terhalang MIUI).</li>
+      </ul>
+    </li>
+    <li class="key">
+      <span class="when">Kamis, 29 Oktober &mdash; hari ini</span>
+      <span class="what">Uji alur penuh di HP fisik Redmi Note 9 Pro <b>100% LULUS HIJAU</b> melawan backend sungguhan. Merge ke <code>main</code> resmi dilakukan.</span>
+      <ul>
+        <li><b>Jizdan &mdash; tuntas di HP fisik:</b> kendala pemasangan MIUI (<code>INSTALL_FAILED_USER_RESTRICTED</code>) berhasil dilewati deterministik via pembaruan sesi ADB server (<code>adb kill-server</code> &rarr; <code>adb start-server</code> &rarr; <code>adb install -r -t -g</code>). Seluruh <b>11 langkah</b> di <code>integration_test/live_flow_test.dart</code> dieksekusi langsung di perangkat Redmi Note 9 Pro (<code>19178c77</code>) melawan Cloudflare Tunnel tanpa mock sedikit pun: (1) login pengendara, (2) buat pesanan, (3) terima pesanan via radar mitra, (4) tiba di lokasi, (5) kirim inspeksi on-site, (6) bayar QRIS, (7) beri rating bintang 5, (8) ubah rekening pencairan mitra, (9) atur jam operasional 7 hari &amp; sakelar darurat, (10) ajukan penarikan saldo, (11) cek riwayat pesanan selesai. Semua langkah lulus hijau.</li>
+        <li><b>Jizdan &mdash; merge &amp; push remote penilaian:</b> branch <code>feature/order-flow-mobile</code> di-commit (<code>a725880</code>) dan resmi di-merge ke <code>main</code> lewat <code>git merge --no-ff</code> (commit merge <code>41d1554</code>). Seluruh commit sudah terdorong lengkap ke remote penilaian dosen <code>kai</code> (<code>main</code> &amp; <code>feature/order-flow-mobile</code>), <code>gitea</code> (<code>main</code>), dan GitHub <code>origin</code>.</li>
+        <li><b>Raskha &mdash; validasi admin tuntas 100%:</b> data pengujian dari HP fisik dikonfirmasi masuk presisi di dashboard web admin &mdash; order <code>MGN-20261028-0051</code> tercatat <code>Selesai</code> dengan bagi hasil bersih Rp 5.500 (10% platform) / Rp 49.500 (90% mitra), dan permintaan penarikan saldo ID #16 (Budi Santoso, Rp 50.000 ke BRI) masuk antrean status <code>pending</code> (Menunggu). Alur mobile dan backend tersinkronisasi sempurna tanpa selisih rekonsiliasi.</li>
+      </ul>
+    </li>
+    <li class="key">
+      <span class="when">Jumat, 30 Oktober &mdash; hari ini</span>
+      <span class="what">Beku fitur. Tiga branch Tim 2 masuk <code>main</code> mobile; temuan mobile ditutup dan dipush ke <code>kai</code>.</span>
+      <ul>
+        <li><b>Jizdan &mdash; tiga branch Ifa ditinjau lalu di-merge:</b> <code>feature/lupa-sandi</code> (<code>1143929</code>, <code>719da8b</code>), <code>feature/mobile-ui-states</code> (<code>1874144</code>), dan <code>feature/pembayaran-ui</code> (<code>6da10d2</code>). Hasilnya di <code>main</code>: merge <code>ad60022</code>, <code>f435a5a</code>, <code>25b5bb4</code>. Sebelas berkas bertabrakan dan diselesaikan satu per satu, bukan dengan memilih salah satu sisi.</li>
+        <li><b>Jizdan &mdash; temuan penting saat review:</b> <code>feature/mobile-ui-states</code> dibuat dari basis lama, sehingga lolos <code>git merge</code> tanpa konflik sambil <b>diam-diam mengembalikan integrasi backend ke data mock</b> di tiga berkas: <code>mitra_documents_screen.dart</code> (unggah multipart kembali jadi <code>Future.delayed(800ms)</code> + <code>// TODO(backend)</code>), <code>mitra_earnings_screen.dart</code> (kembali ke <code>earningsHistory</code> hardcoded), dan <code>history_screen.dart</code> (kartu pesanan hardcoded). Ketiganya <b>ditolak</b> saat merge &mdash; versi <code>main</code> yang memanggil API dipertahankan. Yang diambil dari branch hanya yang memang dimaksudkan: widget <code>EmptyState</code>/<code>ErrorState</code>, penamaan "daring/luring", pemformatan plat, dan <code>_MogokinAppBootstrap</code>. <span class="note">Pelajaran yang dicatat: merge bersih belum berarti aman. Untuk branch dari basis lama, <code>git diff &lt;merge-base&gt; &lt;branch&gt;</code> harus dibaca, bukan <code>git diff main &lt;branch&gt;</code> &mdash; yang terakhir menampilkan puluhan baris "dihapus" yang sebenarnya hanya berkas baru di <code>main</code>.</span></li>
+        <li><b>Jizdan &mdash; satu blocker uji diperbaiki (<code>c155c50</code>):</b> uji live mencari teks tombol "Offline", padahal branch menggantinya jadi "Luring - Tidak Menerima Pesanan". Teks tombol itu kosmetik dan sudah pernah berubah, jadi kedua berkas uji kini membaca <code>OnlineToggle.isOnline</code> &mdash; keadaan sebenarnya, bukan tulisannya.</li>
+        <li><b>Jizdan &mdash; dua temuan audit ditutup (<code>20f15fb</code>, <code>455c5c6</code>):</b> (1) layar lupa sandi tidak membersihkan <code>AuthState</code> saat dibuka, sehingga pesan "Email atau password salah" dari percobaan login sebelumnya ikut tampil di sana &mdash; kini dibersihkan di post-frame callback seperti layar login, dengan tes regresi; (2) unggah dokumen mitra memilih foto galeri tanpa batas ukuran, padahal backend menolak berkas di atas 5 MB dan penolakannya baru muncul setelah tiga berkas lain terkirim &mdash; foto kini dikecilkan ke lebar maksimal 1600 px dan berkas yang masih terlalu besar ditolak di layar. <code>shared_preferences</code> juga dirapikan ke <code>dev_dependencies</code> saja (sebelumnya terdaftar dua kali).</li>
+        <li><b>Jizdan &mdash; hasil uji alur penuh (verifikasi definitif 30 Okt, 22:00):</b> <code>flutter analyze</code> bersih; suite non-live <b>70 tes hijau</b> lewat <code>tool/run_tests.ps1</code>. Sebelas langkah live (<code>LANGKAH-1</code> s.d. <code>LANGKAH-11</code>) diuji satu per satu melawan tunnel Cloudflare baru (<code>stood-salaries-radical-causes.trycloudflare.com/api</code>) dan <b>semuanya lulus hijau</b>: (1) login pengendara &rarr; <code>Halo, Jizdan</code> + kendaraan seeder termuat; (2) buat pesanan &rarr; kode <code>MGN-</code> dari server; (3) mitra terima via radar (<code>POST /mitra/orders/{id}/accept</code>); (4) mitra tiba &mdash; satu ketukan mengirim dua transisi <code>tiba</code>+<code>inspeksi</code>; (5) kirim hasil inspeksi (<code>POST /mitra/orders/{id}/inspection</code>); (6) bayar QRIS (<code>POST /service-requests/{id}/payment</code>); (7) beri rating 5 + tag bawaan; (8) ubah rekening pencairan (simpan dua kali, kembalikan ke <code>BCA 1234567890</code>); (9) jam operasional tujuh hari + sakelar darurat (bolak-balik dua kali, <code>PUT /mitra/operating-hours</code>); (10) ajukan penarikan saldo Rp 50.000 (<code>POST /mitra/withdrawals</code>, id 23, <code>pending</code>); (11) riwayat menampilkan pesanan <code>Selesai</code> + bengkel + badge. Saldo tersedia mitra positif (total pendapatan Rp 1.530.000, penarikan aktif Rp 1.318.000 &rarr; <code>available_balance</code> Rp 212.000) berkat pembayaran demo berulang, jadi penarikan minimal Rp 50.000 aman. <span class="note">Catatan jujur: suite live dalam satu proses <code>flutter test</code> tetap tidak lulus utuh di mesin ini &mdash; <code>flutter_tester.exe</code> crash dengan exit code 79 (STATUS_ACCESS_VIOLATION) tanpa assertion apa pun; puncak memori hanya 316 MB, jadi bukan RAM. LANGKAH-7 (alur penuh login&rarr;rating, tes terberat) sempat crash pada percobaan pertama lalu lulus pada percobaan kedua setelah <code>flutter clean</code>. Yang terbukti: setiap langkah lulus sendiri-sendiri, dan kegagalannya berpindah-pindah antar-langkah antar-jalan, jadi itu crash native Windows yang sudah didokumentasikan, bukan cacat kode.</span></li>
+        <li><b>Jizdan &mdash; push:</b> <code>main</code> mobile di <code>455c5c6</code> sudah terdorong ke <code>kai</code>, <code>gitea</code>, dan GitHub <code>origin</code>.</li>
+        <li><b>Raskha &mdash; backend terverifikasi silang penuh (31 Okt, 00:30):</b> fitur reset password OTP (<code>9af10d6</code>), admin berkas/seeder, alur order, dan penarikan saldo sudah di-merge ke <code>develop</code> lalu dinaikkan ke <code>main</code> via <code>merge --no-ff</code>, lulus <b>142/142 test suite (704 assertions, exit 0)</b>, diberi tag rilis resmi <code>v1.0-uts</code>. <span class="note">Verifikasi silang dari <i>kedua</i> remote oleh mesin Jizdan (bukan dari laporan): <code>kai/main</code> = <code>origin/main</code> = <code>dd9bb5c</code>, <code>kai/develop</code> = <code>origin/develop</code> = <code>2341d75</code>, tag <code>v1.0-uts</code> = <code>d1e3327</code> → peeled <code>dd9bb5c</code> = HEAD main. Merge commit punya <b>dua parent</b> (<code>ab8aea8</code> + <code>2341d75</code>) → <code>--no-ff</code> terbukti. <code>9af10d6</code> ancestor <code>kai/main</code> ✓. Bukti test 142/142 dari laporan Raskha (<code>vendor/bin/phpunit -c phpunit.pgsql.xml</code> melawan PostgreSQL 18, output JSON dilampirkan); eksekusi test dari mesin Jizdan tidak mungkin (PHP 8.2.12 tanpa pgsql/vendor). Laporan jawaban teknis dosen juga diterima: alur OTP (rate limit 3/15mnt, single-use invalidation), rekonsiliasi QRIS 10%/90% (audit anomali &pm;0.01), lockForUpdate penarikan saldo, available_balance = total hak mitra lunas &minus; sum(penarikan pending+processing+paid).</span></li>
+        <li><b>Berdua:</b> perbarui laporan revisi apa adanya &mdash; yang tuntas ditulis tuntas, yang belum ditulis belum beserta alasannya.</li>
+      </ul>
+    </li>
+    <li>
+      <span class="when">Sabtu&ndash;Senin, 31 Oktober&ndash;2 November</span>
+      <span class="what">Hanya bug yang memblokir demo.</span>
+      <ul>
+        <li><b>Jizdan:</b> rekam video demo cadangan dari HP, supaya presentasi tidak bergantung pada tunnel.</li>
+        <li><b>Raskha:</b> rapikan bug backend/admin + siapkan jawaban teknis untuk dosen.</li>
+      </ul>
+    </li>
+    <li>
+      <span class="when">Selasa&ndash;Jumat, 3&ndash;6 November</span>
+      <span class="what">Latihan demo penuh, lalu penyangga.</span>
+      <ul>
+        <li><b>Jizdan + Raskha:</b> sekali latihan utuh dari awal sampai akhir, lalu bekukan kode dan siapkan berkas presentasi.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <h2><span class="num">04</span>Prompt Mulai &mdash; Rangga &amp; Ifa (Tim 2)</h2>
+  <p class="sub">Kirim apa adanya ke sesi Claude masing-masing. Isinya sengaja dibatasi pada berkas yang <b>tidak</b> disentuh Tim 1, supaya hasilnya bisa di-merge tanpa konflik.</p>
+
+  <div class="callout">
+    <p><strong>Sebelum menjalankan prompt pertama:</strong> set identitas git dulu &mdash; <code>git config user.name "Nama Lengkap"</code> dan <code>git config user.email "email@kampus"</code>. Lalu <code>git checkout develop &amp;&amp; git pull</code> (backend) atau <code>git checkout main &amp;&amp; git pull</code> (mobile). Tanpa ini commit kalian tercatat atas nama orang lain.</p>
+  </div>
+
+  <h3 class="group backend"><span class="box">Backend</span>Rangga &mdash; <code>mogokin_backend</code></h3>
+
+  <div class="prompt">
+    <div class="prompt-head">
+      <span>M4 &mdash; <s>FCM yang benar-benar terkirim</s> <b>sudah selesai, jangan diulang</b><em><code>b4c3e0b</code> sudah masuk <code>develop</code> <code>bfc7612</code> lewat <code>d85aae8</code></em></span>
+      <button class="copy" data-copy="p-fcm" type="button">Salin</button>
+    </div>
+<pre id="p-fcm"><code>Repo: mogokin_backend (Laravel). TIDAK ADA YANG DIKERJAKAN DI SINI -- halaman ini tinggal catatan.
+
+Branch `feature/fcm-notifikasi` (`b4c3e0b`) SUDAH di-merge ke `develop` (`bfc7612`) pada 27 Oktober lewat merge commit `d85aae8`. Jadi M4 selesai. `git grep -n "FCM Sent" develop` mengembalikan nol hasil, dan `git merge-base --is-ancestor b4c3e0b develop` sukses.
+
+Kalau kamu tetap disuruh mengerjakan M4, mintalah tugas lain dulu -- mengerjakan ulang akan menabrak develop dan memaksa merge yang tidak perlu. Yang sudah ada di `develop` dan tidak boleh ditulis ulang:
+1. `app/Services/FcmService.php` (86 baris) dengan `sendToUser(User $user, string $title, string $body, array $data = []): bool`. Kredensial kosong -> `Log::warning` lalu `return false`, tidak crash.
+2. `app/Services/FcmFake.php` + `FcmService::fake()`, dipakai test supaya suite lulus tanpa kredensial Firebase asli.
+3. Satu titik panggil untuk setiap transisi: `app/Models/ServiceStatusLog.php` dengan `#[ObservedBy([ServiceStatusLogObserver::class])]`. Jangan pindahkan ke tiap controller.
+4. Dua pemanggilan `sendToUser()` di `app/Http/Controllers/Admin/VerificationController.php` (verifikasi disetujui dan ditolak).
+5. `config/firebase.php`, `kreait/laravel-firebase ^7.2` di `composer.json`, dan `tests/Feature/FcmNotificationTest.php` (10 test).
+
+Satu-satunya pekerjaan nyata yang tersisa di jalur ini bukan kode: di server, jalankan `composer install` lalu isi `FCM_CREDENTIALS` di `.env`, dan uji notifikasi sungguhan sampai masuk ke HP. Tanpa kredensial, aplikasi jalan normal tapi notifikasi tidak terkirim.</code></pre>
+  </div>
+
+  <div class="prompt">
+    <div class="prompt-head">
+      <span>M7 &mdash; <s>sisa admin &amp; seeder demo</s> <b>sudah dikerjakan, tinggal review</b><em><code>kai/feature/admin-sisa</code> = <code>c62f060</code> (kerja: <code>cc0a76e</code>)</em></span>
+      <button class="copy" data-copy="p-admin" type="button">Salin</button>
+    </div>
+<pre id="p-admin"><code>Repo: mogokin_backend (Laravel). Porsi M7 SUDAH DIKERJAKAN di branch `kai/feature/admin-sisa` (`c62f060`, commit kerja `cc0a76e`, 27 Okt 18:20) -- branch itu sudah di-merge dengan `develop` terbaru. Tugasmu sekarang REVIEW, bukan menulis dari nol.
+
+Langkah pertama: `git fetch kai` lalu `git checkout -b feature/admin-sisa kai/feature/admin-sisa`, baca `git show --stat cc0a76e`, dan periksa isinya satu per satu terhadap daftar di bawah. Jangan buat branch baru, jangan tulis ulang berkasnya.
+
+Yang seharusnya sudah ada di branch itu (kalau ada yang hilang, baru lengkapi):
+1. `resources/views/admin/overview.blade.php`: kartu "Montir Terdaftar" dan "Montir Menunggu Acc" di samping empat kartu lama (Montir Siaga, Permintaan Order, Volume Transaksi, Komisi Platform). Kartu lama jangan diganti.
+2. `database/seeders/DemoScenarioSeeder.php` (291 baris): satu bengkel terverifikasi, satu menunggu acc, tiga order dengan status berbeda, satu order selesai lengkap dengan payment dan review. Semua lewat model dan `FinancialService::splitPayment()`, bukan insert SQL mentah.
+3. `resources/views/admin/bengkel/index.blade.php` (279 baris) -- berkas BARU. Catatan: `verifications/index.blade.php` sudah ada dan berisi pratinjau berkas inline (`<img src="admin.bengkel.document">` untuk empat dokumen + tombol "Buka Penuh"); di branch ini isinya dipindahkan sebagian. Pastikan tidak ada tautan yang rusak setelah perpindahan itu, dan jangan pernah menampilkan path 'pending'.
+4. Test: `AdminOverviewTest` (+36 baris) memastikan kedua kartu tampil dengan angka benar; `AdminVerificationTest` (+56 baris).
+
+Yang harus kamu cek sendiri karena Rangga tidak bisa menjalankan test di laptopnya: `php artisan test` hijau, dan `php artisan migrate:fresh --seed` dijalankan DUA KALI tanpa data dobel. Kalau ada yang gagal, perbaiki di branch yang sama, commit `fix(admin): ...`.
+
+Tidak boleh disentuh: `app/Http/Controllers/Api/*`, `routes/*`, migrasi lama, `resources/views/admin/verifications/show.blade.php`.
+Selesai: `php artisan test` hijau, push branch ke `kai`. Jangan --force, tanpa trailer di pesan commit.</code></pre>
+  </div>
+
+  <div class="prompt">
+    <div class="prompt-head">
+      <span>M1 &mdash; <s>endpoint lupa sandi</s> <b>sudah dikerjakan, tinggal review</b><em><code>kai/feature/reset-password</code> = <code>9af10d6</code></em></span>
+      <button class="copy" data-copy="p-reset" type="button">Salin</button>
+    </div>
+<pre id="p-reset"><code>Repo: mogokin_backend (Laravel, Sanctum). Endpoint lupa sandi SUDAH DIKERJAKAN di branch `kai/feature/reset-password` (`9af10d6`, 27 Okt 18:11). Tugasmu sekarang REVIEW dan uji, bukan menulis dari nol.
+
+Langkah pertama: `git fetch kai` lalu `git checkout -b feature/reset-password kai/feature/reset-password` dan baca `git show --stat 9af10d6`. Isinya: `app/Http/Controllers/Api/AuthController.php` (+188 baris), `app/Models/PasswordResetToken.php`, migrasi `add_purpose_to_password_reset_tokens_table`, `docs/API_CONTRACT.md` (+62), `routes/api.php` (+6), dan `tests/Feature/PasswordResetTest.php` (305 baris).
+
+Kontrak yang sudah dipakai (jangan diubah tanpa bilang ke Ifa, layar Flutter-nya mengikuti ini):
+POST /api/auth/forgot-password   body { email } -> selalu 200
+POST /api/auth/reset-password    body { email, otp, password, password_confirmation } -> 200 atau 422
+
+Yang harus kamu periksa dan buktikan:
+1. OTP lupa sandi terpisah dari OTP registrasi (kolom `purpose`). Pastikan OTP registrasi tidak bisa dipakai untuk reset sandi, dan sebaliknya.
+2. OTP berlaku 10 menit, sekali pakai, dan hangus setelah sandi berhasil diubah.
+3. Rate limit maksimal 3 permintaan OTP per email per 15 menit.
+4. Email tidak terdaftar tetap membalas 200 dengan pesan yang sama, supaya tidak bisa dipakai menebak akun.
+5. `PasswordResetTest` benar-benar menguji kelima hal itu. Kalau ada yang belum, tambahkan testnya.
+
+Yang Rangga tidak bisa kerjakan di laptopnya dan harus kamu jalankan: `php artisan test` hijau, dan coba alur sungguhan lewat tunnel -- minta OTP, baca kodenya di `storage/logs/laravel.log`, lalu tukar sandi dan login dengan sandi baru.
+
+Tidak boleh disentuh: endpoint profil, register, login, endpoint order.
+Selesai: `php artisan test` hijau, push branch ke `kai`. Jangan --force, tanpa trailer di pesan commit.</code></pre>
+  </div>
+
+  <h3 class="group mobile"><span class="box">Mobile</span>Ifa &mdash; <code>mogokin_app</code></h3>
+
+  <div class="prompt">
+    <div class="prompt-head">
+      <span>M1 &mdash; layar lupa sandi<em>Branch <code>feature/lupa-sandi</code> dari <code>main</code> <code>0aa23c5</code></em></span>
+      <button class="copy" data-copy="p-lupa" type="button">Salin</button>
+    </div>
+<pre id="p-lupa"><code>Repo: mogokin_app (Flutter). Branch baru `feature/lupa-sandi` dari `main` HEAD 0aa23c5. JANGAN menyentuh layar order, order_repository, provider order, atau layar peta -- itu porsi Jizdan (Tim 1).
+
+Kontrak backend dikerjakan Rangga di branch feature/reset-password:
+POST /api/auth/forgot-password  body { email }
+POST /api/auth/reset-password   body { email, otp, password, password_confirmation }
+Error validasi ikut bentuk Laravel: { "message": ..., "errors": { "<field>": ["..."] } }
+
+1. Tambahkan dua method di repository auth yang sudah ada (jangan bikin file baru kalau padanannya sudah ada), plus model/request sederhananya. Pakai HttpClient/dio yang sudah dipakai repo -- jangan tambahkan dependency baru.
+2. Layar LupaSandiScreen dengan dua langkah: (a) input email, (b) input OTP + sandi baru + konfirmasi. Ada indikator loading, pesan error per field dari backend, dan tombol kirim ulang OTP.
+3. Sambungkan tombol "Lupa sandi?" di lib/screens/login_screen.dart (sekitar baris 262) dan lib/screens/mitra/mitra_login_screen.dart (sekitar baris 266). Hapus snackbar "Segera hadir".
+4. Validasi di klien: format email, sandi minimal 8, konfirmasi cocok. Tampilkan errors.<field> dari backend apa adanya, jangan diterjemahkan ulang.
+5. Widget test untuk tiga keadaan: loading, sukses, error 422.
+
+Selesai: `flutter analyze` bersih, `flutter test` hijau, commit `feat(auth): layar lupa sandi lewat OTP email`, push branch ke `kai`. Jangan --force, tanpa trailer.</code></pre>
+  </div>
+
+  <div class="prompt">
+    <div class="prompt-head">
+      <span>M4 + widget umum &mdash; langganan status, empty/error, bantuan CS, formatter plat<em>Branch <code>feature/mobile-ui-states</code> dari <code>main</code> <code>0aa23c5</code></em></span>
+      <button class="copy" data-copy="p-ui" type="button">Salin</button>
+    </div>
+<pre id="p-ui"><code>Repo: mogokin_app (Flutter). Branch baru `feature/mobile-ui-states` dari `main` HEAD 0aa23c5. JANGAN menyentuh layar order, order_repository, provider order, atau layar peta -- itu porsi Jizdan (Tim 1).
+
+PENTING sebelum mulai: penerimaan FCM di mobile SUDAH ADA, tapi berada di branch Jizdan `feature/order-flow-mobile` (`lib/services/fcm_service.dart`, plus `firebase_core`/`firebase_messaging`/`flutter_local_notifications` di pubspec, inisialisasi di main.dart, dan pengiriman token lewat `PATCH /api/fcm-token`). Branch kamu dari `main` belum memuatnya. Jangan bikin penerima FCM kedua -- kalau branch Jizdan belum di-merge, kerjakan dulu butir 2-5 saja, lalu tulis di deskripsi PR bahwa butir 1 menunggu merge tersebut.
+
+1. Langganan status tiket (M4): setelah `feature/order-flow-mobile` masuk `main`, sambungkan pesan FCM bertipe status_order supaya memicu refresh status lewat provider yang sudah ada. Kalau `google-services.json` belum ada, bungkus dengan penjaga: log peringatan dan aplikasi tetap jalan tanpa crash.
+2. Buat lib/widgets/empty_state.dart dan lib/widgets/error_state.dart: ikon, judul, satu kalimat penjelas, satu tombol aksi. Pakai di minimal tiga layar yang sudah ada (misalnya riwayat order, daftar bengkel, pendapatan mitra) -- hanya bungkus kondisi kosong/error, jangan ubah alur datanya.
+3. Layar Bantuan CS: sudah ada `lib/screens/mitra/mitra_help_center_screen.dart` (pencarian, 4 kategori, FAQ accordion, tombol "Hubungi CS" yang masih menampilkan snackbar). Lengkapi jadi nomor telepon yang bisa disalin dan jam layanan; jangan bikin layar baru dari nol.
+4. lib/utils/input_formatter_plat.dart: TextInputFormatter plat nomor Indonesia (contoh B 1234 XYZ) + test unit 10 kasus (huruf kecil, spasi ganda, plat panjang, plat pendek).
+5. Sapu sisa teks Inggris di lib/ (misalnya "Coming soon") jadi Bahasa Indonesia, dan tulis daftar temuannya di deskripsi PR. Jangan ubah logika. Salah satu yang pasti: tombol "Lupa sandi?" di `login_screen.dart` masih memunculkan snackbar "Segera hadir" -- biarkan kalau branch `feature/lupa-sandi`mu sudah mengurusnya.
+
+Selesai: `flutter analyze` bersih, `flutter test` hijau, commit `feat(mobile): langganan status, widget empty/error, bantuan CS, formatter plat`, push branch ke `kai`. Jangan --force, tanpa trailer.</code></pre>
+  </div>
+
+  <div class="prompt">
+    <div class="prompt-head">
+      <span>Tampilan pembayaran &mdash; pendukung M6<em>Branch <code>feature/pembayaran-ui</code> dari <code>main</code> <code>0aa23c5</code></em></span>
+      <button class="copy" data-copy="p-bayar" type="button">Salin</button>
+    </div>
+<pre id="p-bayar"><code>Repo: mogokin_app (Flutter). Branch baru `feature/pembayaran-ui` dari `main` HEAD 0aa23c5. Hanya tampilan dan teks -- JANGAN mengubah pemanggilan API, provider, atau alur order (itu porsi Jizdan). Kalau Jizdan sedang mengerjakan file yang sama, koordinasikan dulu supaya tidak ada konflik merge.
+
+1. lib/screens/payment_screen.dart: samakan istilah jadi "Tunai" dan "QRIS". Tombol e-wallet yang belum ada gateway-nya dibuat disabled dengan label "Belum tersedia" (bukan "Segera hadir", yang ambigu), dan beri keterangan satu kalimat bahwa pembayaran hanya dicatat, belum lewat gateway.
+2. Ringkasan biaya: baris biaya panggilan, biaya jasa, dan total. Format Rupiah dengan pemisah ribuan. Nilainya diambil dari provider apa adanya, jangan dihitung ulang di UI.
+3. Keadaan kosong dan error di layar ini memakai lib/widgets/empty_state.dart dan lib/widgets/error_state.dart kalau sudah ada (branch feature/mobile-ui-states). Kalau belum ada, cukup buat tampilan lokal lalu beri catatan di PR.
+4. Jangan menambahkan teks kebijakan garansi -- keputusannya belum diambil tim.
+
+Selesai: `flutter analyze` bersih, `flutter test` hijau, commit `feat(mobile): samakan istilah dan ringkasan biaya di layar pembayaran`, push branch ke `kai`. Jangan --force, tanpa trailer.</code></pre>
+  </div>
+
+  <h2><span class="num">05</span>Lampiran</h2>
+  <p class="sub">Bahan pendukung: hasil audit 8 butir revisi dosen dan hal-hal yang akan ditanya saat demo.</p>
+
+  <details class="appendix">
+    <summary>Audit 8 butir revisi dosen</summary>
+    <div class="appendix-body">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr><th>Butir</th><th>Backend</th><th>Admin</th><th>Mobile</th><th>Catatan</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="item">1. Foto pendaftaran opsional</td><td><span class="pill p-na">n/a</span></td><td><span class="pill p-na">n/a</span></td><td><span class="pill p-done">selesai</span></td><td class="note">Form registrasi memang tidak pernah meminta foto.</td></tr>
+            <tr><td class="item">2. Verifikasi jadi Data Bengkel + dashboard jumlah</td><td><span class="pill p-na">n/a</span></td><td><span class="pill p-part">sebagian</span></td><td><span class="pill p-na">n/a</span></td><td class="note">Menu, 4 kartu, 2 tab, dan <b>pratinjau berkas inline</b> sudah ada (<code>verifications/show.blade.php</code>). Kurang dua kartu "Montir Terdaftar" dan "Montir Menunggu Acc" &mdash; sudah <b>ditulis</b> di <code>kai/feature/admin-sisa</code> (<code>c62f060</code>), tinggal di-merge.</td></tr>
+            <tr><td class="item">3. Dokumen minimal KTP + foto bengkel</td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-done">selesai</span></td><td class="note">Kolom nullable, <code>null</code> bukan <code>'pending'</code>, penjaga di <code>approve()</code>. Layar unggah dokumen mitra sudah memanggil <code>POST /mitra/documents</code> satu berkas per permintaan, dengan NIK 16 digit untuk KTP; di mode demo ia menolak mengaku berhasil.</td></tr>
+            <tr><td class="item">4. WhatsApp dihapus, OTP email</td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-part">sebagian</span></td><td class="note">Nol kemunculan WhatsApp di <code>lib/</code>. Sisa tombol "Lupa sandi?" &mdash; porsi Ifa.</td></tr>
+            <tr><td class="item">5. Filter per bengkel di transaksi</td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-na">n/a</span></td><td class="note">Dropdown ikut terbawa ke kartu ringkasan dan pagination.</td></tr>
+            <tr><td class="item">6. Foto kendaraan opsional</td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-na">n/a</span></td><td><span class="pill p-done">selesai</span></td><td class="note">Kolom nullable, form melabeli "(Opsional)" dan tidak memblokir simpan.</td></tr>
+            <tr><td class="item">7. Plat nomor unik + validasi format</td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-na">n/a</span></td><td><span class="pill p-done">selesai</span></td><td class="note">Unik di level migrasi, regex Flutter dan backend identik, diuji 10 kasus.</td></tr>
+            <tr><td class="item">8. Jenis masalah "Masalah Lainnya"</td><td><span class="pill p-done">selesai</span></td><td><span class="pill p-na">n/a</span></td><td><span class="pill p-done">selesai</span></td><td class="note">5 kartu, tersambung <code>GET /problem-types</code>, daftar lokal sebagai cadangan offline.</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="callout warn" style="margin-top:16px">
+        <p><strong>Rekonsiliasi tabel modul, 27&ndash;28 Oktober.</strong> Tabel di bagian 02 diverifikasi ulang terhadap repo, dan lima sel berubah pada 27 Oktober: <b>M1</b> backend dan mobile jadi <b>sebagian</b> (tidak ada route lupa-sandi, tombol "Lupa sandi?" masih snackbar "Segera hadir"); <b>M3</b> mobile jadi sebagian (daftar bengkel statis, <code>defaultMechanics</code>, tepat 3 entri); <b>M4</b> backend jadi sebagian (pengirim FCM belum ada di <code>develop</code>); <b>M5</b> backend jadi sebagian (rekening dan jam operasional belum ada &mdash; grep <code>bank|rekening|operational</code> nol hit di kolom, model, dan route). Dua label yang sebelumnya <b>salah</b>: M4 backend disebut "selesai" padahal masih <code>Log::info</code>, dan M7 disebut kurang "pratinjau berkas" padahal pratinjau itu <b>sudah ada</b> di <code>verifications/show.blade.php</code>. <b>Setelah itu tiga sel berubah lagi pada 28 Oktober:</b> <b>M4</b> backend kembali <b>selesai</b> begitu <code>b4c3e0b</code> di-merge lewat <code>d85aae8</code>; <b>M1</b> backend naik ke sebagian-plus karena <code>PUT /api/profile</code> dan field rating/verifikasi di <code>GET /profile</code> sudah ada di <code>177794d</code> (sisa satu: route lupa-sandi); dan <b>M5</b> backend naik dari sebagian ke <b>selesai</b> begitu <code>PUT /mitra/bank-account</code> dan <code>PUT /mitra/operating-hours</code> dikirim Raskha dan dipakai Flutter di <code>d52314b</code>. Tabel akhir 28 Oktober mencatat <b>13 sel selesai</b>, bukan 11 atau 12 &mdash; angka 84&thinsp;% berasal dari situ. <span class="note">Perlu dicatat apa arti "selesai" di M4: kodenya lengkap dan ada testnya, tapi notifikasi baru benar-benar terkirim kalau <code>FCM_CREDENTIALS</code> diisi di server. Tanpa itu <code>FcmService</code> menulis <code>Log::warning</code> dan mengembalikan <code>false</code>; aplikasi tetap jalan. Ini syarat runtime, bukan sisa kode.</span></p>
+      </div>
+      <div class="callout warn" style="margin-top:16px">
+        <p><strong>Soal klaim jumlah test.</strong> Hitungan ulang 28 Oktober: <b>main</b> = 106 method di 13 berkas (103 Feature + 3 Unit), <b>develop</b> = <b>129 di 15 berkas</b>. Naiknya bertahap dan bisa ditelusuri: +10 dari <code>FcmNotificationTest</code> (masuk lewat merge <code>d85aae8</code>), +1 test countdown di <code>AdminVerificationTest</code> (<code>fe650c8</code>), lalu <b>+12 dari <code>MitraProfileAndWithdrawalApiTest</code></b> yang menguji lima endpoint mitra baru (<code>177794d</code>) &mdash; satu berkas test baru, sehingga jumlah berkas jadi 15. Nol yang di-skip di keduanya, dan tidak ada data provider, jadi tidak ada angka yang bisa berlipat. <span class="note">Angka 117 di laporan 27 Oktober benar untuk <code>develop</code> saat itu (<code>bfc7612</code>); yang membuatnya bergerak adalah pekerjaan 28 Oktober, bukan koreksi.</span> Yang belum terbukti adalah lulusnya di PostgreSQL 18 &mdash; <code>phpunit.xml</code> mengarah ke SQLite in-memory, dan <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Oktober tanpa jejak eksekusi. Minta tangkapan layar <code>php artisan test --configuration=phpunit.pgsql.xml</code>.</p>
+      </div>
+      <div class="callout ok" style="margin-top:16px">
+        <p><strong>Kata sandi basis data: sudah bersih di <code>main</code> dan <code>develop</code>.</strong> <code>phpunit.pgsql.xml</code> dan <code>docs/CHEAT_SHEET_MOGOKIN.md</code> sebelumnya memuat kredensial <code>postgres</code> dalam teks biasa dan sudah ada di <code>origin</code> juga <code>kai</code> sejak <code>3f52047</code>. Perbaikan <code>ead3af5</code> (27 Okt) menghapusnya, nilainya kini dibaca dari <code>.env</code> (sudah ada di <code>.gitignore</code>). Awalnya commit itu hanya ada di <code>kai/main</code> (<code>ab8aea8</code>); sejak 27 Oktober <code>kai/main</code> sudah di-merge ke <code>develop</code> (<code>bfc7612</code>) sehingga <code>git grep</code> sandi di berkas terlacak <code>develop</code> kini nol hasil, dan <code>develop</code> sudah di-push ke <code>kai</code> serta <code>origin</code>. Satu ref yang masih memuat sandi apa adanya di HEAD-nya: <code>origin/main</code> (<code>fb85d20</code>), plus riwayat lama di semua repo yang pernah memuatnya. Repo <code>origin</code> tidak bisa dibaca publik (404 tanpa autentikasi) dan <code>kai</code> butuh login kampus, jadi paparannya terbatas pada yang punya akses. Yang harus dilakukan: dorong <code>main</code> ke <code>origin</code>, lalu <b>ganti sandi PostgreSQL lokalnya</b> &mdash; sandi lamanya tetap tersimpan di riwayat commit.</p>
+      </div>
+    </div>
+  </details>
+
+  <details class="appendix">
+    <summary>Yang ditanya saat demo &amp; batas ruang lingkup</summary>
+    <div class="appendix-body">
+      <div class="grid2" style="margin-top:0">
+        <div class="card risk">
+          <h3>OTP tidak sampai ke inbox</h3>
+          <p>Konfigurasi bawaan mengirim email ke berkas log. Fungsinya jalan, tapi saat demo kode verifikasi harus dibaca dari <code>storage/logs</code> atau SMTP diisi dulu.</p>
+        </div>
+        <div class="card risk">
+          <h3>Mock masih default aktif</h3>
+          <p><code>AppConfig.useMock</code> bernilai <code>true</code> secara bawaan. Saat demo, jalankan dengan <code>--dart-define=USE_MOCK=false --dart-define=API_BASE_URL=http://&lt;tunnel&gt;/api</code>. Tanpa flag itu, semua tombol order menjawab dari data lokal dan tidak menyentuh backend sama sekali.</p>
+        </div>
+        <div class="card risk">
+          <h3>FCM adalah modul paling berisiko</h3>
+          <p>FCM masuk daftar 3 API wajib dan dosen biasanya meminta melihatnya. Sisi HP sudah lengkap (<code>firebase_messaging</code> aktif, token dikirim ke server lewat <code>PATCH /api/fcm-token</code>), dan <b>pengirimnya sudah nyata</b> &mdash; <code>app/Services/FcmService.php</code> + <code>FcmFake</code> masuk <code>develop</code> lewat merge <code>d85aae8</code>, satu titik panggil per transisi di <code>ServiceStatusLogObserver</code>. Yang belum ada: <code>FCM_CREDENTIALS</code> di server dan admin belum punya pusat notifikasi, jadi kiriman ke mitra hanya sampai di HP. Saat demo, sampaikan bedanya &mdash; kode dan testnya selesai, kredensialnya belum dipasang.</p>
+        </div>
+        <div class="card risk">
+          <h3>Belum ada pembayaran asli</h3>
+          <p>Tidak ada gateway QRIS maupun webhook. Pembayaran hanya mencatat status di database. Sampaikan sebagai batas ruang lingkup, bukan fitur yang gagal.</p>
+        </div>
+        <div class="card ask">
+          <h3>Jawaban singkat yang perlu disiapkan</h3>
+          <p>Kenapa OTP lewat email (biaya dan kemudahan deploy), kenapa kolom dokumen nullable (null berarti belum diunggah, lebih jujur daripada teks palsu), dan kenapa chat dalam aplikasi ditunda (tabel <code>messages</code> baru direncanakan).</p>
+        </div>
+      </div>
+      <p class="sub" style="margin:16px 0 0">Arsip prompt lama yang sudah selesai dikerjakan: <code>C:\Users\HYPE AMD\.claude\plans\</code> &mdash; <code>PROMPT_A_GITFLOW.md</code>, <code>PROMPT_B_GITFLOW.md</code>, <code>PROMPT_VERIFIKASI_MODUL_1.md</code>. Tidak perlu dikirim ulang.</p>
+    </div>
+  </details>
+</div>
+
+<script>
+  document.querySelectorAll('[data-copy]').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var pre = document.getElementById(btn.getAttribute('data-copy'));
+      if (!pre) return;
+      var text = pre.innerText;
+      var done = function (label) {
+        btn.textContent = label;
+        setTimeout(function () { btn.textContent = 'Salin'; }, 2200);
+      };
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(text).then(function () {
+          done('Tersalin');
+        }).catch(function () {
+          select(pre); done('Tekan Ctrl+C');
+        });
+      } else {
+        select(pre); done('Tekan Ctrl+C');
+      }
+    });
+  });
+  function select(el) {
+    try {
+      var range = document.createRange();
+      range.selectNodeContents(el);
+      var sel = window.getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    } catch (e) {}
+  }
+</script>
+
+</body>
+</html>
