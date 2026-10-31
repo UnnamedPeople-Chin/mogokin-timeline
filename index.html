@@ -453,7 +453,7 @@
     <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang auth, notifikasi, dan tampilan pendukung. Sejak 27 Oktober, <b>seluruh alur order di Flutter sudah tersambung ke API</b> &mdash; bukan lagi mock, dan <b>sudah di-commit</b> ke <code>feature/order-flow-mobile</code>. Sejak 28 Oktober, <b>lima endpoint mitra yang ditunggu sudah dikirim Raskha</b> (<code>177794d</code>) dan <b>sudah dipakai Flutter</b> (<code>d52314b</code>, disusul <code>216c271</code> dan <code>265c09b</code>). <b>29 Oktober, alur penuh terbukti 100% lulus di HP fisik Redmi Note 9 Pro:</b> sebelas langkah order sampai penarikan saldo dan riwayat (<code>integration_test/live_flow_test.dart</code>) dijalankan langsung di perangkat fisik melawan backend Cloudflare Tunnel tanpa mock sedikit pun. <code>feature/order-flow-mobile</code> resmi <b>di-merge ke <code>main</code> lewat <code>--no-ff</code></b> (<code>41d1554</code>).</p>
     <p class="lede" style="margin-top:8px"><b>Progress keseluruhan: 84&thinsp;%</b> &mdash; 13 dari 19 sel selesai, 6 sebagian, 0 belum mulai, 2 tidak berlaku. Diukur ketat (hanya sel yang tuntas penuh) angkanya <b>68&thinsp;%</b>. Tuntas penuh sudah 3 modul (M2, M5, M6). Rincian dan cara hitungnya di bagian <b>02</b>.</p>
     <div class="stamp">
-      <span>Diperbarui <b>Kamis, 29 Oktober 2026</b></span>
+      <span>Diperbarui <b>Sabtu, 31 Oktober 2026</b></span>
       <span>Beku fitur <b>Jumat, 30 Oktober 2026</b></span>
       <span>Asumsi UTS <b>awal November</b> &mdash; geser kalau tanggalnya beda</span>
     </div>
@@ -693,11 +693,11 @@
     </li>
     <li>
       <span class="when">Sabtu, 31 Oktober &mdash; hari ini</span>
-      <span class="what">Layar sekunder pengendara &amp; pembersihan timeline; tunggu balasan Ifa.</span>
+      <span class="what">Layar sekunder pengendara, pembersihan timeline, dan <b>verifikasi Ifa diterima</b>.</span>
       <ul>
         <li><b>Jizdan &mdash; 6 layar sekunder U13&ndash;U18 (<code>f15af36</code>, 30 Okt 23:32):</b> <code>edit_profile_screen.dart</code> (PUT <code>/profile</code> via <code>AuthState.updateProfile</code>), <code>payment_methods_screen.dart</code> (QRIS Utama + Tunai + Transfer), <code>help_center_screen.dart</code> (pencarian, kartu CS salin telepon/WA, 6 FAQ), <code>terms_conditions_screen.dart</code> (5 bagian), <code>chat_detail_screen.dart</code> (demo bubble, endpoint chat belum ada), <code>history_detail_screen.dart</code> (rincian nota: kode+badge, kendaraan, bengkel, rincian biaya, pembayaran, alasan batal, rating). Navigasi: 4 titik di <code>account_screen</code>, <code>chat_list</code> &rarr; <code>/chat/detail</code>, <code>history</code> &rarr; <code>/history/detail</code>. 6 route GoRoute baru di <code>router.dart</code>. <code>flutter analyze</code> bersih, <b>70 tes hijau</b>. <span class="note">Status: branch <code>feature/secondary-screens-u13-u18</code> dipush ke <code>kai</code> (f15af36), <b>belum di-merge ke <code>main</code></b> &mdash; repo demo dibekukan, merge menunggu keputusan tim. <code>merge-base --is-ancestor f15af36 kai/main</code> = NOT ancestor (belum merged).</span></li>
         <li><b>Jizdan &mdash; timeline dirapikan:</b> Bagian 04 yang berisi 5 prompt kerja lama Tim 2 (semua sudah selesai &amp; merged) diganti jadi ringkasan status per modul. Teks prompt lama diarsipkan di <code>~/.claude/plans/</code>.</li>
-        <li><b>Menunggu &mdash; balasan verifikasi Ifa:</b> laporan tertulis dari Ifa belum diterima. Rekam jejak merge-nya di <code>main</code> sudah terbukti lewat uji Jizdan, tapi belum ada konfirmasi langsung dari Ifa.</li>
+        <li><b>Ifa &mdash; verifikasi diterima (31 Okt):</b> laporan tertulis sudah masuk lewat WhatsApp. Isi verifikasi: <b>(1)</b> Login/Register &mdash; ✅ berfungsi; <b>(2)</b> Beranda &mdash; ✅ berfungsi; <b>(3)</b> Pesan / Cek Mitra &mdash; ✅ berfungsi; <b>(4)</b> Daftar Pesanan / Riwayat &mdash; ✅ berfungsi; <b>(5)</b> Profil &amp; Edit Profil &mdash; ✅ berfungsi; <b>(6)</b> Chat Detail &mdash; ✅ berfungsi, dengan catatan: <i>fitur Chat belum berfungsi penuh, hanya bisa mengirim pesan tapi tidak bisa menerima balasan</i>. Kesimpulan: seluruh fitur utama yang disentuh Ifa terkonfirmasi jalan di <code>main</code> (<code>455c5c6</code>); satu batasan diketahui &mdash; chat satu arah (kirim saja), sesuai kondisi backend yang belum punya endpoint <code>/messages</code>.</li>
       </ul>
     </li>
     <li>
@@ -748,8 +748,8 @@
     <p style="margin:8px 0 0" class="note">Catatan integritas: branch <code>feature/mobile-ui-states</code> dibuat dari basis lama dan saat merge diam-diam mengembalikan tiga berkas ke data mock &mdash; ketiganya <b>ditolak</b>, versi <code>main</code> yang memanggil API dipertahankan. Pelajaran: merge bersih belum berarti aman; baca <code>git diff &lt;merge-base&gt; &lt;branch&gt;</code>, bukan <code>git diff main &lt;branch&gt;</code>.</p>
   </div>
 
-  <div class="callout warn">
-    <p><strong>Verifikasi silang Ifa &mdash; menunggu balasan.</strong> Branch Ifa sudah masuk <code>main</code> dan hasilnya terbukti lewat uji alur penuh Jizdan (11 LANGKAH hijau, <code>flutter analyze</code> bersih, 70 tes hijau), tapi laporan verifikasi langsung dari Ifa <b>belum diterima</b>. Kalau dosen menanyakan kepastian kerja Ifa, sumbernya saat ini hanya rekam jejak merge di <code>main</code> (<code>ad60022</code>, <code>f435a5a</code>, <code>25b5bb4</code>) &mdash; bukan konfirmasi tertulis dari Ifa. Tunggu balasan sebelum mengklaim "terverifikasi oleh Ifa".</p>
+  <div class="callout done">
+    <p><strong>Verifikasi silang Ifa &mdash; diterima 31 Okt.</strong> Ifa mengirim laporan tertulis lewat WhatsApp mengonfirmasi enam fitur utama berfungsi: Login/Register, Beranda, Pesan/Cek Mitra, Daftar Pesanan/Riwayat, Profil &amp; Edit Profil, dan Chat Detail. Satu batasan dicatat: <i>chat hanya bisa mengirim pesan, belum bisa menerima balasan</i> &mdash; sesuai kondisi backend yang belum punya endpoint <code>/messages</code>. Verifikasi kini punya <b>dua sumber independen</b>: uji alur penuh Jizdan (11 LANGKAH hijau, <code>flutter analyze</code> bersih, 70 tes hijau) dan konfirmasi langsung dari Ifa.</p>
   </div>
 
   <h2><span class="num">05</span>Lampiran</h2>
