@@ -531,26 +531,26 @@
   </div>
 
   <h2><span class="num">02</span>Progres 7 Modul RPP</h2>
-  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka di bawah dibaca ulang dari working tree hari ini, bukan dari laporan harian. Yang berubah sejak versi kemarin: lima endpoint mitra sudah ada di backend <b>dan</b> sudah dipakai Flutter, jadi M5 tuntas dan tabel bergerak dari 82&thinsp;% ke 84&thinsp;%.</p>
+  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka dibaca ulang dari working tree hari ini, bukan laporan harian. <b>Yang berubah sejak versi kemarin (2&ndash;3 Nov):</b> M1 lupa sandi (route backend + layar mobile) dan M7 admin-sisa + seeder sudah <b>masuk <code>main</code></b> (<code>dd9bb5c</code>) &mdash; dua sel naik ke selesai, tabel bergerak 84&thinsp;% &rarr; <b>89&thinsp;%</b>. Yang masih menahan angka: <b>M1 admin</b> (belum diverifikasi), <b>M3 mobile</b> (daftar bengkel statis), <b>M4 admin</b> (pusat notifikasi belum ada).</p>
 
   <div class="progress">
     <div class="progress-head">
       <div>
         <span class="progress-cap">Progress keseluruhan proyek</span>
-        <span class="progress-num">84<small>&thinsp;%</small></span>
+        <span class="progress-num">89<small>&thinsp;%</small></span>
       </div>
       <div class="progress-tally">
-        <span><b>13</b> sel selesai</span>
-        <span><b>6</b> sel sebagian</span>
+        <span><b>14</b> sel selesai</span>
+        <span><b>5</b> sel sebagian</span>
         <span><b>0</b> sel belum mulai</span>
         <span><b>2</b> sel n/a</span>
       </div>
     </div>
-    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 13 selesai dan 6 sebagian; dengan sel sebagian dihitung separuh hasilnya 84 persen">
-      <i class="d" style="width:84.2%"></i>
-      <i class="p" style="width:15.8%"></i>
+    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 14 selesai dan 5 sebagian; dengan sel sebagian dihitung separuh hasilnya 89 persen">
+      <i class="d" style="width:89.5%"></i>
+      <i class="p" style="width:10.5%"></i>
     </div>
-    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, jadi sel "sebagian" dihitung separuh. Angka besar di atas memakai aturan yang sama supaya sebanding dengan kolom Progress: <b>(13 + &frac12;&thinsp;&times;&thinsp;6) &divide; 19 = 84&thinsp;%</b>. Kalau diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; hasilnya <b>13 &divide; 19 = 68&thinsp;%</b>; sebutkan angka ini kalau dosen menanyakan yang paling konservatif. Rata-rata tujuh persen modul (M1 50, M2 100, M3 83, M4 83, M5 100, M6 100, M7 75) = <b>84&thinsp;%</b>, jadi ketiga cara hitung bertemu di angka yang sama. Yang tuntas penuh sudah <b>3 dari 7 modul</b> (M2, M5, M6); empat sisanya menunggu hal spesifik yang tertulis di kolom <b>Sisa</b>. Angka ini dihitung ulang pada 28 Oktober setelah lima endpoint mitra dipakai Flutter &mdash; lihat catatan di Lampiran.</p>
+    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, sel "sebagian" dihitung separuh. Angka besar di atas: <b>(14 + &frac12; &times; 5) &divide; 19 = 89&thinsp;%</b>. Diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; <b>14 &divide; 19 = 74&thinsp;%</b>; sebutkan yang konservatif ini kalau dosen menanya. Rata-rata tujuh persen modul (M1 67, M2 100, M3 83, M4 83, M5 100, M6 100, M7 100) = <b>89&thinsp;%</b>, sesuai cara hitung per sel. Tuntas penuh kini <b>4 dari 7 modul</b> (M2, M5, M6, M7); tiga sisanya menunggu hal di kolom <b>Sisa</b>. Angka dihitung ulang <b>3 November</b> setelah M1 lupa sandi &amp; M7 admin masuk <code>main</code>.</p>
   </div>
 
   <div class="legend">
@@ -569,11 +569,11 @@
         <tr>
           <td class="item">M1. Autentikasi &amp; Akun Multi-Role</td>
           <td class="note"><b>Tim 2</b><br>Rangga + Ifa</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><span class="pill p-done">selesai</span></td>
           <td><span class="pill p-part">sebagian</span></td>
-          <td><span class="pill p-part">sebagian</span></td>
-          <td><span class="pill p-part">sebagian</span></td>
-          <td><b>50%</b></td>
-          <td class="note">Multi-role, Sanctum, dan OTP email <b>selesai</b> di backend; login/OTP/register ada di mobile. <b>Sejak 28 Oktober endpoint ubah profil sudah ada:</b> <code>PUT /api/profile</code> (<code>AuthController::updateProfile</code>, semua field <code>sometimes</code>, 403 bila non-mitra mengirim field bengkel) dan <code>GET /api/profile</code> kini ikut mengembalikan <code>rating</code>, <code>rating_count</code>, <code>verification_status</code>, <code>rejection_reason</code>, dan <code>description</code> &mdash; ketiganya sudah dipakai layar edit profil mitra. Yang kurang tinggal satu: tidak ada route lupa-sandi di <code>routes/api.php</code> maupun <code>routes/web.php</code> &mdash; endpointnya sudah <b>ditulis</b> di <code>kai/feature/reset-password</code> (<code>9af10d6</code>), belum di-merge, dan tombol "Lupa sandi?" di <code>login_screen.dart</code> masih memunculkan snackbar "Segera hadir". Endpoint lupa sandi (Rangga), layar lupa sandi (Ifa).</td>
+          <td><b>67%</b></td>
+          <td class="note">Multi-role, Sanctum, OTP email <b>selesai</b>. Endpoint ubah profil &amp; rating/verifikasi sudah di <code>GET /profile</code>. Lupa sandi <b>selesai 30 Okt</b> di <code>main</code>: route <code>POST /auth/forgot-password</code> + <code>/auth/reset-password</code> (<code>dd9bb5c</code>) dan layar <code>forgot_password_screen.dart</code> sudah dipasangkan &mdash; tombol "Lupa sandi?" di login kini <code>context.push('/forgot-password')</code> (bukan lagi snackbar "Segera hadir"). Sisa: verifikasi admin atas M1 (lihat bagian 04).</td>
         </tr>
         <tr>
           <td class="item">M2. Pelaporan Kendala &amp; Kamera</td>
@@ -623,18 +623,18 @@
         <tr>
           <td class="item">M7. Web Monitoring &amp; Administrasi</td>
           <td class="note"><b>Tim 2</b><br>Rangga + Ifa</td>
-          <td><span class="pill p-part">sebagian</span></td>
+          <td><span class="pill p-done">selesai</span></td>
           <td><span class="pill p-na">n/a</span></td>
           <td><span class="pill p-done">selesai</span></td>
-          <td><b>75%</b></td>
-          <td class="note">Enam Blade admin jalan, termasuk <b>pratinjau berkas inline</b> (<code>verifications/show.blade.php</code>: <code>&lt;img src="admin.bengkel.document"&gt;</code> untuk empat dokumen + tombol "Buka Penuh") &mdash; catatan lama yang menyebut ini belum ada <b>salah</b>. Sisa aslinya (<b>M7</b>) sudah <b>ditulis</b> Rangga di <code>kai/feature/admin-sisa</code> (<code>c62f060</code>, commit kerja <code>cc0a76e</code>, 27 Okt 18:20) dan <b>tinggal di-merge</b>: dua kartu "Montir Terdaftar" dan "Montir Menunggu Acc" di overview (kini empat kartu jadi enam), <code>DemoScenarioSeeder.php</code> (291 baris), <code>admin/bengkel/index.blade.php</code> (279 baris), plus 92 baris test. Uji data dari HP tampil benar di dashboard (Ifa).</td>
+          <td><b>100%</b></td>
+          <td class="note">Enam Blade admin jalan, termasuk pratinjau berkas inline (<code>verifications/show.blade.php</code>) &mdash; catatan lama yang menyebut ini belum ada <b>salah</b>. Sisa M7 (dua kartu "Montir Terdaftar"/"Montir Menunggu Acc" di overview, <code>DemoScenarioSeeder</code> 291 baris, <code>admin/bengkel/index.blade.php</code> 279 baris) <b>masuk <code>main</code> 30 Okt</b> via tag <code>v1.0-uts</code> (<code>dd9bb5c</code>) &mdash; selesai. (Lapisan mobile memang n/a &mdash; modul ini web monitoring &amp; administrasi.)</td>
         </tr>
       </tbody>
     </table>
   </div>
 
   <div class="callout warn">
-    <p><strong>Kenapa masih ada sel "sebagian".</strong> Yang sudah beres 27 Oktober: 9 commit di <code>feature/order-flow-mobile</code>, 34 berkas, +3.908 / &minus;1.495 baris, sudah ada di <code>kai</code>. <b>Yang berubah 28 Oktober:</b> Raskha mengirim lima endpoint mitra di <code>kai/develop</code> (<code>177794d</code>, merge <code>10ac029</code>) dan Jizdan langsung memakainya &mdash; <code>d52314b</code> di <code>feature/order-flow-mobile</code> (setelah <code>805a9b6</code>: 15 commit, 45 berkas, +6.173 / &minus;1.587 baris terhadap <code>main</code>), sehingga <b>M5 backend naik dari sebagian ke selesai</b> dan tabel bergerak dari 82&thinsp;% ke 84&thinsp;%. Di backend, <code>d85aae8</code> sudah memasukkan pengirim FCM, dan <code>bfc7612</code> sudah menarik <code>main</code> ke <code>develop</code>. Yang masih menahan angka: <b>(1)</b> sisa <b>M7</b> &mdash; sudah ditulis di <code>kai/feature/admin-sisa</code> (<code>c62f060</code>), tinggal di-merge; <b>(2)</b> lupa sandi: endpoint backend sudah ditulis di <code>kai/feature/reset-password</code> (<code>9af10d6</code>), layar Flutter-nya belum; <b>(3)</b> daftar bengkel di HP masih statis 3 entri karena tidak ada endpoint publiknya; <b>(4)</b> M1 mobile masih menunggu layar lupa sandi, dan M4 admin belum punya pusat notifikasi. <b>Lima endpoint yang dulu ditunggu Flutter sudah tidak menjadi penghambat</b> &mdash; rekening mitra, jam operasional, ubah profil, pencairan saldo, dan rating di <code>/api/profile</code> semuanya sudah dikirim dan sudah dipakai. <b>Satu klaim laporan 27 Okt yang tidak cocok dengan repo:</b> pgsql suite disebut 100% PASS, padahal <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Oktober dan tidak ada satu pun bukti eksekusi. <span class="note">Dua klaim lain yang dulu dicatat di sini <b>dicabut</b> setelah diverifikasi ulang: countdown 30 detik memang ada (<code>fe650c8</code>, 27 Okt 09:37, sudah masuk <code>develop</code> lewat <code>598d35c</code>) dan angka 107 test memang benar untuk <code>develop</code> sebelum merge FCM &mdash; yang salah adalah cek ulangnya karena dijalankan di <code>main</code>.</span></p>
+    <p><strong>Kenapa masih ada sel "sebagian" (per 3 November).</strong> Dua hal yang dulu menahan angka kini sudah masuk <code>main</code>: lupa sandi (route backend + layar Flutter, bagian rilis <code>dd9bb5c</code>) dan sisa M7 (kartu montir + seeder + halaman bengkel admin) &mdash; dua sel jadi <b>selesai</b>, tabel naik 84&thinsp;% &rarr; <b>89&thinsp;%</b>. Yang masih menahan angka: <b>(1)</b> M3 mobile &mdash; daftar bengkel di HP masih statis 3 entri (<code>defaultMechanics</code> di <code>mechanic_search_screen.dart</code>) karena memang belum ada endpoint publiknya; <b>(2)</b> M4 admin &mdash; pusat notifikasi admin belum dibuat, kiriman FCM ke mitra baru sampai di HP; <b>(3)</b> M1 admin &mdash; verifikasi admin atas M1 belum dikerjakan. <b>Koreksi:</b> dua klaim 27&ndash;28 Okt yang sempat dicatat &mdash; countdown 30 detik dan 107 test &mdash; setelah diverifikasi ternyata <b>benar</b> (salahnya cek ulang yang dijalankan di branch yang belum memuat commit-nya). Satu catatan tetap: <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Okt tapi belum ada bukti dijalankan &mdash; minta tangkapan layar <code>php artisan test -c phpunit.pgsql.xml</code>.</p>
   </div>
 
   <h2><span class="num">03</span>Timeline &mdash; Jizdan &amp; Raskha</h2>
@@ -680,7 +680,7 @@
       <span class="when">Jumat, 30 Oktober &mdash; hari ini</span>
       <span class="what">Beku fitur. Tiga branch Tim 2 masuk <code>main</code> mobile; temuan mobile ditutup dan dipush ke <code>kai</code>.</span>
       <ul>
-        <li><b>Jizdan &mdash; tiga branch Ifa ditinjau lalu di-merge:</b> <code>feature/lupa-sandi</code> (<code>1143929</code>, <code>719da8b</code>), <code>feature/mobile-ui-states</code> (<code>1874144</code>), dan <code>feature/pembayaran-ui</code> (<code>6da10d2</code>). Hasilnya di <code>main</code>: merge <code>ad60022</code>, <code>f435a5a</code>, <code>25b5bb4</code>. Sebelas berkas bertabrakan dan diselesaikan satu per satu, bukan dengan memilih salah satu sisi.</li>
+        <li><b>Jizdan &mdash; tiga branch Ifa ditinjau lalu di-merge (<code>ad60022</code>/<code>f435a5a</code>/<code>25b5bb4</code> &rarr; <code>455c5c6</code>):</b> <code>feature/lupa-sandi</code> (<code>1143929</code>, <code>719da8b</code>), <code>feature/mobile-ui-states</code> (<code>1874144</code>), <code>feature/pembayaran-ui</code> (<code>6da10d2</code>). Sebelas berkas bertabrakan diselesaikan satu per satu. <b>M1 mobile jadi selesai:</b> layar lupa sandi masuk <code>main</code>, tombol "Lupa sandi?" di login kini <code>context.push('/forgot-password')</code> &mdash; bukan lagi snackbar "Segera hadir". Rangkasan: widget EmptyState/ErrorState, penamaan daring/luring, formatter plat, <code>_MogokinAppBootstrap</code>, label pembayaran.</li>
         <li><b>Jizdan &mdash; temuan penting saat review:</b> <code>feature/mobile-ui-states</code> dibuat dari basis lama, sehingga lolos <code>git merge</code> tanpa konflik sambil <b>diam-diam mengembalikan integrasi backend ke data mock</b> di tiga berkas: <code>mitra_documents_screen.dart</code> (unggah multipart kembali jadi <code>Future.delayed(800ms)</code> + <code>// TODO(backend)</code>), <code>mitra_earnings_screen.dart</code> (kembali ke <code>earningsHistory</code> hardcoded), dan <code>history_screen.dart</code> (kartu pesanan hardcoded). Ketiganya <b>ditolak</b> saat merge &mdash; versi <code>main</code> yang memanggil API dipertahankan. Yang diambil dari branch hanya yang memang dimaksudkan: widget <code>EmptyState</code>/<code>ErrorState</code>, penamaan "daring/luring", pemformatan plat, dan <code>_MogokinAppBootstrap</code>. <span class="note">Pelajaran yang dicatat: merge bersih belum berarti aman. Untuk branch dari basis lama, <code>git diff &lt;merge-base&gt; &lt;branch&gt;</code> harus dibaca, bukan <code>git diff main &lt;branch&gt;</code> &mdash; yang terakhir menampilkan puluhan baris "dihapus" yang sebenarnya hanya berkas baru di <code>main</code>.</span></li>
         <li><b>Jizdan &mdash; satu blocker uji diperbaiki (<code>c155c50</code>):</b> uji live mencari teks tombol "Offline", padahal branch menggantinya jadi "Luring - Tidak Menerima Pesanan". Teks tombol itu kosmetik dan sudah pernah berubah, jadi kedua berkas uji kini membaca <code>OnlineToggle.isOnline</code> &mdash; keadaan sebenarnya, bukan tulisannya.</li>
         <li><b>Jizdan &mdash; dua temuan audit ditutup (<code>20f15fb</code>, <code>455c5c6</code>):</b> (1) layar lupa sandi tidak membersihkan <code>AuthState</code> saat dibuka, sehingga pesan "Email atau password salah" dari percobaan login sebelumnya ikut tampil di sana &mdash; kini dibersihkan di post-frame callback seperti layar login, dengan tes regresi; (2) unggah dokumen mitra memilih foto galeri tanpa batas ukuran, padahal backend menolak berkas di atas 5 MB dan penolakannya baru muncul setelah tiga berkas lain terkirim &mdash; foto kini dikecilkan ke lebar maksimal 1600 px dan berkas yang masih terlalu besar ditolak di layar. <code>shared_preferences</code> juga dirapikan ke <code>dev_dependencies</code> saja (sebelumnya terdaftar dua kali).</li>
