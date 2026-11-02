@@ -451,9 +451,9 @@
     <p class="eyebrow">PBL-202601-07 &middot; MOGOKIN &middot; Fase Implementasi</p>
     <h1>Porsi Kerja &amp; Timeline UTS</h1>
     <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order &amp; admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang auth, notifikasi, &amp; tampilan pendukung. Sejak 27 Okt seluruh alur order di Flutter <b>tersambung ke API</b> (bukan mock); lima endpoint mitra dari Raskha (<code>177794d</code>) sudah dipakai Flutter (<code>d52314b</code>). <b>29 Okt: alur penuh 100% lulus di HP fisik Redmi Note 9 Pro</b> &mdash; 11 langkah order sampai penarikan saldo &amp; riwayat, melawan backend Cloudflare Tunnel tanpa mock. <code>feature/order-flow-mobile</code> di-merge ke <code>main</code> via <code>--no-ff</code> (<code>41d1554</code>). Sejak 2 Nov, <b>revisi UI pasca-review</b> (4 layar) &amp; <b>koreksi U02b</b> &mdash; card "Masalah Lainnya" dikembalikan di Detail Masalah, tetap disembunyikan di Beranda &mdash; masuk <code>main</code> di <code>0c7808b</code>.</p>
-    <p class="lede" style="margin-top:8px"><b>Progress keseluruhan: 92&thinsp;%</b> &mdash; 16 sel selesai, 3 sebagian, 2 n/a (dari 19 sel dinilai). Konservatif (hanya sel tuntas penuh): <b>84&thinsp;%</b>. Tuntas penuh 4 modul (M2, M5, M6, M7). Cara hitungnya di bagian <b>02</b>.</p>
+    <p class="lede" style="margin-top:8px"><b>Progress keseluruhan: 95&thinsp;%</b> &mdash; 17 sel selesai, 2 sebagian, 2 n/a (dari 19 sel dinilai). Konservatif (hanya sel tuntas penuh): <b>89&thinsp;%</b>. Tuntas penuh 5 modul (M2, M4, M5, M6, M7). Cara hitungnya di bagian <b>02</b>.</p>
     <div class="stamp">
-      <span>Diperbarui <b>Selasa, 3 November 2026</b> (HEAD <code>main</code> <code>0c7808b</code>)</span>
+      <span>Diperbarui <b>Rabu, 4 November 2026</b> (HEAD <code>main</code> <code>0c7808b</code>, backend <code>07279c7</code>)</span>
       <span>Beku fitur <b>Jumat, 30 Oktober 2026</b></span>
       <span>UTS <b>Senin, 9 November 2026</b> &mdash; mundur dari asumsi awal, geser kalau berubah lagi</span>
     </div>
@@ -462,15 +462,15 @@
   <div class="grid2" style="margin-top:0">
     <div class="card ok">
       <h3>Backend</h3>
-      <p><code>kai/main</code> <code>ab8aea8</code>; <code>kai/develop</code> <code>bfc7612</code> = <code>origin/develop</code>. 106 test di <code>main</code>, 129 di <code>develop</code>, nol di-skip. 27 Okt FCM nyata (<code>d85aae8</code>); 28 Okt lima endpoint mitra di <code>177794d</code>: <code>PUT /mitra/bank-account</code>, <code>PUT /mitra/operating-hours</code>, <code>PUT /profile</code>, <code>POST</code>+<code>GET /mitra/withdrawals</code>, <code>GET /profile</code> (balik rating/verifikasi/rekening/jam). Sisa M7 (<code>c62f060</code>) sudah masuk <code>main</code>. Sandi DB bersih di <code>kai/main</code> &amp; <code>develop</code> (<code>ead3af5</code>); <code>origin/main</code> (<code>fb85d20</code>) masih memuatnya.</p>
+      <p><code>kai/main</code> kini <code>07279c7</code> (pusat notifikasi M4: <code>NotificationController</code> + halaman Blade + 2 test); <code>kai/develop</code> <code>bfc7612</code> = <code>origin/develop</code>. 144 test di <code>main</code> (143 lulus; 1 gagal = Vite manifest belum di-build), 129 di <code>develop</code>. 27 Okt FCM nyata (<code>d85aae8</code>); 28 Okt lima endpoint mitra di <code>177794d</code>: <code>PUT /mitra/bank-account</code>, <code>PUT /mitra/operating-hours</code>, <code>PUT /profile</code>, <code>POST</code>+<code>GET /mitra/withdrawals</code>, <code>GET /profile</code> (balik rating/verifikasi/rekening/jam). Sisa M7 (<code>c62f060</code>) sudah masuk <code>main</code>. Sandi DB bersih di <code>kai/main</code> &amp; <code>develop</code> (<code>ead3af5</code>); <code>origin/main</code> (<code>fb85d20</code>) masih memuatnya.</p>
     </div>
     <div class="card ok">
       <h3>Mobile</h3>
-      <p>Branch <code>feature/order-flow-mobile</code>: 21 berkas layar, 18 menarik data via <code>AppStateProvider</code>. <code>d52314b</code> (28 Okt) sambung 5 endpoint mitra via modul <code>mitra_repository.dart</code>; <code>AppUser</code> tambah 11 field. <code>216c271</code>: perbaiki pemetaan <code>is_online</code>. <code>order_repository.dart</code> 11 method. 30 Okt seluruh kerja masuk <code>main</code> di <code>455c5c6</code>; 9 commit di atas <code>38b98d4</code> sudah dipush ke <code>kai</code>, <code>gitea</code>, <code>origin</code>.</p>
+      <p>Branch <code>feature/order-flow-mobile</code>: 21 berkas layar, 18 menarik data via <code>AppStateProvider</code>. <code>d52314b</code> (28 Okt) sambung 5 endpoint mitra via modul <code>mitra_repository.dart</code>; <code>AppUser</code> tambah 11 field. <code>216c271</code>: perbaiki pemetaan <code>is_online</code>. <code>order_repository.dart</code> 11 method. 30 Okt seluruh kerja masuk <code>main</code> di <code>455c5c6</code>; 4 Nov bukti screenshot UI alur penuh + skrip uji <code>tool/</code> masuk <code>main</code> di <code>a68d9d3</code>. Semuanya sudah dipush ke <code>kai</code>, <code>gitea</code>, <code>origin</code>.</p>
     </div>
     <div class="card ok">
       <h3>Jejak commit mobile</h3>
-      <p>Branch <code>feature/order-flow-mobile</code> di <code>kai</code>. 27 Okt: <code>c212271</code> lapisan data, <code>75208fa</code> bootstrap, <code>2fec439</code> integrasi 20 layar, <code>acf87e9</code> widget test, 4 perbaikan audit. 28 Okt: <code>d52314b</code> 5 endpoint mitra, <code>216c271</code> <code>is_online</code>, <code>265c09b</code> <code>tool/run_tests.ps1</code>, <code>805a9b6</code> uji alur penuh. 2 Nov: <code>56479db</code> revisi UI 4 layar, <code>307ee41</code> perawat, <code>0c7808b</code> koreksi U02b.</p>
+      <p>Branch <code>feature/order-flow-mobile</code> di <code>kai</code>. 27 Okt: <code>c212271</code> lapisan data, <code>75208fa</code> bootstrap, <code>2fec439</code> integrasi 20 layar, <code>acf87e9</code> widget test, 4 perbaikan audit. 28 Okt: <code>d52314b</code> 5 endpoint mitra, <code>216c271</code> <code>is_online</code>, <code>265c09b</code> <code>tool/run_tests.ps1</code>, <code>805a9b6</code> uji alur penuh. 2 Nov: <code>56479db</code> revisi UI 4 layar, <code>307ee41</code> perawat, <code>0c7808b</code> koreksi U02b. 4 Nov: <code>a68d9d3</code> bukti screenshot UI + skrip uji.</p>
     </div>
   </div>
 
@@ -531,26 +531,26 @@
   </div>
 
   <h2><span class="num">02</span>Progres 7 Modul RPP</h2>
-  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka dibaca ulang dari working tree hari ini, bukan laporan harian. <b>Yang berubah sejak versi kemarin (2&ndash;3 Nov):</b> M1 lupa sandi (route backend + layar mobile) dan M7 admin-sisa + seeder sudah <b>masuk <code>main</code></b> (<code>dd9bb5c</code>) &mdash; dua sel naik ke selesai, tabel bergerak 84&thinsp;% &rarr; <b>92&thinsp;%</b>. Yang masih menahan angka: <b>M1 admin</b> (belum diverifikasi), <b>M3 mobile</b> (daftar bengkel statis), <b>M4 admin</b> (pusat notifikasi belum ada).</p>
+  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka dibaca ulang dari working tree hari ini, bukan laporan harian. <b>Yang berubah sejak versi kemarin:</b> (2&ndash;3 Nov) M1 lupa sandi (route backend + layar mobile) dan M7 admin-sisa + seeder sudah <b>masuk <code>main</code></b> (<code>dd9bb5c</code>) &mdash; dua sel naik ke selesai, tabel 84&thinsp;% &rarr; 92&thinsp;%. (4 Nov) <b>M4 admin &mdash; pusat notifikasi admin sudah dibuat</b> di <code>07279c7</code> (<code>kai/main</code>): <code>NotificationController</code> + halaman <code>admin/notifications/index.blade.php</code> (filter status, rekap per status, riwayat dari <code>ServiceStatusLog</code>) + 2 test fitur lulus &mdash; sel M4 admin naik ke <b>selesai</b>, tabel 92&thinsp;% &rarr; <b>95&thinsp;%</b>. Yang masih menahan angka: <b>M1 admin</b> (belum diverifikasi) dan <b>M3 mobile</b> (daftar bengkel statis).</p>
 
   <div class="progress">
     <div class="progress-head">
       <div>
         <span class="progress-cap">Progress keseluruhan proyek</span>
-        <span class="progress-num">92<small>&thinsp;%</small></span>
+        <span class="progress-num">95<small>&thinsp;%</small></span>
       </div>
       <div class="progress-tally">
-        <span><b>16</b> sel selesai</span>
-        <span><b>3</b> sel sebagian</span>
+        <span><b>17</b> sel selesai</span>
+        <span><b>2</b> sel sebagian</span>
         <span><b>0</b> sel belum mulai</span>
         <span><b>2</b> sel n/a</span>
       </div>
     </div>
-    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 16 selesai dan 3 sebagian; dengan sel sebagian dihitung separuh hasilnya 92 persen">
-      <i class="d" style="width:92.1%"></i>
-      <i class="p" style="width:7.9%"></i>
+    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 17 selesai dan 2 sebagian; dengan sel sebagian dihitung separuh hasilnya 95 persen">
+      <i class="d" style="width:94.7%"></i>
+      <i class="p" style="width:5.3%"></i>
     </div>
-    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, sel "sebagian" dihitung separuh. Angka besar di atas: <b>(16 + &frac12; &times; 3) &divide; 19 = 92&thinsp;%</b>. Diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; <b>16 &divide; 19 = 84&thinsp;%</b>; sebutkan yang konservatif ini kalau dosen menanya. Rata-rata tujuh persen modul (M1 83, M2 100, M3 83, M4 83, M5 100, M6 100, M7 100) = <b>92&thinsp;%</b>, sesuai cara hitung per sel. Tuntas penuh kini <b>4 dari 7 modul</b> (M2, M5, M6, M7); tiga sisanya menunggu hal di kolom <b>Sisa</b>. Angka dihitung ulang <b>3 November</b> setelah M1 lupa sandi &amp; M7 admin masuk <code>main</code>.</p>
+    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, sel "sebagian" dihitung separuh. Angka besar di atas: <b>(17 + &frac12; &times; 2) &divide; 19 = 95&thinsp;%</b>. Diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; <b>17 &divide; 19 = 89&thinsp;%</b>; sebutkan yang konservatif ini kalau dosen menanya. Rata-rata tujuh persen modul (M1 83, M2 100, M3 83, M4 100, M5 100, M6 100, M7 100) = <b>95&thinsp;%</b>, sesuai cara hitung per sel. Tuntas penuh kini <b>5 dari 7 modul</b> (M2, M4, M5, M6, M7); dua sisanya menunggu hal di kolom <b>Sisa</b>. Angka dihitung ulang <b>3 November</b> setelah M1 lupa sandi &amp; M7 admin masuk <code>main</code>; naik lagi <b>4 November</b> setelah pusat notifikasi admin M4 masuk <code>kai/main</code> di <code>07279c7</code>.</p>
   </div>
 
   <div class="legend">
@@ -598,9 +598,9 @@
           <td class="note"><b>Tim 2</b><br>Rangga + Ifa</td>
           <td><span class="pill p-done">selesai</span></td>
           <td><span class="pill p-done">selesai</span></td>
-          <td><span class="pill p-part">sebagian</span></td>
-          <td><b>83%</b></td>
-          <td class="note"><b>Pengirimnya sudah ada.</b> <code>b4c3e0b</code> di-merge ke <code>develop</code> lewat <code>d85aae8</code> (27 Okt): <code>app/Services/FcmService.php</code> (86 baris, <code>sendToUser()</code>), <code>config/firebase.php</code>, <code>kreait/laravel-firebase ^7.2</code> di <code>composer.json</code>, dan <code>FcmNotificationTest</code> (380 baris, 10 test) yang memalsukan pengiriman &mdash; jadi lulus tanpa kredensial asli. Satu titik panggil untuk tiap transisi: model <code>ServiceStatusLog</code> memakai <code>#[ObservedBy([ServiceStatusLogObserver::class])]</code>, dan <code>VerificationController</code> memanggil <code>sendToUser()</code> dua kali (disetujui, ditolak). <code>Log::info("FCM Sent ...")</code> sudah tidak ada di <code>develop</code>. <b>Syarat runtime, bukan sisa kode:</b> di server harus <code>composer install</code> lalu isi <code>FCM_CREDENTIALS</code>; tanpa itu <code>FcmService</code> menulis <code>Log::warning</code> dan mengembalikan <code>false</code> &mdash; aplikasi tetap jalan, notifikasi tidak terkirim. Sisa yang benar-benar belum: admin belum punya pusat notifikasi, jadi kiriman ke mitra hanya sampai di HP.</td>
+          <td><span class="pill p-done">selesai</span></td>
+          <td><b>100%</b></td>
+          <td class="note"><b>Tertutup 4 November:</b> pusat notifikasi admin sudah dibuat di <code>kai/main</code> (<code>07279c7</code>) &mdash; <code>NotificationController::index</code> + halaman <code>admin/notifications/index.blade.php</code>: filter per status, rekap jumlah notifikasi, riwayat dari <code>ServiceStatusLog</code> (kode order, waktu, pengguna, bengkel). 2 test fitur lulus (non-admin &rarr; 403; admin &rarr; 200 + tabel tidak kosong). FCM-nya sendiri sudah nyata sejak <code>d85aae8</code> (<code>FcmService::sendToUser()</code>, satu titik panggil per transisi lewat <code>ServiceStatusLogObserver</code>) &mdash; <b>syarat runtime, bukan sisa kode:</b> di server harus <code>composer install</code> lalu isi <code>FCM_CREDENTIALS</code>; tanpa itu <code>FcmService</code> menulis <code>Log::warning</code> dan notifikasi tidak terkirim.</td>
         </tr>
         <tr>
           <td class="item">M5. Layanan &amp; Ketersediaan Mitra</td>
@@ -634,7 +634,7 @@
   </div>
 
   <div class="callout warn">
-    <p><strong>Kenapa masih ada sel "sebagian" (per 3 November).</strong> Dua hal yang dulu menahan angka kini sudah masuk <code>main</code>: lupa sandi (route backend + layar Flutter, bagian rilis <code>dd9bb5c</code>) dan sisa M7 (kartu montir + seeder + halaman bengkel admin) &mdash; dua sel jadi <b>selesai</b>, tabel naik 84&thinsp;% &rarr; <b>92&thinsp;%</b>. Yang masih menahan angka: <b>(1)</b> M3 mobile &mdash; daftar bengkel di HP masih statis 3 entri (<code>defaultMechanics</code> di <code>mechanic_search_screen.dart</code>) karena memang belum ada endpoint publiknya; <b>(2)</b> M4 admin &mdash; pusat notifikasi admin belum dibuat, kiriman FCM ke mitra baru sampai di HP; <b>(3)</b> M1 admin &mdash; verifikasi admin atas M1 belum dikerjakan. <b>Koreksi:</b> dua klaim 27&ndash;28 Okt yang sempat dicatat &mdash; countdown 30 detik dan 107 test &mdash; setelah diverifikasi ternyata <b>benar</b> (salahnya cek ulang yang dijalankan di branch yang belum memuat commit-nya). Satu catatan tetap: <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Okt tapi belum ada bukti dijalankan &mdash; minta tangkapan layar <code>php artisan test -c phpunit.pgsql.xml</code>.</p>
+    <p><strong>Kenapa masih ada sel "sebagian" (per 4 November).</strong> Dua hal yang dulu menahan angka kini sudah masuk <code>main</code>: lupa sandi (route backend + layar Flutter, bagian rilis <code>dd9bb5c</code>) dan sisa M7 (kartu montir + seeder + halaman bengkel admin) &mdash; dua sel jadi <b>selesai</b>, tabel naik 84&thinsp;% &rarr; 92&thinsp;%. <b>4 November:</b> pusat notifikasi admin M4 dibuat di <code>07279c7</code> (<code>kai/main</code>) &mdash; sel ketiga naik ke selesai, tabel 92&thinsp;% &rarr; <b>95&thinsp;%</b>. Yang masih menahan angka: <b>(1)</b> M3 mobile &mdash; daftar bengkel di HP masih statis 3 entri (<code>defaultMechanics</code> di <code>mechanic_search_screen.dart</code>) karena memang belum ada endpoint publiknya; <b>(2)</b> M1 admin &mdash; verifikasi admin atas M1 belum dikerjakan. <b>Koreksi:</b> dua klaim 27&ndash;28 Okt yang sempat dicatat &mdash; countdown 30 detik dan 107 test &mdash; setelah diverifikasi ternyata <b>benar</b> (salahnya cek ulang yang dijalankan di branch yang belum memuat commit-nya). Satu catatan tetap: <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Okt tapi belum ada bukti dijalankan &mdash; minta tangkapan layar <code>php artisan test -c phpunit.pgsql.xml</code>.</p>
   </div>
 
   <h2><span class="num">03</span>Timeline &mdash; Jizdan &amp; Raskha</h2>
@@ -812,7 +812,7 @@
         </div>
         <div class="card risk">
           <h3>FCM adalah modul paling berisiko</h3>
-          <p>FCM masuk daftar 3 API wajib dan dosen biasanya meminta melihatnya. Sisi HP sudah lengkap (<code>firebase_messaging</code> aktif, token dikirim ke server lewat <code>PATCH /api/fcm-token</code>), dan <b>pengirimnya sudah nyata</b> &mdash; <code>app/Services/FcmService.php</code> + <code>FcmFake</code> masuk <code>develop</code> lewat merge <code>d85aae8</code>, satu titik panggil per transisi di <code>ServiceStatusLogObserver</code>. Yang belum ada: <code>FCM_CREDENTIALS</code> di server dan admin belum punya pusat notifikasi, jadi kiriman ke mitra hanya sampai di HP. Saat demo, sampaikan bedanya &mdash; kode dan testnya selesai, kredensialnya belum dipasang.</p>
+          <p>FCM masuk daftar 3 API wajib dan dosen biasanya meminta melihatnya. Sisi HP sudah lengkap (<code>firebase_messaging</code> aktif, token dikirim ke server lewat <code>PATCH /api/fcm-token</code>), dan <b>pengirimnya sudah nyata</b> &mdash; <code>app/Services/FcmService.php</code> + <code>FcmFake</code> masuk <code>develop</code> lewat merge <code>d85aae8</code>, satu titik panggil per transisi di <code>ServiceStatusLogObserver</code>. <b>4 November</b> pusat notifikasi admin juga sudah dibuat (<code>07279c7</code>, <code>kai/main</code>), jadi admin bisa melihat kiriman sampai ke mitra. Yang belum ada: <code>FCM_CREDENTIALS</code> di server. Saat demo, sampaikan bedanya &mdash; kode dan testnya selesai, kredensialnya belum dipasang.</p>
         </div>
         <div class="card risk">
           <h3>Belum ada pembayaran asli</h3>
