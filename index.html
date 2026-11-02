@@ -531,26 +531,26 @@
   </div>
 
   <h2><span class="num">02</span>Progres 7 Modul RPP</h2>
-  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka dibaca ulang dari working tree hari ini, bukan laporan harian. <b>Yang berubah sejak versi kemarin (2&ndash;3 Nov):</b> M1 lupa sandi (route backend + layar mobile) dan M7 admin-sisa + seeder sudah <b>masuk <code>main</code></b> (<code>dd9bb5c</code>) &mdash; dua sel naik ke selesai, tabel bergerak 84&thinsp;% &rarr; <b>89&thinsp;%</b>. Yang masih menahan angka: <b>M1 admin</b> (belum diverifikasi), <b>M3 mobile</b> (daftar bengkel statis), <b>M4 admin</b> (pusat notifikasi belum ada).</p>
+  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Angka dibaca ulang dari working tree hari ini, bukan laporan harian. <b>Yang berubah sejak versi kemarin (2&ndash;3 Nov):</b> M1 lupa sandi (route backend + layar mobile) dan M7 admin-sisa + seeder sudah <b>masuk <code>main</code></b> (<code>dd9bb5c</code>) &mdash; dua sel naik ke selesai, tabel bergerak 84&thinsp;% &rarr; <b>92&thinsp;%</b>. Yang masih menahan angka: <b>M1 admin</b> (belum diverifikasi), <b>M3 mobile</b> (daftar bengkel statis), <b>M4 admin</b> (pusat notifikasi belum ada).</p>
 
   <div class="progress">
     <div class="progress-head">
       <div>
         <span class="progress-cap">Progress keseluruhan proyek</span>
-        <span class="progress-num">89<small>&thinsp;%</small></span>
+        <span class="progress-num">92<small>&thinsp;%</small></span>
       </div>
       <div class="progress-tally">
-        <span><b>14</b> sel selesai</span>
-        <span><b>5</b> sel sebagian</span>
+        <span><b>16</b> sel selesai</span>
+        <span><b>3</b> sel sebagian</span>
         <span><b>0</b> sel belum mulai</span>
         <span><b>2</b> sel n/a</span>
       </div>
     </div>
-    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 14 selesai dan 5 sebagian; dengan sel sebagian dihitung separuh hasilnya 89 persen">
-      <i class="d" style="width:89.5%"></i>
-      <i class="p" style="width:10.5%"></i>
+    <div class="bar" role="img" aria-label="Dari 19 sel yang berlaku, 16 selesai dan 3 sebagian; dengan sel sebagian dihitung separuh hasilnya 92 persen">
+      <i class="d" style="width:92.1%"></i>
+      <i class="p" style="width:7.9%"></i>
     </div>
-    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, sel "sebagian" dihitung separuh. Angka besar di atas: <b>(14 + &frac12; &times; 5) &divide; 19 = 89&thinsp;%</b>. Diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; <b>14 &divide; 19 = 74&thinsp;%</b>; sebutkan yang konservatif ini kalau dosen menanya. Rata-rata tujuh persen modul (M1 67, M2 100, M3 83, M4 83, M5 100, M6 100, M7 100) = <b>89&thinsp;%</b>, sesuai cara hitung per sel. Tuntas penuh kini <b>4 dari 7 modul</b> (M2, M5, M6, M7); tiga sisanya menunggu hal di kolom <b>Sisa</b>. Angka dihitung ulang <b>3 November</b> setelah M1 lupa sandi &amp; M7 admin masuk <code>main</code>.</p>
+    <p>Dihitung per sel, bukan per modul: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> yang dinilai. Persen tiap modul = <b>(sel selesai + &frac12; sel sebagian) &divide; sel berlaku</b>, sel "sebagian" dihitung separuh. Angka besar di atas: <b>(16 + &frac12; &times; 3) &divide; 19 = 92&thinsp;%</b>. Diukur ketat &mdash; hanya sel yang benar-benar tuntas &mdash; <b>16 &divide; 19 = 84&thinsp;%</b>; sebutkan yang konservatif ini kalau dosen menanya. Rata-rata tujuh persen modul (M1 83, M2 100, M3 83, M4 83, M5 100, M6 100, M7 100) = <b>92&thinsp;%</b>, sesuai cara hitung per sel. Tuntas penuh kini <b>4 dari 7 modul</b> (M2, M5, M6, M7); tiga sisanya menunggu hal di kolom <b>Sisa</b>. Angka dihitung ulang <b>3 November</b> setelah M1 lupa sandi &amp; M7 admin masuk <code>main</code>.</p>
   </div>
 
   <div class="legend">
@@ -572,7 +572,7 @@
           <td><span class="pill p-done">selesai</span></td>
           <td><span class="pill p-done">selesai</span></td>
           <td><span class="pill p-part">sebagian</span></td>
-          <td><b>67%</b></td>
+          <td><b>83%</b></td>
           <td class="note">Multi-role, Sanctum, OTP email <b>selesai</b>. Endpoint ubah profil &amp; rating/verifikasi sudah di <code>GET /profile</code>. Lupa sandi <b>selesai 30 Okt</b> di <code>main</code>: route <code>POST /auth/forgot-password</code> + <code>/auth/reset-password</code> (<code>dd9bb5c</code>) dan layar <code>forgot_password_screen.dart</code> sudah dipasangkan &mdash; tombol "Lupa sandi?" di login kini <code>context.push('/forgot-password')</code> (bukan lagi snackbar "Segera hadir"). Sisa: verifikasi admin atas M1 (lihat bagian 04).</td>
         </tr>
         <tr>
@@ -634,7 +634,7 @@
   </div>
 
   <div class="callout warn">
-    <p><strong>Kenapa masih ada sel "sebagian" (per 3 November).</strong> Dua hal yang dulu menahan angka kini sudah masuk <code>main</code>: lupa sandi (route backend + layar Flutter, bagian rilis <code>dd9bb5c</code>) dan sisa M7 (kartu montir + seeder + halaman bengkel admin) &mdash; dua sel jadi <b>selesai</b>, tabel naik 84&thinsp;% &rarr; <b>89&thinsp;%</b>. Yang masih menahan angka: <b>(1)</b> M3 mobile &mdash; daftar bengkel di HP masih statis 3 entri (<code>defaultMechanics</code> di <code>mechanic_search_screen.dart</code>) karena memang belum ada endpoint publiknya; <b>(2)</b> M4 admin &mdash; pusat notifikasi admin belum dibuat, kiriman FCM ke mitra baru sampai di HP; <b>(3)</b> M1 admin &mdash; verifikasi admin atas M1 belum dikerjakan. <b>Koreksi:</b> dua klaim 27&ndash;28 Okt yang sempat dicatat &mdash; countdown 30 detik dan 107 test &mdash; setelah diverifikasi ternyata <b>benar</b> (salahnya cek ulang yang dijalankan di branch yang belum memuat commit-nya). Satu catatan tetap: <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Okt tapi belum ada bukti dijalankan &mdash; minta tangkapan layar <code>php artisan test -c phpunit.pgsql.xml</code>.</p>
+    <p><strong>Kenapa masih ada sel "sebagian" (per 3 November).</strong> Dua hal yang dulu menahan angka kini sudah masuk <code>main</code>: lupa sandi (route backend + layar Flutter, bagian rilis <code>dd9bb5c</code>) dan sisa M7 (kartu montir + seeder + halaman bengkel admin) &mdash; dua sel jadi <b>selesai</b>, tabel naik 84&thinsp;% &rarr; <b>92&thinsp;%</b>. Yang masih menahan angka: <b>(1)</b> M3 mobile &mdash; daftar bengkel di HP masih statis 3 entri (<code>defaultMechanics</code> di <code>mechanic_search_screen.dart</code>) karena memang belum ada endpoint publiknya; <b>(2)</b> M4 admin &mdash; pusat notifikasi admin belum dibuat, kiriman FCM ke mitra baru sampai di HP; <b>(3)</b> M1 admin &mdash; verifikasi admin atas M1 belum dikerjakan. <b>Koreksi:</b> dua klaim 27&ndash;28 Okt yang sempat dicatat &mdash; countdown 30 detik dan 107 test &mdash; setelah diverifikasi ternyata <b>benar</b> (salahnya cek ulang yang dijalankan di branch yang belum memuat commit-nya). Satu catatan tetap: <code>phpunit.pgsql.xml</code> sudah ada sejak 19 Okt tapi belum ada bukti dijalankan &mdash; minta tangkapan layar <code>php artisan test -c phpunit.pgsql.xml</code>.</p>
   </div>
 
   <h2><span class="num">03</span>Timeline &mdash; Jizdan &amp; Raskha</h2>
@@ -642,7 +642,7 @@
 
   <ol class="days">
     <li class="key">
-      <span class="when">Selasa, 27 Oktober &mdash; hari ini</span>
+      <span class="when">Selasa, 27 Oktober</span>
       <span class="what">Sambungan order sudah jadi <b>dan sudah masuk <code>git log</code></b>. Yang belum: merge ke <code>main</code>.</span>
       <ul>
         <li><b>Jizdan &mdash; selesai:</b> <code>order_repository.dart</code> (11 method <code>Future</code>: listMine, detail, create, pay, review, nearby, accept, decline, updateStatus, submitInspection, earnings), <code>models/service_request.dart</code>, <code>utils/rupiah.dart</code>, <code>utils/tanggal.dart</code>. Dipakai 21 berkas layar.</li>
@@ -655,7 +655,7 @@
       </ul>
     </li>
     <li class="key">
-      <span class="when">Rabu, 28 Oktober &mdash; hari ini</span>
+      <span class="when">Rabu, 28 Oktober</span>
       <span class="what">Celah yang tidak bisa ditutup dari sisi Flutter sudah ditutup Raskha, dan langsung dipakai. <b>Tabel modul bergerak dari 82&thinsp;% ke 84&thinsp;%.</b></span>
       <ul>
         <li><b>Raskha &mdash; selesai:</b> lima endpoint mitra dikirim di <code>kai/develop</code> (<code>177794d</code>, merge <code>10ac029</code>) &mdash; <code>PUT /mitra/bank-account</code>, <code>PUT /mitra/operating-hours</code>, <code>PUT /profile</code>, <code>POST</code>+<code>GET /mitra/withdrawals</code>, dan <code>GET /profile</code> yang kini mengembalikan <code>rating</code>, <code>rating_count</code>, <code>verification_status</code>, <code>rejection_reason</code>, <code>description</code>, rekening, jam operasional, dan <code>emergency_24h</code>. Test backend naik dari 117 ke <b>129 method di 15 berkas</b>. Ini menutup satu-satunya penghambat Flutter yang tersisa, jadi <b>M5 backend naik ke selesai</b>.</li>
@@ -668,7 +668,7 @@
       </ul>
     </li>
     <li class="key">
-      <span class="when">Kamis, 29 Oktober &mdash; hari ini</span>
+      <span class="when">Kamis, 29 Oktober</span>
       <span class="what">Uji alur penuh di HP fisik Redmi Note 9 Pro <b>100% LULUS HIJAU</b> melawan backend sungguhan. Merge ke <code>main</code> resmi dilakukan.</span>
       <ul>
         <li><b>Jizdan &mdash; tuntas di HP fisik:</b> kendala pemasangan MIUI (<code>INSTALL_FAILED_USER_RESTRICTED</code>) berhasil dilewati deterministik via pembaruan sesi ADB server (<code>adb kill-server</code> &rarr; <code>adb start-server</code> &rarr; <code>adb install -r -t -g</code>). Seluruh <b>11 langkah</b> di <code>integration_test/live_flow_test.dart</code> dieksekusi langsung di perangkat Redmi Note 9 Pro (<code>19178c77</code>) melawan Cloudflare Tunnel tanpa mock sedikit pun: (1) login pengendara, (2) buat pesanan, (3) terima pesanan via radar mitra, (4) tiba di lokasi, (5) kirim inspeksi on-site, (6) bayar QRIS, (7) beri rating bintang 5, (8) ubah rekening pencairan mitra, (9) atur jam operasional 7 hari &amp; sakelar darurat, (10) ajukan penarikan saldo, (11) cek riwayat pesanan selesai. Semua langkah lulus hijau.</li>
@@ -677,7 +677,7 @@
       </ul>
     </li>
     <li class="key">
-      <span class="when">Jumat, 30 Oktober &mdash; hari ini</span>
+      <span class="when">Jumat, 30 Oktober</span>
       <span class="what">Beku fitur. Tiga branch Tim 2 masuk <code>main</code> mobile; temuan mobile ditutup dan dipush ke <code>kai</code>.</span>
       <ul>
         <li><b>Jizdan &mdash; tiga branch Ifa ditinjau lalu di-merge (<code>ad60022</code>/<code>f435a5a</code>/<code>25b5bb4</code> &rarr; <code>455c5c6</code>):</b> <code>feature/lupa-sandi</code> (<code>1143929</code>, <code>719da8b</code>), <code>feature/mobile-ui-states</code> (<code>1874144</code>), <code>feature/pembayaran-ui</code> (<code>6da10d2</code>). Sebelas berkas bertabrakan diselesaikan satu per satu. <b>M1 mobile jadi selesai:</b> layar lupa sandi masuk <code>main</code>, tombol "Lupa sandi?" di login kini <code>context.push('/forgot-password')</code> &mdash; bukan lagi snackbar "Segera hadir". Rangkasan: widget EmptyState/ErrorState, penamaan daring/luring, formatter plat, <code>_MogokinAppBootstrap</code>, label pembayaran.</li>
@@ -692,7 +692,7 @@
       </ul>
     </li>
     <li>
-      <span class="when">Sabtu, 31 Oktober &mdash; hari ini</span>
+      <span class="when">Sabtu, 31 Oktober</span>
       <span class="what">Layar sekunder pengendara, pembersihan timeline, dan <b>verifikasi Ifa diterima</b>.</span>
       <ul>
         <li><b>Jizdan &mdash; 6 layar sekunder U13&ndash;U18 (<code>f15af36</code>, 30 Okt 23:32 &rarr; merged 31 Okt):</b> <code>edit_profile_screen.dart</code> (PUT <code>/profile</code> via <code>AuthState.updateProfile</code>; <span class="note">diperkaya 2 Nov: banner navy, kartu Identitas, kartu Preferensi 3 toggle, kartu Aplikasi &mdash; lihat entri 1&ndash;2 Nov</span>), <code>payment_methods_screen.dart</code> (QRIS Utama + Tunai + Transfer), <code>help_center_screen.dart</code> (pencarian, kartu CS salin telepon/WA, 6 FAQ), <code>terms_conditions_screen.dart</code> (5 bagian), <code>chat_detail_screen.dart</code> (demo bubble, endpoint chat belum ada), <code>history_detail_screen.dart</code> (rincian nota: kode+badge, kendaraan, bengkel, rincian biaya, pembayaran, alasan batal, rating). Navigasi: 4 titik di <code>account_screen</code>, <code>chat_list</code> &rarr; <code>/chat/detail</code>, <code>history</code> &rarr; <code>/history/detail</code>. 6 route GoRoute baru di <code>router.dart</code>. <code>flutter analyze</code> bersih (post-merge, 0 issue), <b>70 tes hijau</b>. <span class="note">Status: branch <code>feature/secondary-screens-u13-u18</code> (<code>f15af36</code>) <b>di-merge ke <code>main</code> lewat <code>--no-ff</code></b> 31 Okt (merge commit <code>610719d</code>, dua parent <code>455c5c6</code> + <code>f15af36</code>) lalu dipush ke <code>kai</code>, <code>gitea</code>, dan <code>origin</code>. <code>merge-tree</code> exit 0 (nol konflik), fast-forward murni, dan tidak menyentuh berkas lapisan data/repository/mock &mdash; jadi tidak ada risiko "revert diam-diam" seperti <code>feature/mobile-ui-states</code> dulu.</span></li>
@@ -705,14 +705,14 @@
       <span class="when">Minggu&ndash;Senin, 1&ndash;2 November</span>
       <span class="what">Revisi UI pasca-UTS review, bug pemblokir demo, dan rekam video cadangan.</span>
       <ul>
-        <li><b>Jizdan &mdash; revisi UI (<code>56479db</code>, 2 Nov), 4 perubahan:</b>
-          <ol style="margin:6px 0 0; padding-left:20px">
+        <li><b>Jizdan &mdash; revisi UI (<code>56479db</code>, 2 Nov), 4 perubahan:</b>          <ol style="margin:6px 0 0; padding-left:20px">
             <li><b>Kendala Cepat &mdash; rapi 4 kartu di Beranda:</b> pemilih jenis kendala di Beranda (U02) kini <b>4 kartu</b> (ban bocor, aki mati, mesin mogok, overheat) &mdash; tersusun 2&times;2 di layar sempit, satu baris 4 kolom di layar lebar. Kartu ke-5 ("Masalah Lainnya") dihapus <b>hanya dari Beranda</b> agar tampilan rapi. Nilai enum <code>lainnya</code> tetap ada di model &amp; kontrak backend (<code>in: ban_bocor,aki_mati,mesin_mogok,overheat,lainnya</code>) &mdash; order lama bertipe <code>lainnya</code> tetap terbaca.</li>
             <li><b>Lacak Montir &mdash; isi ruang kosong (Figma U04):</b> bagian bawah layar pelacakan sebelumnya menyisakan banyak area tak terpakai. Ditambah tiga panel baru di dalam bottom sheet: <b>kartu ringkasan order</b> (kode servis + kendaraan), <b>rincian biaya</b> (Biaya Panggilan dan Jasa &amp; Sparepart, ambil dari <code>callFee</code>/<code>serviceFee</code> order), dan <b>kartu Total Tagihan</b> dari <code>payableAmount</code> yang baru muncul saat nilainya &gt; 0, lengkap dengan ajakan konfirmasi saat status <code>menunggu_pembayaran</code>. Peta, pin rute, dan stepper 3 langkah tidak berubah; sheet tetap dibatasi 90&nbsp;% tinggi peta dan bisa di-scroll.</li>
             <li><b>Edit Profil &mdash; tambah lapisan (U13):</b> layar yang dulu hanya dua kolom input kini berstruktur: <b>banner navy</b> berisi avatar inisial + nama + telepon, <b>kartu Identitas</b> (nama &amp; telepon, satu-satunya bagian yang bisa disimpan), <b>kartu Preferensi</b> berisi 3 toggle (notifikasi lokasi, notifikasi chat, kirim bukti transfer), dan <b>kartu Aplikasi</b> (versi v2.1.0, platform). Tombol "Simpan Perubahan" tetap memanggil <code>PUT /profile</code> lewat <code>AuthState.updateProfile</code> &mdash; toggle preferensi masih <b>tampilan saja</b> karena backend belum punya endpoint preferensi.</li>
             <li><b>Hapus branding "MOGOKIN Pay":</b> judul metode pembayaran jadi <b>"QRIS"</b> saja (sebelumnya "QRIS MOGOKIN Pay"), disamakan di tiga berkas &mdash; <code>payment_methods_screen.dart</code>, <code>help_center_screen.dart</code> (FAQ), dan <code>terms_conditions_screen.dart</code>. Tombol <b>GoPay / OVO / DANA / ShopeePay</b> yang disabled "Belum tersedia" dihapus dari layar bayar beserta disclaimer gateway-nya &mdash; tidak ada integrasi payment gateway di backend. <code>flutter analyze</code> bersih (0 issue).</li>
           </ol>
         </li>
+        <li><b>Jizdan &mdash; perawat (<code>307ee41</code>, 2 Nov):</b> memulihkan berkas <code>.metadata</code> Flutter yang hilang dari riwayat, memperbarui komentar tunnel ngrok di skrip, dan memperbaiki parsing log status supaya pesan galat terbaca. Perawatan kecil di atas <code>56479db</code>, di bawah koreksi U02b <code>0c7808b</code>.</li>
         <li><b>Jizdan &mdash; koreksi U02b (<code>0c7808b</code>, 2 Nov):</b> revisi <code>56479db</code> tadi memang menghapus card "Masalah Lainnya" &mdash; tapi secara tidak sengaja ikut menghapusnya dari <b>layar Detail Masalah</b> (U02b). Sesuai keputusan, "Masalah Lainnya" <b>dihapus hanya di Beranda</b>, di Detail Masalah <b>tetap tampil</b>. Maka <code>problem_detail_screen.dart</code> dikembalikan ke 5 kartu (4 utama + "Masalah Lainnya"), Beranda tetap 4 kartu. Perubahan satu baris di getter <code>_problems</code> (hapus filter <code>p['key'] != 'lainnya'</code>); Figma U02b (frame <code>209:1826</code>) sudah disamakan. <code>flutter analyze</code> bersih, test <code>vehicle_plate_test</code> lulus. Dipush ke <code>origin</code>, <code>kai</code>, <code>gitea</code>.</li>
         <li><span class="note">Dampak ke angka progres: <b>tidak ada</b> &mdash; semua di atas penyempurnaan UI, sel modulnya sudah "selesai"; progres tetap 84&nbsp;%. Tidak ada endpoint/migrasi/perubahan kontrak API. <code>56479db</code> di-commit langsung di <code>main</code> dipush <code>origin</code> (remote <code>kai</code> dulu tolak autentikasi &mdash; pakai <code>gitea</code> untuk cermin kampus); <code>0c7808b</code> sudah masuk ketiga remote.</span></li>
         <li><b>Jizdan:</b> rekam video demo cadangan dari HP Redmi Note 9 Pro, supaya presentasi tidak bergantung pada tunnel Cloudflare. Putuskan merge U13&ndash;U18 ke <code>main</code> kalau sudah stabil.</li>
