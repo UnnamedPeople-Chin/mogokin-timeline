@@ -721,6 +721,15 @@
       </ul>
     </li>
     <li>
+      <span class="when">Rabu, 4 November</span>
+      <span class="what">Pusat notifikasi M4 masuk lewat gitflow yang benar, dan bukti screenshot UI terkumpul.</span>
+      <ul>
+        <li><b>Jizdan &mdash; pusat notifikasi admin M4 (backend):</b> dibuat di branch <code>feature/pusat-notifikasi</code> (<code>e4ef3cc</code>) dari <code>develop</code> (<code>2341d75</code>): <code>NotificationController::index</code> + halaman <code>admin/notifications/index.blade.php</code> (filter status, rekap per status, riwayat <code>ServiceStatusLog</code>) + 2 test fitur lulus. Merge <code>--no-ff</code> ke <code>develop</code> lalu ke <code>main</code> (<code>kai/main</code> kini <code>07279c7</code>), sesuai aturan: kerja di branch fitur, <code>main</code> tidak di-commit langsung, tidak ada <code>--force</code>.</li>
+        <li><b>Jizdan &mdash; bukti screenshot UI alur penuh (mobile):</b> 121 file (screenshot <code>tool/*.png</code> + skrip uji) di-commit <code>a68d9d3</code> di <code>main</code> lalu di-copy ke <code>feature/order-flow-mobile</code> (<code>e4e1ce4</code>) agar jejaknya juga ada di branch penilaian. Semua di ketiga remote.</li>
+        <li><span class="note">Catatan transparansi: <code>a68d9d3</code> awalnya di-commit langsung ke <code>main</code> mobile sebelum aturan "jangan commit langsung ke main" dibaca ulang &mdash; tidak di-force dan tidak dirusak; tinggal di-<code>cherry-pick</code> ke branch fitur. Angka progres: sel M4 admin naik ke selesai, tabel 92&thinsp;% &rarr; <b>95&thinsp;%</b>.</span></li>
+      </ul>
+    </li>
+    <li>
       <span class="when">Selasa&ndash;Jumat, 3&ndash;6 November</span>
       <span class="what">Latihan demo penuh, lalu penyangga.</span>
       <ul>
