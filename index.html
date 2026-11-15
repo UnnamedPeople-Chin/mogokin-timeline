@@ -664,8 +664,8 @@
       <table>
         <thead><tr><th>Repo</th><th>Jizdan</th><th>Raskha</th><th>Rangga</th><th>Ifa</th></tr></thead>
         <tbody>
-          <tr><td class="item"><code>mogokin_backend</code></td><td>48</td><td>51</td><td>4</td><td>14</td></tr>
-          <tr><td class="item"><code>mogokin_app</code></td><td>97</td><td>16</td><td>12</td><td>4</td></tr>
+          <tr><td class="item"><code>mogokin_backend</code></td><td>58</td><td>51</td><td>7</td><td>14</td></tr>
+          <tr><td class="item"><code>mogokin_app</code></td><td>115</td><td>19</td><td>12</td><td>8</td></tr>
         </tbody>
       </table>
     </div>
@@ -954,11 +954,12 @@
 
     <li class="key">
       <span class="when">Penyelesaian Revisi Pasca-UTS (14 November)</span>
-      <span class="what">Pembersihan menu web admin, perincian suspend, dan pemisahan akun administrator.</span>
+      <span class="what">Penyelesaian menyeluruh 10 catatan evaluasi dosen &amp; tim di web admin, API, dan aplikasi mobile.</span>
       <ul>
-        <li><b>Sidebar Admin Bersih:</b> Duplikasi menu navigasi diselesaikan, menyisakan <i>Data Pengguna</i> dan menu terpisah untuk <i>Administrator</i>.</li>
-        <li><b>Pemisahan Akun Administrator:</b> Akun dengan role admin dipisahkan ke modul kelola tersendiri; detail profil admin dapat dibuka tanpa galat 404, dan posisi tombol aksi sejajar rapi.</li>
-        <li><b>Transparansi Suspend:</b> Detail penonaktifan akun menampilkan alasan suspend, nama admin penindak, dan cap waktu pencatatan secara lengkap.</li>
+        <li><b>Web Admin (Jizdan):</b> Duplikasi menu navigasi dibersihkan, akun Administrator dipisahkan ke modul kelola tersendiri (memperbaiki galat 404 &amp; kerapian tombol aksi), dan informasi suspend kini menampilkan alasan, nama admin penindak, serta waktu WIB lengkap.</li>
+        <li><b>Backend &amp; SLA (Rangga):</b> Standarisasi HTTP Status Code <code>401 Unauthorized</code> pada middleware dan auth API (masukan Pak Suko), serta penyesuaian SLA verifikasi berkas mitra menjadi 7 hari realistis dengan mekanisme auto-reject kedaluwarsa.</li>
+        <li><b>Antarmuka &amp; Aksi Mobile (Ifa):</b> Bentuk stepper pada layar order selesai diseragamkan bulat (circle), sisa komponen dompet/penarikan saldo dibersihkan total, tombol Pusat Bantuan langsung meluncurkan tautan <code>wa.me</code> dan panggilan <code>tel:</code>, serta penambahan indikator badge merah pada ikon Pesan di navigasi bawah.</li>
+        <li><b>Radar &amp; Alur Inspeksi Mitra (Raskha):</b> Akses radar dikunci saat mitra berstatus luring, status awal radar disetel mode standby/scanning (tidak langsung memunculkan pesanan masuk), dan perbaikan serialisasi form inspeksi on-site saat mengunggah foto bukti.</li>
       </ul>
     </li>
   </ol>
