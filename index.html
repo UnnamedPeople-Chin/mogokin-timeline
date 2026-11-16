@@ -628,12 +628,12 @@
   <p class="eyebrow">PBL-202601-07 · MOGOKIN · Fase Implementasi</p>
   <h1>Porsi Kerja &amp; Timeline UTS</h1>
 
-  <p class="lede"><b>Status akhir 14 November 2026.</b> Seluruh revisi evaluasi pasca-UTS (standarisasi HTTP 401, SLA 7 hari berkas mitra, pemisahan kelola admin &amp; perbaikan form suspend, perbaikan validasi foto inspeksi, kunci radar luring &amp; mode standby, aksi langsung kontak CS, serta badge navigasi pesan) telah rampung dan di-merge di branch <code>develop</code> kedua repo. Jejak commit keempat anggota tim tersebar merata di kedua repo backend dan mobile.</p>
+  <p class="lede"><b>Status akhir 16 November 2026.</b> Seluruh penyempurnaan akhir evaluasi UTS (placeholder &amp; toggle show/hide password login admin dan mitra, standarisasi komponen reusable <code>OrderStepper</code> bulat lingkaran di seluruh layar, integrasi kontak WA dan dialer telepon CS resmi, badge angka notifikasi unread pesan, navigasi otomatis langsung ke peta setelah menerima pesanan, pengisian ongkos datang otomatis sistem, serta tombol kirim ulasan eksplisit) telah tuntas dan di-merge ke <code>main</code> di kedua repo bertanda tag <code>vUTS-final</code> (backend <code>564b728</code>, mobile <code>620eec5</code>). Distribusi jejak commit anggota tim tercatat merata dan aktif.</p>
 
   <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang autentikasi, notifikasi, dan tampilan pendukung. Sejak 27 Oktober seluruh alur order di Flutter tersambung ke API, bukan mock. Tanggal 29 Oktober alur penuh lulus 100&thinsp;% di HP fisik Redmi Note 9 Pro melawan backend sungguhan tanpa mock.</p>
 
   <div class="stamp">
-    <span><b>Diperbarui</b> 14 November 2026</span>
+    <span><b>Diperbarui</b> 16 November 2026</span>
     <span><b>Beku fitur</b> 30 Oktober 2026</span>
     <span><b>Revisi</b> selesai &mdash; tidak ada PR terbuka</span>
     <span><b>Progres UTS</b> 84&thinsp;%</span>
@@ -643,11 +643,11 @@
   <div class="grid2" style="margin-top:0">
     <div class="card ok">
       <h3>Backend</h3>
-      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>6b0d509</code> (tag <code>vUTS-final</code>); <code>php artisan test</code> (PHP 8.4.27) <b>168 test lulus, 0 skip</b>. Integrasi pasca-UTS: standarisasi HTTP 401 Unauthorized, SLA berkas mitra 7 hari dengan auto-reject expired, pemisahan kelola admin, dan transparansi detail suspend. Sejak akhir revisi: rute, controller, view, model, dan migrasi penarikan saldo <b>dihapus</b> (<code>a61f8b2</code>, tabel <code>withdrawals</code> sudah tidak ada); <code>POST /api/mitra/orders/{id}/decline</code> menerima <code>reason</code>; rute toggle pengguna disatukan agar aturan &ldquo;alasan wajib saat suspend&rdquo; konsisten.</p>
+      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>564b728</code> (tag <code>vUTS-final</code>); <code>php artisan test</code> (PHP 8.4.27) <b>169 test lulus, 0 skip</b>. Integrasi pasca-UTS: standarisasi HTTP 401 Unauthorized, SLA berkas mitra 7 hari dengan auto-reject expired, pemisahan kelola admin, transparansi detail suspend, serta placeholder dan toggle show/hide password pada form login admin.</p>
     </div>
     <div class="card ok">
       <h3>Mobile</h3>
-      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>da6ec30</code> (tag <code>vUTS-final</code>); <code>flutter analyze</code> <b>0 issue</b>. Perbaikan pasca-UTS: kunci akses radar saat mitra luring, mode standby awal radar, format form inspeksi foto, stepper bulat order selesai, pembersihan saldo, link langsung WA/telp CS, dan badge pesan navbar. Perbaikan sebelumnya: panel peta naik-turun, peta asli OSM, dan nama aplikasi Mogokin.</p>
+      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>620eec5</code> (tag <code>vUTS-final</code>); <code>flutter analyze</code> <b>0 issue</b>. Perbaikan pasca-UTS: widget reusable <code>OrderStepper</code> 100% bulat lingkaran di 4 layar proses, toggle password &amp; placeholder login mitra, nomor &amp; intent WA/telp CS resmi, badge angka pesan belum dibaca, alur auto-navigasi ke peta saat terima order, ongkos datang otomatis sistem, dan tombol kirim ulasan pengendara.</p>
     </div>
     <div class="card ok">
       <h3>Uji alur penuh terakhir</h3>
@@ -664,8 +664,8 @@
       <table>
         <thead><tr><th>Repo</th><th>Jizdan</th><th>Raskha</th><th>Rangga</th><th>Ifa</th></tr></thead>
         <tbody>
-          <tr><td class="item"><code>mogokin_backend</code></td><td>58</td><td>51</td><td>7</td><td>14</td></tr>
-          <tr><td class="item"><code>mogokin_app</code></td><td>115</td><td>19</td><td>12</td><td>8</td></tr>
+          <tr><td class="item"><code>mogokin_backend</code></td><td>56</td><td>51</td><td>11</td><td>14</td></tr>
+          <tr><td class="item"><code>mogokin_app</code></td><td>118</td><td>22</td><td>16</td><td>13</td></tr>
         </tbody>
       </table>
     </div>
@@ -960,6 +960,17 @@
         <li><b>Backend &amp; SLA (Rangga):</b> Standarisasi HTTP Status Code <code>401 Unauthorized</code> pada middleware dan auth API (masukan Pak Suko), serta penyesuaian SLA verifikasi berkas mitra menjadi 7 hari realistis dengan mekanisme auto-reject kedaluwarsa.</li>
         <li><b>Antarmuka &amp; Aksi Mobile (Ifa):</b> Bentuk stepper pada layar order selesai diseragamkan bulat (circle), sisa komponen dompet/penarikan saldo dibersihkan total, tombol Pusat Bantuan langsung meluncurkan tautan <code>wa.me</code> dan panggilan <code>tel:</code>, serta penambahan indikator badge merah pada ikon Pesan di navigasi bawah.</li>
         <li><b>Radar &amp; Alur Inspeksi Mitra (Raskha):</b> Akses radar dikunci saat mitra berstatus luring, status awal radar disetel mode standby/scanning (tidak langsung memunculkan pesanan masuk), dan perbaikan serialisasi form inspeksi on-site saat mengunggah foto bukti.</li>
+      </ul>
+    </li>
+
+    <li class="key">
+      <span class="when">Penyempurnaan Akhir Tim (16 November)</span>
+      <span class="what">Pemolesan konsistensi UI, UX auth, dan otomatisasi alur pesanan oleh seluruh anggota tim.</span>
+      <ul>
+        <li><b>Backend &amp; Auth (Rangga):</b> Menambahkan placeholder interaktif dan tombol toggle mata <i>show/hide password</i> pada portal login web admin (<code>/admin/login</code>), dilengkapi unit test interaksi formulir.</li>
+        <li><b>Komponen Stepper Reusable (Ifa):</b> Membangun widget bersama <code>OrderStepper</code> dengan bentuk 100% bulat lingkaran (<code>BoxShape.circle</code>) dan margin aman di 4 layar (<i>Menuju Lokasi</i>, <i>Inspeksi</i>, <i>Pembayaran</i>, dan <i>Order Selesai</i>).</li>
+        <li><b>Kontak CS, Badge, &amp; Login Mitra (Rangga):</b> Memperbaiki skema URL WhatsApp (<code>https://wa.me/6281229680104</code>), dialer telepon CS resmi, badge angka notifikasi unread pada tab Pesan navbar, serta toggle kata sandi login mitra.</li>
+        <li><b>Alur Order &amp; Ulasan (Raskha):</b> Tombol terima order langsung mengalihkan navigasi ke layar peta rute mitra, ongkos datang form inspeksi disetel otomatis sistem (Rp 5.000 / read-only), dan penambahan tombol submit ulasan eksplisit di layar rating pengendara.</li>
       </ul>
     </li>
   </ol>
