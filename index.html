@@ -628,14 +628,14 @@
   <p class="eyebrow">PBL-202601-07 · MOGOKIN · Fase Implementasi</p>
   <h1>Porsi Kerja &amp; Timeline UTS</h1>
 
-  <p class="lede"><b>Status akhir 16 November 2026.</b> Seluruh penyempurnaan akhir evaluasi UTS (placeholder &amp; toggle show/hide password login admin dan mitra, standarisasi komponen reusable <code>OrderStepper</code> bulat lingkaran di seluruh layar, integrasi kontak WA dan dialer telepon CS resmi, badge angka notifikasi unread pesan, navigasi otomatis langsung ke peta setelah menerima pesanan, pengisian ongkos datang otomatis sistem, serta tombol kirim ulasan eksplisit) telah tuntas dan di-merge ke <code>main</code> di kedua repo bertanda tag <code>vUTS-final</code> (backend <code>564b728</code>, mobile <code>620eec5</code>). Distribusi jejak commit anggota tim tercatat merata dan aktif.</p>
+  <p class="lede"><b>Status akhir 20 November 2026.</b> Seluruh penyempurnaan pasca-UTS hingga deployment backend (konfigurasi <b>Docker Compose Dokploy PostgreSQL 16 + PHP 8.4 + <code>trustProxies</code></b> di <code>6daf8e8</code>, kunci skala teks <code>0.81</code>, uji alur penuh emulator 360&nbsp;dp, perbaikan tombol re-center &amp; status pemeriksaan PR #10 Rangga, perbaikan nomor invoice satu baris PR #11 Ifa, serta pemolesan UI/auth sebelumnya) telah tuntas dan masuk ke <code>main</code> di kedua repo (backend <code>6daf8e8</code>, mobile <code>d963bd3</code>). Jejak commit anggota tim terdistribusi aktif di kedua repository.</p>
 
   <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang autentikasi, notifikasi, dan tampilan pendukung. Sejak 27 Oktober seluruh alur order di Flutter tersambung ke API, bukan mock. Tanggal 29 Oktober alur penuh lulus 100&thinsp;% di HP fisik Redmi Note 9 Pro melawan backend sungguhan tanpa mock.</p>
 
   <div class="stamp">
-    <span><b>Diperbarui</b> 16 November 2026</span>
+    <span><b>Diperbarui</b> 20 November 2026</span>
     <span><b>Beku fitur</b> 30 Oktober 2026</span>
-    <span><b>Revisi</b> selesai &mdash; tidak ada PR terbuka</span>
+    <span><b>Rilis</b> main backend <code>6daf8e8</code> &middot; main mobile <code>d963bd3</code></span>
     <span><b>Progres UTS</b> 84&thinsp;%</span>
   </div>
 </header>
@@ -643,15 +643,15 @@
   <div class="grid2" style="margin-top:0">
     <div class="card ok">
       <h3>Backend</h3>
-      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>564b728</code> (tag <code>vUTS-final</code>); <code>php artisan test</code> (PHP 8.4.27) <b>169 test lulus, 0 skip</b>. Integrasi pasca-UTS: standarisasi HTTP 401 Unauthorized, SLA berkas mitra 7 hari dengan auto-reject expired, pemisahan kelola admin, transparansi detail suspend, serta placeholder dan toggle show/hide password pada form login admin.</p>
+      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>6daf8e8</code>; <code>php artisan test</code> (PHP 8.4.27) <b>169 test lulus (813 asersi, 0 skip)</b>. Pembaruan pasca-UTS &amp; deployment: standarisasi HTTP 401 Unauthorized, SLA berkas mitra 7 hari dengan auto-reject expired, pemisahan kelola admin, placeholder &amp; toggle password login admin, serta setup <b>Docker Compose Dokploy</b> (PostgreSQL 16, PHP 8.4 Alpine, Vite 8, <code>trustProxies</code>, dan perbaikan symlink <code>public/storage</code>).</p>
     </div>
     <div class="card ok">
       <h3>Mobile</h3>
-      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>620eec5</code> (tag <code>vUTS-final</code>); <code>flutter analyze</code> <b>0 issue</b>. Perbaikan pasca-UTS: widget reusable <code>OrderStepper</code> 100% bulat lingkaran di 4 layar proses, toggle password &amp; placeholder login mitra, nomor &amp; intent WA/telp CS resmi, badge angka pesan belum dibaca, alur auto-navigasi ke peta saat terima order, ongkos datang otomatis sistem, dan tombol kirim ulasan pengendara.</p>
+      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>d963bd3</code> (<code>kai/develop</code> pada <code>95c69b1</code>); <code>flutter analyze</code> <b>0 issue</b>. Pembaruan pasca-UTS: widget reusable <code>OrderStepper</code> bulat, kunci skala teks <code>0.81</code>, <code>DraggableBottomSheet.floatingAction</code> dengan <code>Flexible</code> di 4 layar peta + teks status ringkas (PR #10 Rangga), nomor invoice satu baris dengan <code>FittedBox</code> (PR #11 Ifa), dan build ulang APK release.</p>
     </div>
     <div class="card ok">
-      <h3>Uji alur penuh terakhir</h3>
-      <p>13 Nov, APK <i>release</i> (<code>USE_MOCK=false</code> ke tunnel Ngrok) dipasang di Redmi Note 9 Pro dan dijalankan end-to-end: login mitra &rarr; <b>Daring</b> &rarr; pengendara buat order &rarr; mitra <b>terima</b> &rarr; <i>menuju lokasi</i> &rarr; <i>tiba</i> &rarr; <i>inspeksi</i> &rarr; bayar QRIS &rarr; ulasan. Order <code>MGN-20261112-0023</code> (Rp35.000) tercatat lunas; bagi hasil 10&#8239;% platform (Rp3.500) / 90&#8239;% mitra (Rp31.500) cocok dengan tampilan dashboard mitra. Penolakan order dengan alasan (&ldquo;Jarak terlalu jauh&rdquo;) tampil di detail order admin. <span class="note">Diketahui: <code>flutter test</code> penuh masih menyisakan 3 kegagalan di <code>widget_test.dart</code> &mdash; sudah ada sebelum paket tim ini (dibuktikan di <code>5bfde59</code>), berasal dari overflow rute <code>/mechanic-search</code> &amp; <code>/home</code> pada lebar 320&nbsp;px serta satu teks uji yang tidak lagi cocok.</span></p>
+      <h3>Uji alur &amp; deployment terakhir</h3>
+      <p><b>19 Nov:</b> APK <i>release</i> (<code>USE_MOCK=false</code> ke Ngrok) diuji end-to-end di emulator MuMuPlayerGlobal (720&times;1280 @ 320&nbsp;dpi, Android 15): login &rarr; buat order &rarr; lacak rute OSRM &rarr; inspeksi &rarr; bayar QRIS split 10&#8239;%/90&#8239;% &rarr; ulasan &amp; garansi lulus. <b>20 Nov:</b> stack Docker Compose lokal (<code>http://localhost:8080</code>) lulus uji 21 migrasi, CSS Vite, proxy HTTPS, <code>/storage</code>, dan <code>db:seed --force</code>; <code>mogokin-app-release.apk</code> dibangun ulang (57,91&nbsp;MB, MD5 <code>670d82fe</code>). <span class="note">Diketahui: <code>widget_test.dart</code> menyisakan 3 isu pre-existing pada lebar sempit 320&nbsp;px sejak sebelum paket tim.</span></p>
     </div>
   </div>
 
@@ -664,12 +664,12 @@
       <table>
         <thead><tr><th>Repo</th><th>Jizdan</th><th>Raskha</th><th>Rangga</th><th>Ifa</th></tr></thead>
         <tbody>
-          <tr><td class="item"><code>mogokin_backend</code></td><td>56</td><td>51</td><td>11</td><td>14</td></tr>
-          <tr><td class="item"><code>mogokin_app</code></td><td>118</td><td>22</td><td>16</td><td>13</td></tr>
+          <tr><td class="item"><code>mogokin_backend</code></td><td>62</td><td>51</td><td>11</td><td>14</td></tr>
+          <tr><td class="item"><code>mogokin_app</code></td><td>129</td><td>22</td><td>19</td><td>14</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin:8px 0 0" class="note">Hitungan <code>git shortlog -sne</code> per repo. Nama <b>Raskha</b> tampil sebagai <i>Nazriel Farras Khairiya</i> di dua email (<code>nazrielfrs@</code> dan <code>raskha.33425120@</code>) &mdash; satu orang. <b>Ifa</b> juga tampil di dua akun Gitea (<code>faizah27</code> dan <code>faizahmuf</code>) karena akun lamanya belum bisa digabung tanpa menulis ulang riwayat; keduanya tetap Ifa.</p>
+    <p style="margin:8px 0 0" class="note">Hitungan <code>git shortlog -sne main</code> per repo. Nama <b>Jizdan</b> di backend menggabungkan 59 commit bernama Jizdan + 3 commit awal di email yang sama. Nama <b>Raskha</b> tampil sebagai <i>Nazriel Farras Khairiya</i> di dua email (<code>nazrielfrs@</code> dan <code>raskha.33425120@</code>). <b>Ifa</b> tampil di dua akun Gitea (<code>faizah27</code> dan <code>faizahmuf</code>) yang merupakan orang yang sama.</p>
   </div>
   <div class="table-scroll">
     <table>
@@ -971,6 +971,26 @@
         <li><b>Komponen Stepper Reusable (Ifa):</b> Membangun widget bersama <code>OrderStepper</code> dengan bentuk 100% bulat lingkaran (<code>BoxShape.circle</code>) dan margin aman di 4 layar (<i>Menuju Lokasi</i>, <i>Inspeksi</i>, <i>Pembayaran</i>, dan <i>Order Selesai</i>).</li>
         <li><b>Kontak CS, Badge, &amp; Login Mitra (Rangga):</b> Memperbaiki skema URL WhatsApp (<code>https://wa.me/6281229680104</code>), dialer telepon CS resmi, badge angka notifikasi unread pada tab Pesan navbar, serta toggle kata sandi login mitra.</li>
         <li><b>Alur Order &amp; Ulasan (Raskha):</b> Tombol terima order langsung mengalihkan navigasi ke layar peta rute mitra, ongkos datang form inspeksi disetel otomatis sistem (Rp 5.000 / read-only), dan penambahan tombol submit ulasan eksplisit di layar rating pengendara.</li>
+      </ul>
+    </li>
+
+    <li class="key">
+      <span class="when">Stabilitas Skala Teks &amp; Uji E2E 360 dp (16&ndash;19 November)</span>
+      <span class="what">Penguncian skala font lintas perangkat, audit kunci portrait, dan uji alur lengkap di emulator 360 dp.</span>
+      <ul>
+        <li><b>Kunci Skala Teks 0.81 (<code>214e033</code>):</b> Menyamakan faktor skala teks di root <code>MediaQuery</code> agar tampilan tetap konsisten antara Redmi, Infinix, dan emulator meski setelan font sistem diubah.</li>
+        <li><b>Uji E2E Emulator MuMuPlayerGlobal (19 Nov):</b> Menguji alur penuh (login pengendara, buat order, pelacakan OSRM, inspeksi, pembayaran QRIS split 10%/90%, hingga ulasan &amp; garansi) melawan backend Laravel + Ngrok serta membagi 3 temuan bug visual layar <code>360 dp</code> ke Rangga dan Ifa.</li>
+      </ul>
+    </li>
+
+    <li class="key">
+      <span class="when">Deployment Dokploy &amp; Perbaikan UI 360 dp (20 November)</span>
+      <span class="what">Kesiapan deploy backend PostgreSQL di Dokploy, penggabungan PR #10 &amp; PR #11, dan build APK rilis terbaru.</span>
+      <ul>
+        <li><b>Docker Compose Dokploy Backend (<code>6daf8e8</code>):</b> Menyiapkan <code>Dockerfile</code> (<code>php:8.4-fpm-alpine</code>, ekstensi <code>sodium</code>, build Vite 8), <code>docker-compose.yml</code> (PostgreSQL 16 + <code>expose: "80"</code>), <code>docker/nginx.conf</code>, <code>docker/supervisord.conf</code>, <code>docker/entrypoint.sh</code> (LF murni + perbaikan symlink <code>public/storage</code>), dan <code>$middleware-&gt;trustProxies(at: '*')</code> di <code>bootstrap/app.php</code>. Lulus uji stack lokal (21 migrasi, aset Vite, proxy HTTPS, akses <code>/storage</code>, dan <code>db:seed --force</code>).</li>
+        <li><b>PR #10 Rangga (<code>1e7d29f</code>):</b> Menambahkan parameter <code>floatingAction</code> pada <code>DraggableBottomSheet</code> dengan <code>Flexible(child: panel)</code> agar tombol re-center selalu mengambang tepat di atas panel di 4 layar peta tanpa overflow, meringkas teks status menjadi <code>'Pemeriksaan Selesai'</code> (<code>maxLines: 2</code>), serta menambah 2 widget test (6/6 lulus).</li>
+        <li><b>PR #11 Ifa (<code>95c69b1</code>):</b> Membungkus nomor invoice pada layar pembayaran dengan <code>FittedBox(fit: BoxFit.scaleDown)</code> dan <code>maxLines: 1</code> agar tetap satu baris di layar sempit, dilengkapi test regresi <code>360x640</code> (4/4 lulus).</li>
+        <li><b>Rilis Mobile &amp; APK (<code>d963bd3</code>):</b> Menggabungkan <code>develop</code> (<code>95c69b1</code>) ke <code>kai/main</code> (<code>d963bd3</code>) dengan <code>flutter analyze</code> 0 issue, lalu membangun ulang <code>mogokin-app-release.apk</code> (57,91 MB, MD5 <code>670d82fe</code>).</li>
       </ul>
     </li>
   </ol>
