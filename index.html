@@ -628,14 +628,14 @@
   <p class="eyebrow">PBL-202601-07 · MOGOKIN · Fase Implementasi</p>
   <h1>Porsi Kerja &amp; Timeline UTS</h1>
 
-  <p class="lede"><b>Status akhir 20 November 2026.</b> Seluruh penyempurnaan pasca-UTS hingga kesiapan deployment dan modul inti UAS (konfigurasi <b>Docker Compose Dokploy PostgreSQL 16 + PHP 8.4 + <code>trustProxies</code></b> di <code>6daf8e8</code>, uji E2E emulator 360&nbsp;dp + PR #10/#11, <b>API Chat 2 Arah (M5)</b> &amp; <b>Export CSV/Cetak PDF Transaksi Admin (M7)</b> di <code>e3dee03</code>, serta <b>Live GPS Tracking + Telepon/Google Maps PR #12</b> dan <b>Integrasi Chat Mobile PR #13</b> di <code>619d6f4</code>) telah tuntas dan masuk ke <code>main</code> di kedua repo. Jejak commit anggota tim terdistribusi aktif di kedua repository.</p>
+  <p class="lede"><b>Status akhir 23 November 2026.</b> Seluruh penyempurnaan pasca-UTS hingga modul inti UAS dan batch perbaikan evaluasi arsitektur Pak Suko (<b>PR #9</b> standarisasi HTTP status code &amp; idempotensi transaksi, <b>PR #10</b> CSS micro-interactions + <code>reduced-motion</code> Web Admin, <b>PR #11</b> unifikasi toggle status &amp; email OTP reset sandi HTML, <b>PR #12</b> responsive drawer admin di backend <code>6732284</code>; serta <b>PR #14</b> kompresi aset &amp; network image inspeksi dan <b>PR #15</b> motion ringan &amp; haptics mobile di <code>5f486ec</code>) telah tuntas dan masuk ke <code>main</code> di kedua repo (Gitea <code>0 Open</code> PR). Jejak commit anggota tim terdistribusi aktif di kedua repository.</p>
 
   <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang autentikasi, notifikasi, dan tampilan pendukung. Sejak 27 Oktober seluruh alur order di Flutter tersambung ke API, bukan mock. Tanggal 29 Oktober alur penuh lulus 100&thinsp;% di HP fisik Redmi Note 9 Pro melawan backend sungguhan tanpa mock.</p>
 
   <div class="stamp">
-    <span><b>Diperbarui</b> 20 November 2026</span>
+    <span><b>Diperbarui</b> 23 November 2026</span>
     <span><b>Beku fitur</b> 30 Oktober 2026</span>
-    <span><b>Rilis</b> main backend <code>e3dee03</code> &middot; main mobile <code>619d6f4</code></span>
+    <span><b>Rilis</b> main backend <code>6732284</code> &middot; main mobile <code>5f486ec</code></span>
     <span><b>Progres UTS</b> 84&thinsp;%</span>
   </div>
 </header>
@@ -643,15 +643,15 @@
   <div class="grid2" style="margin-top:0">
     <div class="card ok">
       <h3>Backend</h3>
-      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>e3dee03</code> (<code>kai/develop</code> pada <code>1cde96e</code>); <code>php artisan test</code> (PHP 8.4.27) <b>178 test lulus (872 asersi, 0 skip)</b>. Pembaruan pasca-UTS, deployment &amp; UAS: standarisasi HTTP 401, SLA berkas 7 hari + auto-reject, setup <b>Docker Compose Dokploy</b> (PostgreSQL 16, PHP 8.4 Alpine, Vite 8, <code>trustProxies</code>), <b>API Chat 2 Arah (M5)</b> dari Rangga, serta <b>Export CSV &amp; Cetak/PDF Transaksi Admin (M7)</b> dari Ifa.</p>
+      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>6732284</code> (<code>kai/develop</code> pada <code>399cd72</code>); <code>php artisan test</code> (PHP 8.4.27) <b>180 test lulus (884 asersi, 0 skip)</b>, Gitea <code>0 Open / 12 Closed</code>. Pembaruan terbaru: API Chat M5 &amp; Export M7, standarisasi status code <code>201/400/409</code> + <code>lockForUpdate()</code> (PR #9 Rangga), CSS micro-interactions &amp; responsive drawer admin (PR #10 &amp; #12 Rangga), serta unifikasi rute <code>toggle-status</code> + <code>OtpVerificationMail</code> reset sandi HTML (PR #11 Ifa).</p>
     </div>
     <div class="card ok">
       <h3>Mobile</h3>
-      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>619d6f4</code> (<code>kai/develop</code> pada <code>30e6866</code>); <code>flutter analyze</code> <b>0 issue</b>. Pembaruan pasca-UTS &amp; UAS: widget <code>OrderStepper</code> bulat, kunci skala teks <code>0.81</code>, perbaikan <code>360 dp</code> PR #10 Rangga &amp; PR #11 Ifa, <b>Live GPS Tracking + Pemotongan Rute OSRM + Dialer <code>tel:</code>/Maps</b> (PR #12 Raskha), <b>Integrasi UI Chat Mobile</b> (PR #13 Ifa), dan build ulang APK release.</p>
+      <p><b>Kondisi sekarang:</b> <code>kai/main</code> pada <code>5f486ec</code> (<code>kai/develop</code> pada <code>49314e8</code>); <code>flutter analyze</code> <b>0 issue</b>, Gitea <code>0 Open / 15 Closed</code>. Pembaruan terbaru: Live GPS &amp; rute OSRM (PR #12 Raskha), Chat UI (PR #13 Ifa), kompresi <code>illustration_hero.png</code> 483,3&rarr;48,9 KB + network image foto inspeksi (PR #14 Ifa), serta motion ringan &amp; haptics native Flutter (PR #15 Ifa, 14/14 widget test terkait lulus).</p>
     </div>
     <div class="card ok">
       <h3>Uji alur &amp; deployment terakhir</h3>
-      <p><b>19&ndash;20 Nov:</b> APK <i>release</i> (<code>USE_MOCK=false</code> ke Ngrok) lulus uji E2E di emulator MuMuPlayerGlobal (720&times;1280 @ 320&nbsp;dpi, Android 15) termasuk verifikasi visual 360&nbsp;dp PR #10 &amp; PR #11 (split QRIS 10&#8239;%/90&#8239;%, ulasan &amp; garansi). Stack Docker Compose lokal lulus uji 21 migrasi, CSS Vite, HTTPS proxy, dan <code>/storage</code>; rilis terbaru <code>e3dee03</code>/<code>619d6f4</code> membangun ulang <code>mogokin-app-release.apk</code> (58,0&nbsp;MB, MD5 <code>a0b1b787</code>). <span class="note">Diketahui: <code>widget_test.dart</code> menyisakan 3 isu pre-existing pada lebar sempit 320&nbsp;px sejak sebelum paket tim.</span></p>
+      <p><b>19&ndash;23 Nov:</b> APK <i>release</i> (<code>USE_MOCK=false</code> ke Ngrok, build <code>619d6f4</code>, 58,0&nbsp;MB, MD5 <code>a0b1b787</code>) lulus uji E2E di emulator MuMuPlayerGlobal (720&times;1280 @ 320&nbsp;dpi, Android 15); rilis <code>5f486ec</code> siap di-rebuild ke APK berikutnya setelah PR konsistensi desain Raskha masuk. Stack Docker Compose Dokploy (PostgreSQL 16 + PHP 8.4) lulus uji lokal 21 migrasi, Vite, HTTPS proxy, dan <code>/storage</code> (deploy production sementara <i>on-hold</i>). <span class="note">Diketahui: <code>widget_test.dart</code> menyisakan isu pre-existing runner Windows/320&nbsp;px sejak sebelum paket tim.</span></p>
     </div>
   </div>
 
@@ -664,12 +664,12 @@
       <table>
         <thead><tr><th>Repo</th><th>Jizdan</th><th>Raskha</th><th>Rangga</th><th>Ifa</th></tr></thead>
         <tbody>
-          <tr><td class="item"><code>mogokin_backend</code></td><td>65</td><td>51</td><td>12</td><td>19</td></tr>
-          <tr><td class="item"><code>mogokin_app</code></td><td>132</td><td>25</td><td>19</td><td>16</td></tr>
+          <tr><td class="item"><code>mogokin_backend</code></td><td>73</td><td>51</td><td>15</td><td>20</td></tr>
+          <tr><td class="item"><code>mogokin_app</code></td><td>137</td><td>25</td><td>19</td><td>18</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin:8px 0 0" class="note">Hitungan <code>git shortlog -sne main</code> per repo. Nama <b>Jizdan</b> di backend menggabungkan 62 commit bernama Jizdan + 3 commit awal di email yang sama. Nama <b>Raskha</b> tampil sebagai <i>Nazriel Farras Khairiya</i> di dua email (<code>nazrielfrs@</code> dan <code>raskha.33425120@</code>). <b>Ifa</b> tampil di dua akun Gitea (<code>faizah27</code> dan <code>faizahmuf</code>) yang merupakan orang yang sama.</p>
+    <p style="margin:8px 0 0" class="note">Hitungan <code>git shortlog -sne main</code> per repo. Nama <b>Jizdan</b> di backend menggabungkan 70 commit bernama Jizdan + 3 commit awal di email yang sama. Nama <b>Raskha</b> tampil sebagai <i>Nazriel Farras Khairiya</i> di dua email (<code>nazrielfrs@</code> dan <code>raskha.33425120@</code>). <b>Ifa</b> tampil di dua akun Gitea (<code>faizah27</code> dan <code>faizahmuf</code>) yang merupakan orang yang sama.</p>
   </div>
   <div class="table-scroll">
     <table>
@@ -992,6 +992,18 @@
         <li><b>API Chat 2 Arah &amp; Export Transaksi Admin (<code>e3dee03</code>):</b> Rangga (<code>7e01e26</code>) menambahkan tabel <code>order_messages</code>, <code>MessageController</code> (<code>GET /api/messages</code>, <code>GET/POST /api/service-requests/{id}/messages</code> dengan otorisasi <code>403</code> &amp; auto <code>read_at</code>), serta <code>MessageApiTest</code>; Ifa (<code>8eee74a</code>) menambahkan <code>exportCsv</code> (<code>fputcsv</code> + UTF-8 BOM + <code>$query-&gt;cursor()</code> + proteksi formula injection), halaman cetak <code>print.blade.php</code>, grid summary responsif, dan <code>AdminTransactionExportTest</code> (total backend <b>178/178 test lulus, 872 asersi</b>).</li>
         <li><b>PR #12 Raskha &amp; PR #13 Ifa Mobile (<code>619d6f4</code>):</b> Raskha (<code>4d2c32d</code>) mengaktifkan live GPS tracking mitra ke <code>PATCH /api/mitra/status</code>, pemotongan polyline OSRM (<code>RouteSim.remainingFromPoint</code>) dengan reset state per order, serta launcher telepon <code>tel:</code> &amp; navigasi Google Maps; Ifa (<code>c3bfd8f</code>) menyambungkan <code>ChatListScreen</code> &amp; <code>ChatDetailScreen</code> ke API chat dengan polling 4 detik tanpa kedip pesan mock.</li>
         <li><b>Rilis Mobile &amp; APK (<code>619d6f4</code>):</b> Menggabungkan <code>develop</code> (<code>30e6866</code>) ke <code>kai/main</code> (<code>619d6f4</code>) dengan <code>flutter analyze</code> 0 issue, lalu membangun ulang <code>mogokin-app-release.apk</code> (58,0 MB, MD5 <code>a0b1b787</code>).</li>
+      </ul>
+    </li>
+
+    <li class="key">
+      <span class="when">Evaluasi Arsitektur Pak Suko, Optimasi Asset &amp; Polish UI/UX (22&ndash;23 November)</span>
+      <span class="what">Standarisasi REST API &amp; idempotensi transaksi, kebijakan aset vs network image, micro-interactions UI/UX, penyatuan rute admin &amp; email OTP HTML, serta layout drawer responsif Web Admin.</span>
+      <ul>
+        <li><b>Backend PR #9 Rangga (<code>51a61c1</code> &rarr; <code>a37aa15</code>):</b> Menghapus alias duplikat <code>forgot-password</code>/<code>reset-password</code> dengan pengelompokan rute <code>auth</code> &amp; <code>mitra</code> (37 endpoint API), menstandarkan HTTP status code (<code>201 Created</code> pembayaran, <code>409 Conflict</code> duplikat bayar/ulasan, middleware <code>ValidateJsonPayload</code> + handler <code>400 Bad Request</code> JSON), dan membungkus transaksi/kode order dalam <code>DB::transaction</code> + <code>lockForUpdate()</code> anti race-condition.</li>
+        <li><b>Mobile PR #14 Ifa + Fixup (<code>e39ae7b</code>, <code>c6b1a8d</code> &rarr; <code>e7b0bf0</code>):</b> Menjalankan kebijakan aset lokal vs network image: mengompres <code>illustration_hero.png</code> dari 483,3 KB menjadi 48,9 KB, menghapus PNG statis tidak terpakai, memuat foto kendala di <code>InspectionScreen</code> &amp; <code>MitraInspectionScreen</code> via <code>Image.network(AppConfig.fileUrl(...))</code> (placeholder 84&nbsp;px fallback), menyetel default badge unread <code>0</code>, dan menambah 4 widget test inspeksi.</li>
+        <li><b>Backend PR #10 Rangga (<code>3e84302</code> &rarr; <code>e602d9c</code>):</b> Menambahkan CSS micro-interactions pada kartu metrik, tombol, paginasi, baris tabel, transisi konten/alert, fokus keyboard, dan cakupan penuh <code>@media (prefers-reduced-motion: reduce)</code> di Web Admin tanpa library JS berat agar peta Leaflet tetap aman.</li>
+        <li><b>Mobile PR #15 Ifa (<code>4c115d4</code> &rarr; <code>5f486ec</code>):</b> Menambahkan animasi ringan &amp; <code>HapticFeedback</code> native Flutter pada <code>AppButton</code>, bottom navigation pengendara/mitra, <code>OrderStepper</code>, dan <code>AnimatedSwitcher</code> di <code>HomeScreen</code> &amp; <code>PaymentScreen</code> (+2 widget test baru; 14/14 test di 4 suite lulus, <code>flutter analyze</code> 0 issue).</li>
+        <li><b>Backend PR #11 Ifa &amp; PR #12 Rangga + Fixup Tech Lead (<code>ce98a7f</code>, <code>ddd6ebd</code>, <code>399cd72</code> &rarr; <code>6732284</code>):</b> Ifa menyatukan rute duplikat <code>PATCH /admin/users/{id}/toggle</code> ke <code>admin.users.toggle-status</code> dan memindahkan email reset sandi dari <code>Mail::raw</code> ke template HTML <code>OtpVerificationMail</code> (<code>Plus Jakarta Sans</code>, TTL 10 menit); Rangga membuat drawer responsif Web Admin (<code>&le; 1024 px</code>) dengan backdrop blur, hamburger/close, tombol <code>Escape</code>, serta grid metrik adaptif; ditambah fixup fallback redirect &amp; kelas <code>.metrics-grid</code> hingga <b>180/180 test PHP 8.4 lulus (884 asersi)</b> dan seluruh PR Gitea ditutup bersih (<code>0 Open</code> di kedua repo).</li>
       </ul>
     </li>
   </ol>
