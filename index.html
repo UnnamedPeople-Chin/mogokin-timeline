@@ -625,17 +625,17 @@
 <body>
 <div class="wrap">
   <header class="band">
-  <p class="eyebrow">PBL-202601-07 · MOGOKIN · Rilis v1.2.0 Menuju UAS</p>
+  <p class="eyebrow">PBL-202601-07 · MOGOKIN · Rilis v1.3.0 Menuju UAS</p>
   <h1>Porsi Kerja &amp; Timeline UAS</h1>
 
-  <p class="lede"><b>Status akhir 24&ndash;25 November 2026 (Rilis Resmi <code>v1.2.0</code>).</b> Seluruh migrasi <b>100&thinsp;% Web Admin SPA</b> (Inertia v3 + Vue 3 di 6 modul lengkap dengan peta Leaflet real-time), deployment produksi <b>24/7 di VPS Azure Jakarta + Dokploy HTTPS</b> (<a href="https://mogokin-api.indonesiacentral.cloudapp.azure.com/admin/login" target="_blank" rel="noopener">mogokin-api.indonesiacentral.cloudapp.azure.com</a>), perbaikan hasil uji lapangan 2 HP fisik (endpoint &amp; UI <code>Batalkan Pesanan</code>, anti-duplikat order, filter penolakan/TTL radar mitra, foreground service GPS 4 detik, reset kendaraan akun baru, persistensi bukti transfer), serta dokumentasi <code>CHANGELOG.md</code> dan <b>Gitea Releases <code>v1.2.0</code></b> (lengkap dengan lampiran <code>mogokin-app-v1.2.0.apk</code>) telah tuntas. Seluruh papan Kanban Backend <b>7/7 Done</b> dan Mobile <b>5/6 Done</b> (<code>0 Open PR</code> di kedua repo; tersisa 1 task akhir: perekaman simulasi jalanan nyata <code>#20</code>).</p>
+  <p class="lede"><b>Status akhir 25 November 2026 (Rilis Resmi <code>v1.3.0</code>).</b> Seluruh migrasi <b>100&thinsp;% Web Admin SPA</b> (Inertia v3 + Vue 3 di 6 modul lengkap dengan peta Leaflet real-time &amp; dropdown profil topbar), deployment produksi <b>24/7 di VPS Azure Jakarta + Dokploy HTTPS</b> (<a href="https://mogokin-api.indonesiacentral.cloudapp.azure.com/admin/login" target="_blank" rel="noopener">mogokin-api.indonesiacentral.cloudapp.azure.com</a>), audit keamanan &amp; hardening menyeluruh (11 issue bugfix &amp; polish UI/UX pasca uji lapangan: sanitasi popup Leaflet/SVG, proteksi admin &amp; revoke token suspend, timezone WIB, lock transaksi mitra, izin permanen upload foto 5&nbsp;MB Nginx, polish Beranda + reverse-geocoding + radar pulse, guard order aktif &amp; tombol Bayar Sekarang, serta pop-up panggilan order masuk saat Mitra Online), dan publikasi <b>Gitea Releases <code>v1.3.0</code></b> (lengkap dengan unduhan resmi <code>mogokin-app-v1.3.0.apk</code>) telah tuntas. Papan Kanban Backend kini <b>14/14 Done</b> (<code>0 Open Issues</code>) dan Mobile <b>13/14 Done</b> (<code>0 Open PR</code> di kedua repo; tersisa 1 task akhir: perekaman simulasi jalanan nyata <code>#20</code>).</p>
 
-  <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang autentikasi, notifikasi, dan tampilan pendukung. Seluruh koordinasi kini berjalan penuh lewat Gitea Issues, Milestones, Kanban Projects, Pull Request Review, dan Releases.</p>
+  <p class="lede">Dua tim, dua orang per modul. <b>Tim 1</b> (Jizdan &amp; Raskha) memegang alur order dan admin; <b>Tim 2</b> (Rangga &amp; Ifa) memegang autentikasi, notifikasi, dan tampilan pendukung. Seluruh koordinasi berjalan penuh lewat Gitea Issues, Milestones, Kanban Projects, Pull Request Review, dan Releases.</p>
 
   <div class="stamp">
     <span><b>Diperbarui</b> 25 November 2026</span>
     <span><b>Target Beku UAS</b> 7 Desember 2026 (Minggu 15)</span>
-    <span><b>Rilis Resmi</b> <code>v1.2.0</code> (backend <code>36a88a2</code> &middot; mobile <code>5856202</code>)</span>
+    <span><b>Rilis Resmi</b> <code>v1.3.0</code> (backend <code>cbc61fd</code> &middot; mobile <code>bf70945</code>)</span>
     <span><b>Server Live</b> Azure Jakarta 24/7 (HTTPS)</span>
     <span><b>Progres UAS</b> 97&thinsp;%</span>
   </div>
@@ -643,16 +643,16 @@
 
   <div class="grid2" style="margin-top:0">
     <div class="card ok">
-      <h3>Backend &amp; Web Admin (<code>v1.2.0</code>)</h3>
-      <p><b>Kondisi sekarang:</b> Tag <code>v1.2.0</code> di <code>kai/develop</code> (<code>36a88a2</code>) dan produksi <code>kai/main</code> (<code>60f4922</code>); <code>php artisan test</code> (PHP 8.4) <b>190/190 test lulus (1.272 asersi, 0 skip)</b>, Vite 8 build bersih (<code>1,85 dtk</code>), Kanban <b>7/7 Done</b> (<code>0 Open Issues / 0 Open PR</code>). Pembaruan terbaru: 100&thinsp;% Web Admin SPA Vue 3 + Leaflet (PR #22 Ifa, #23 Raskha, #24 Rangga), preset suspend + rating mitra (PR #19 Ifa), <code>phone</code> nullable + Docker healthcheck/backup/docs (PR #20 &amp; #21 Rangga), API cancel pengendara + anti-duplikat + filter radar/decline, serta <code>CHANGELOG.md</code> (PR #26 Ifa).</p>
+      <h3>Backend &amp; Web Admin (<code>v1.3.0</code>)</h3>
+      <p><b>Kondisi sekarang:</b> Tag <code>v1.3.0</code> di <code>kai/main</code> &amp; <code>kai/develop</code> (<code>cbc61fd</code>); <code>php artisan test</code> (PHP 8.4) <b>213/213 test lulus (1.498 asersi, 0 skip)</b>, Vite 8 build bersih (<code>4,84 dtk</code>), Kanban <b>14/14 Done</b> (<code>0 Open Issues / 0 Open PR</code>). Pembaruan <code>v1.3.0</code>: audit SPA zero-reload (PR #28), sanitasi Leaflet/SVG + MIME kendaraan + rate-limit OTP (PR #33), proteksi hapus admin + revoke token suspend + middleware <code>active</code> (PR #35), otorisasi &amp; lock transaksi mitra + <code>POST /api/profile</code> (PR #34), penyeragaman timezone WIB &amp; akurasi metrik (PR #36), fix permanen izin <code>/var/lib/nginx/tmp</code> &amp; foto inspeksi 5&nbsp;MB (PR #40), serta dropdown profil Administrator &amp; bump <code>v1.3.0</code> (PR #41).</p>
     </div>
     <div class="card ok">
-      <h3>Mobile Flutter (<code>v1.2.0+3</code>)</h3>
-      <p><b>Kondisi sekarang:</b> Tag <code>v1.2.0</code> di <code>kai/develop</code> (<code>5856202</code>); <code>flutter analyze</code> <b>0 issue</b>, seluruh test fitur baru lulus penuh, Kanban <b>5/6 Done</b> (<code>0 Open PR</code>, sisa 1 Issue <code>#20</code> perekaman simulasi jalanan). Pembaruan terbaru: konsistensi desain mitra (PR #16 Raskha), persistensi bukti transfer (PR #21 Ifa), foreground service GPS 4 detik + default URL Azure 24/7 + runbook jalanan (PR #22 Raskha), reset kendaraan akun baru (PR #23 Rangga), integrasi tombol Batalkan &amp; radar GPS persisten (PR #25 Raskha), serta sinkronisasi versi <code>1.2.0+3</code> + <code>CHANGELOG.md</code> (PR #27 Rangga).</p>
+      <h3>Mobile Flutter (<code>v1.3.0+4</code>)</h3>
+      <p><b>Kondisi sekarang:</b> Tag <code>v1.3.0</code> di <code>kai/main</code> &amp; <code>kai/develop</code> (<code>bf70945</code>); <code>flutter analyze</code> <b>0 issue</b>, seluruh <b>137 test lulus</b>, Kanban <b>13/14 Done</b> (<code>0 Open PR</code>, sisa 1 Issue <code>#20</code> perekaman simulasi jalanan). Pembaruan <code>v1.3.0</code>: polish Beranda + reverse-geocoding Nominatim + radar pulse + avatar navbar (PR #30), alur pilih bengkel detail sheet + guard bengkel tutup + sync batal 5 detik (PR #31), fix upload foto kendaraan/profil multipart (PR #36), fix deadlock status tiba + subtotal live + cleanup GPS (PR #37), perbaikan polling tracking &amp; riwayat (PR #38), hardening lifecycle auth &amp; role guard (PR #39), guard order aktif &amp; tombol Bayar Sekarang (PR #42), serta pop-up panggilan order masuk Mitra Online + bump <code>1.3.0+4</code> (PR #43).</p>
     </div>
     <div class="card ok">
-      <h3>Server Produksi 24/7 &amp; Uji 2 HP</h3>
-      <p><b>Live di Azure Jakarta:</b> Stack Docker Compose (PostgreSQL 16 + PHP 8.4 + Nginx + Supervisor) dikelola via Dokploy + SSL Let's Encrypt pada <code>https://mogokin-api.indonesiacentral.cloudapp.azure.com</code> (container <code>app</code> &amp; <code>db</code> sehat <i>healthy</i>). Seluruh 6 menu SPA Web Admin lulus verifikasi live (<code>0</code> full reload, <code>0</code> console error, peta Leaflet &amp; audit trail aktif). APK resmi <code>mogokin-app-v1.2.0.apk</code> (<code>20,62 MB</code>, <code>arm64</code>, MD5 <code>a7da1ea4</code>) telah terlampir untuk diunduh langsung di Gitea Releases Mobile <code>v1.2.0</code> dan teruji di Redmi Note 9 Pro &amp; Infinix X690B.</p>
+      <h3>Server Produksi 24/7 &amp; APK <code>v1.3.0</code></h3>
+      <p><b>Live di Azure Jakarta:</b> Stack Docker Compose (PostgreSQL 16 + PHP 8.4 + Nginx + Supervisor) dikelola via Dokploy + SSL Let's Encrypt pada <code>https://mogokin-api.indonesiacentral.cloudapp.azure.com</code> sudah live di <b><code>v1.3.0</code></b> (deploy <code>22 dtk</code>, <code>0</code> console error, <code>0</code> HTTP 4xx/5xx, dropdown <i>Admin MOGOKIN</i> &amp; upload multipart 5&nbsp;MB aktif). APK resmi <code>mogokin-app-v1.3.0.apk</code> (<code>20,68 MB</code>, <code>arm64</code>, MD5 <code>131cdee6</code>) telah diterbitkan dan dapat diunduh langsung di Gitea Releases Mobile <code>v1.3.0</code>.</p>
     </div>
   </div>
 
@@ -665,12 +665,12 @@
       <table>
         <thead><tr><th>Repo</th><th>Jizdan</th><th>Raskha</th><th>Rangga</th><th>Ifa</th></tr></thead>
         <tbody>
-          <tr><td class="item"><code>mogokin_backend</code></td><td>78</td><td>52</td><td>19</td><td>25</td></tr>
-          <tr><td class="item"><code>mogokin_app</code></td><td>133</td><td>29</td><td>21</td><td>19</td></tr>
+          <tr><td class="item"><code>mogokin_backend</code></td><td>78</td><td>53</td><td>25</td><td>25</td></tr>
+          <tr><td class="item"><code>mogokin_app</code></td><td>133</td><td>33</td><td>22</td><td>22</td></tr>
         </tbody>
       </table>
     </div>
-    <p style="margin:8px 0 0" class="note">Hitungan <code>git shortlog -sne develop</code> per repo pada rilis <code>v1.2.0</code> (24 Nov 2026). Nama <b>Jizdan</b> di backend menggabungkan commit lokal &amp; merge Gitea di email yang sama. Nama <b>Raskha</b> tampil sebagai <i>Nazriel Farras Khairiya</i> / <code>nzrlfrrs</code> di dua email (<code>nazrielfrs@</code> dan <code>raskha.33425120@</code>). <b>Ifa</b> tampil di dua akun Gitea (<code>faizah27</code> dan <code>faizahmuf</code>) yang merupakan orang yang sama.</p>
+    <p style="margin:8px 0 0" class="note">Hitungan <code>git shortlog -sne develop</code> per repo pada rilis <code>v1.3.0</code> (25 Nov 2026). Nama <b>Jizdan</b> di backend menggabungkan commit lokal &amp; merge Gitea di email yang sama. Nama <b>Raskha</b> tampil sebagai <i>Nazriel Farras Khairiya</i> / <code>nzrlfrrs</code> di dua email (<code>nazrielfrs@</code> dan <code>raskha.33425120@</code>). <b>Ifa</b> tampil di dua akun Gitea (<code>faizah27</code> dan <code>faizahmuf</code>) yang merupakan orang yang sama.</p>
   </div>
   <div class="table-scroll">
     <table>
@@ -725,13 +725,13 @@
     </ul>
   </div>
 
-  <h2><span class="num">02</span>Progres 7 Modul RPP (Menuju UAS &middot; v1.2.0)</h2>
-  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Pada rilis <code>v1.2.0</code> (Minggu 13&ndash;14), seluruh lapisan Backend, Web Admin 100&thinsp;% SPA Vue 3, deployment produksi Azure 24/7, dan fitur inti Mobile telah tuntas. Hanya 1 sel (<b>M3 Mobile</b>) yang masih dipertahankan pada status sebagian hingga dokumentasi perekaman simulasi jalanan nyata (<code>#20</code>) selesai sebelum beku fitur Minggu 15.</p>
+  <h2><span class="num">02</span>Progres 7 Modul RPP (Menuju UAS &middot; v1.3.0)</h2>
+  <p class="sub">Nomor dan urutan mengikuti tabel <b>Modul Aplikasi (Modules)</b> di <code>RPP MOGOKIN - Final.docx</code> halaman 3. Pada rilis <code>v1.3.0</code> (25 November 2026), seluruh lapisan Backend, Web Admin 100&thinsp;% SPA Vue 3, audit keamanan &amp; hardening uji lapangan, deployment produksi Azure 24/7, dan fitur inti Mobile telah tuntas. Hanya 1 sel (<b>M3 Mobile</b>) yang masih dipertahankan pada status sebagian hingga dokumentasi perekaman simulasi jalanan nyata (<code>#20</code>) selesai sebelum beku fitur Minggu 15.</p>
 
   <div class="progress">
     <div class="progress-head">
       <div>
-        <span class="progress-cap">Progress keseluruhan proyek (Rilis v1.2.0 Menuju UAS)</span>
+        <span class="progress-cap">Progress keseluruhan proyek (Rilis v1.3.0 Menuju UAS)</span>
         <span class="progress-num">97<small>&thinsp;%</small></span>
       </div>
       <div class="progress-tally">
@@ -745,7 +745,7 @@
       <i class="d" style="width:94.7%"></i>
       <i class="p" style="width:2.6%"></i>
     </div>
-    <p>Dihitung per sel: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> dinilai. Persen tiap modul = (sel selesai + &frac12; sel sebagian) &divide; sel berlaku. Capaian fungsional rilis <code>v1.2.0</code> kini <b>(18 + 1 &times; 0,5) &divide; 19 = 97&thinsp;%</b> (naik dari 84&thinsp;% saat UTS); skor konservatif murni tuntas <b>18 &divide; 19 = 95&thinsp;%</b>.</p>
+    <p>Dihitung per sel: 7 modul &times; 3 lapisan (backend, mobile, admin) = <b>21 sel</b>, dua di antaranya tidak berlaku, jadi <b>19 sel</b> dinilai. Persen tiap modul = (sel selesai + &frac12; sel sebagian) &divide; sel berlaku. Capaian fungsional rilis <code>v1.3.0</code> kini <b>(18 + 1 &times; 0,5) &divide; 19 = 97&thinsp;%</b> (naik dari 84&thinsp;% saat UTS); skor konservatif murni tuntas <b>18 &divide; 19 = 95&thinsp;%</b>.</p>
   </div>
 
 <div class="legend">
@@ -758,7 +758,7 @@
   <div class="table-scroll">
     <table>
       <thead>
-        <tr><th>Modul</th><th>PJ</th><th>Backend</th><th>Mobile</th><th>Admin</th><th>Progress</th><th>Status v1.2.0 &amp; Sisa Menuju UAS</th></tr>
+        <tr><th>Modul</th><th>PJ</th><th>Backend</th><th>Mobile</th><th>Admin</th><th>Progress</th><th>Status v1.3.0 &amp; Sisa Menuju UAS</th></tr>
       </thead>
       <tbody>
         <tr>
@@ -829,7 +829,7 @@
   </div>
 
   <div class="callout done">
-    <p><strong>Status Rilis v1.2.0 (24&ndash;25 November): Progres fungsional 97&thinsp;% (Konservatif 95&thinsp;%).</strong> Seluruh pekerjaan teknis di Backend (190/190 PHPUnit lulus, 100&thinsp;% Web Admin SPA, live 24/7 Azure) dan Mobile (<code>v1.2.0+3</code>, <code>flutter analyze</code> 0 issue, APK resmi di Gitea Releases) telah tuntas. Fokus tersisa menuju UAS (14 Desember) tinggal uji coba bug-hunting tim pada APK <code>v1.2.0</code> dan perekaman video simulasi real-time di jalanan (Issue <code>#20</code>).</p>
+    <p><strong>Status Rilis v1.3.0 (25 November): Progres fungsional 97&thinsp;% (Konservatif 95&thinsp;%).</strong> Seluruh 14/14 task Backend (<b>213/213 PHPUnit lulus, 1.498 asersi</b>, live 24/7 Azure <code>v1.3.0</code>) dan 13/14 task Mobile (<code>v1.3.0+4</code>, <code>flutter analyze</code> 0 issue, <b>137 test lulus</b>, APK resmi di Gitea Releases) telah tuntas. Fokus tersisa menuju UAS (14 Desember) tinggal 1 task terakhir: eksekusi &amp; perekaman video simulasi real-time di jalanan (Issue <code>#20</code>).</p>
   </div>
 
   <h2><span class="num">03</span>Timeline Pengembangan</h2>
@@ -1027,6 +1027,16 @@
         <li><b>100&thinsp;% Web Admin SPA Vue 3 (PR #22 Ifa, PR #23 Raskha, PR #24 Rangga):</b> Seluruh sisa modul Web Admin dimigrasi penuh ke Inertia + Vue 3 tanpa konflik: <i>Data Pengguna &amp; Notifikasi</i> (Ifa), <i>Data Bengkel, Verifikasi &amp; Transaksi</i> (Raskha), serta <i>Ringkasan/Overview + Peta Leaflet &amp; Detail Pesanan + Audit Trail</i> (Rangga). Terverifikasi live di Azure dengan <code>0</code> full reload dan <code>0</code> console error (<b>185/185 PHPUnit lulus</b>).</li>
         <li><b>Hardening Live GPS &amp; Audit Uji Lapangan 2 HP (PR #22 &amp; #25 Mobile; Backend <code>60f4922</code>):</b> Raskha mengaktifkan <i>foreground service</i> GPS 4 detik + <code>ACCESS_BACKGROUND_LOCATION</code> + <code>RUNBOOK_SIMULASI_JALAN.md</code> + default URL Azure 24/7 (PR #22). Hasil uji 2 HP fisik (Redmi Note 9 Pro + Infinix X690B) memicu perbaikan tuntas: penambahan <code>POST /api/service-requests/{id}/cancel</code>, auto-cancel order <code>mencari_montir</code> duplikat, filter penolakan per mitra + TTL radar 60 menit (<b>190/190 PHPUnit lulus, 1.272 asersi</b>), serta integrasi dialog Batalkan Pesanan + <code>dismissedOrderIds</code> persisten + refresh GPS radar di Mobile (PR #25 Raskha).</li>
         <li><b>Rilis Resmi <code>v1.2.0</code> &amp; <code>CHANGELOG.md</code> (PR #26 Ifa Backend, PR #27 Rangga Mobile):</b> Menyeragamkan Semantic Versioning <code>v1.2.0</code> (Backend <code>routes/api.php</code> &amp; <code>AdminLayout.vue</code>) dan <code>1.2.0+3</code> (Mobile <code>pubspec.yaml</code>, <code>AppConfig</code>, layar akun pengendara/mitra), menerbitkan <code>CHANGELOG.md</code> format <i>Keep a Changelog</i>, serta memublikasikan <b>Gitea Releases <code>v1.2.0</code></b> lengkap dengan unduhan resmi <code>mogokin-app-v1.2.0.apk</code> (20,62 MB, MD5 <code>a7da1ea4</code>).</li>
+      </ul>
+    </li>
+
+    <li class="key">
+      <span class="when">Audit Keamanan, Hardening End-to-End, Polish UI/UX &amp; Rilis Resmi <code>v1.3.0</code> (25 November)</span>
+      <span class="what">Penuntasan penuh 15 temuan audit bug &amp; pengujian lapangan lintas Backend dan Mobile, deploy produksi Azure <code>v1.3.0</code>, dan rilis APK <code>v1.3.0+4</code>.</span>
+      <ul>
+        <li><b>Backend Hardening, Security &amp; UX Admin (PR #28, #33, #34, #35, #36, #40, #41):</b> Rangga menuntaskan audit SPA zero-reload (<code>#27</code>), sanitasi DOM popup Leaflet &amp; XML SVG fallback + validasi MIME kendaraan + rate-limit reset OTP (<code>#29</code>), proteksi hapus admin/transaksi + pencabutan token Sanctum &amp; status offline saat suspend + middleware <code>active</code> (<code>#30</code>), penyeragaman timezone WIB + guard query param/route ID + akurasi metrik (<code>#32</code>), perbaikan permanen izin <code>/var/lib/nginx/tmp</code> container Azure + batas foto inspeksi 5&nbsp;MB (<code>#38</code>), serta pemindahan menu Administrator ke dropdown profil <i>Admin MOGOKIN</i> di topbar &amp; bump <code>v1.3.0</code> (<code>#39</code>). Raskha memperketat otorisasi decline/accept/nearby mitra, <code>DB::transaction</code> + <code>lockForUpdate</code> status/inspeksi, fix loop auto-reject verifikasi ulang, dan dukungan <code>POST /api/profile</code> (<code>#31</code>). Total <b>213/213 PHPUnit lulus (1.498 asersi)</b>, Kanban Backend <b>14/14 Done</b>.</li>
+        <li><b>Mobile Polish UI, Alur Bengkel, Auth, Upload &amp; Pop-up Mitra (PR #30, #31, #36, #37, #38, #39, #42, #43):</b> Ifa memoles Beranda pengendara dengan sapaan dinamis, reverse-geocoding Nominatim + tombol refresh GPS, tombol radar pulse, avatar inisial navbar, &amp; transisi halus (<code>#29</code>), memperbaiki gagal 422 tambah kendaraan berfoto &amp; upload foto profil multipart (<code>#32</code>), serta memperkuat lifecycle auth/OTP/logout/role guard (<code>#34</code>). Raskha memisahkan detail sheet bengkel tanpa auto-select, guard bengkel tutup, sync status dibatalkan 5 detik di mitra (<code>#28</code>), memperbaiki deadlock status tiba + subtotal live + cleanup GPS (<code>#33</code>), polling tracking &amp; label riwayat (<code>#35</code>), serta membatasi tombol <i>Bayar Sekarang</i> khusus status <code>menunggu_pembayaran</code> &amp; guard order aktif lama (<code>#40</code>). Rangga mem-backup fitur pop-up panggilan order masuk (polling 5 detik saat Mitra Online) + bump <code>1.3.0+4</code> (<code>#41</code>). Total <code>flutter analyze</code> <b>0 issue</b> &amp; <b>137 test lulus</b>, Kanban Mobile <b>13/14 Done</b>.</li>
+        <li><b>Rilis Resmi <code>v1.3.0</code> &amp; Deploy Live Azure:</b> Backend <code>v1.3.0</code> (<code>cbc61fd</code>) live di Azure Jakarta (deploy Dokploy 22 dtk, <code>0</code> error) dan dirilis di Gitea Releases; Mobile <code>v1.3.0</code> (<code>bf70945</code>) dirilis lengkap dengan unduhan resmi <code>mogokin-app-v1.3.0.apk</code> (20,68 MB, <code>arm64</code>, MD5 <code>131cdee6</code>).</li>
       </ul>
     </li>
   </ol>
